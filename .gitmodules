@@ -7,3 +7,6 @@
 [submodule "unimag-opi"]
 	path = unimag-opi
 	url = ../unimag-opi
+[submodule "univac-opi"]
+	path = univac-opi
+	url = ../univac-opi
