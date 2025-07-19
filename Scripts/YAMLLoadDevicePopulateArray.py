@@ -19,9 +19,13 @@ pvs = ScriptUtil.getPVs(widget)
 
 if len(pvs)>0 and zoneSelector == None:
     zoneSelector = PVUtil.getString(pvs[0])
+elif zoneSelector is None:
+    zoneSelector = "ALL"
 
 if len(pvs)>1 and typeSelector == None:
     typeSelector = PVUtil.getInt(pvs[1])
+elif typeSelector is None:
+    typeSelector = "ALL"
 
 display_model = widget.getDisplayModel()
 
@@ -29,15 +33,18 @@ display_path = os.path.dirname(display_model.getUserData(display_model.USER_DATA
 
 
 if conffile is None:
-    ScriptUtil.showMessageDialog(widget, "Please set CONFFILE macro to a correct YAML configuration file")
+    ScriptUtil.showMessageDialog(widget, "## Please set CONFFILE macro to a correct YAML configuration file")
+    exit()
 
 confpath = display_path + "/" + conffile
 
 if not os.path.exists(confpath):
-    ScriptUtil.showMessageDialog(widget, "Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
+    ScriptUtil.showMessageDialog(widget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
+    exit()
 
 if devgroup_widget == None:
-    ScriptUtil.showMessageDialog(widget, "Must Specify group widget (i.e unicool,univac,unimag) \"" + confpath + "\" please set CONFFILE macro to a correct file")
+    ScriptUtil.showMessageDialog(widget, "## Must Specify group widget (i.e unicool,univac,unimag) \"" + confpath + "\" please set CONFFILE macro to a correct file")
+    exit()
 
 print("LOADING \""+devgroup_widget+"\" YAML:" + confpath + " zoneSelector: \"" + zoneSelector + " typeSelector: \"" + str(typeSelector)+"\"")
 
@@ -92,6 +99,9 @@ for ioc in iocs:
                     devfunc="SOL"
                 elif ('UFS' in name) :
                     devfunc="UFS"
+                elif('SIP' in name):
+                    devfunc="ion"
+                
 
             if 'opi' in dev:
                 opi=dev['opi']
@@ -105,7 +115,7 @@ for ioc in iocs:
                 name=dev['alias']
             if 'prefix' in dev:
                 prefix=dev['prefix']
-            print("Add object "+str(dev))
+            # print(devgroup_widget+"-"+devtype+" filtering object "+str(dev))
 
             if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
                 continue
@@ -116,7 +126,13 @@ for ioc in iocs:
             else:
                 zone=str(zones)
 
-
+            if devfunc == "ion":
+                devfunc = "0"
+            elif devfunc == "pig":
+                devfunc = "1"
+            elif devfunc == "ccg":
+                devfunc = "2"
+                
             devarray.append({'NAME':name,'R': iocroot, "P": prefix, "TYPE": devfunc, "ZONE": zone,"OPI":opi})
 
 
