@@ -1,0 +1,9 @@
+[submodule "unimot-opi"]
+	path = unimot-opi
+	url = ../unimot-opi
+[submodule "unicool-opi"]
+	path = unicool-opi
+	url = ../unicool-opi
+[submodule "unimag-opi"]
+	path = unimag-opi
+	url = ../unimag-opi
