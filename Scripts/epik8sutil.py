@@ -52,6 +52,8 @@ def conf_to_dev(widget):
     pvs = ScriptUtil.getPVs(widget)
     zoneSelector = widget.getEffectiveMacros().getValue("ZONE")
     typeSelector = widget.getEffectiveMacros().getValue("TYPE")
+    typeFunc = widget.getEffectiveMacros().getValue("FUNC")
+
     if len(pvs)>0 and zoneSelector == None:
         zoneSelector = PVUtil.getString(pvs[0])
     elif zoneSelector is None:
@@ -61,6 +63,11 @@ def conf_to_dev(widget):
         typeSelector = PVUtil.getInt(pvs[1])
     elif typeSelector is None:
         typeSelector = "ALL"
+
+    if len(pvs)>2 and typeFunc == None:
+        typeFunc = PVUtil.getInt(pvs[2])
+    elif typeFunc is None:
+        typeFunc = "ALL"
 
     
     group=widget.getEffectiveMacros().getValue("GROUP")
@@ -86,7 +93,7 @@ def conf_to_dev(widget):
         iocprefix = ioc.get("iocprefix", "")
         devtype = ioc.get("devtype", "ALL")
         devgroup = ioc.get("devgroup", "")
-        devfunc  = ioc.get("devfunc", "")
+        devfunc  = ioc.get("devfun", "")
         opi  = ioc.get("opi", "")
         zones = ioc.get("zones", "ALL")
         iocroot=ioc.get("iocroot", "")
@@ -98,30 +105,36 @@ def conf_to_dev(widget):
                 name = dev['name']
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
+                
                 if 'devfunc' in ioc:
                     devfunc  = ioc.get("devfunc", "")
                 else:
-                    if ('HCV' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
-                        devfunc="COR"
-                    elif ('QUA' in name) or ('QUAD' in name):
-                        devfunc="QUA"
-                    elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name):
-                        devfunc="DIP"
-                    elif ('SOL' in name) :
-                        devfunc="SOL"
-                    elif ('UFS' in name) :
-                        devfunc="UFS"
-                    elif('SIP' in name):
+                    devfunc = devtype
+                    if devgroup == "mag":
+                        if ('HCV' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
+                            devfunc="COR"
+                        elif ('QUA' in name) or ('QUAD' in name):
+                            devfunc="QUA"
+                        elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name):
+                            devfunc="DIP"
+                        elif ('SOL' in name) :
+                            devfunc="SOL"
+                        elif ('UFS' in name) :
+                            devfunc="UFS"
+                    
+                    if(devgroup == "vac" and  'SIP' in name):
                         devfunc="ion"
                     
 
                 if 'opi' in dev:
                     opi=dev['opi']
+                if 'devtype' in dev:
+                    devtype=dev['devtype']
                 if 'zones' in dev:
                     zones=dev['zones']
                 if 'name' in dev:
                     iocroot=dev['name']
-                if 'devfunc' in dev:
+                if 'devfun' in dev:
                     devfunc=dev['devfunc']
                 if 'alias' in dev:
                     name=dev['alias']
@@ -131,8 +144,11 @@ def conf_to_dev(widget):
 
                 if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
                     continue
-                if typeSelector and typeSelector != "ALL" and typeSelector != devfunc:
+                if typeSelector and typeSelector != "ALL" and typeSelector != devtype:
                     continue
+                if typeFunc and typeFunc != "ALL" and typeFunc != devfunc:
+                    continue
+
                 if len(zones)==1:
                     zone=zones[0]
                 else:
@@ -145,7 +161,7 @@ def conf_to_dev(widget):
                 elif devfunc == "ccg":
                     devfunc = "2"
 
-                devarray.append({'NAME':name,'R': iocroot, "P": prefix, "TYPE": devfunc, "ZONE": zone,"OPI":opi})
+                devarray.append({'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone,"OPI":opi})
     return devarray
 
 def dump_pv(widget,separator="\n"):
