@@ -13,3 +13,6 @@
 [submodule "unicam-opi"]
 	path = unicam-opi
 	url = https://github.com/infn-epics/unicam-opi.git
+[submodule "uniio-opi"]
+	path = uniio-opi
+	url = https://github.com/infn-epics/uniio-opi.git
