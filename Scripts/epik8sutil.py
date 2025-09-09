@@ -105,6 +105,8 @@ def conf_to_dev(widget):
                 name = dev['name']
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
+                iocroot=ioc.get("iocroot", "")
+
                 
                 if 'devfunc' in ioc:
                     devfunc  = ioc.get("devfunc", "")
@@ -133,7 +135,10 @@ def conf_to_dev(widget):
                 if 'zones' in dev:
                     zones=dev['zones']
                 if 'name' in dev:
-                    iocroot=dev['name']
+                    if iocroot=="":
+                        iocroot=dev['name']
+                    else:
+                        iocroot=iocroot+":"+dev['name']
                 if 'devfun' in dev:
                     devfunc=dev['devfunc']
                 if 'alias' in dev:
