@@ -16,3 +16,6 @@
 [submodule "uniio-opi"]
 	path = uniio-opi
 	url = ../uniio-opi.git
+[submodule "screen-camera-opi"]
+	path = screen-camera-opi
+	url = https://github.com/infn-epics/screen-camera-opi.git
