@@ -6,7 +6,7 @@ from javax.swing import JOptionPane
 from java.awt.datatransfer import StringSelection
 from java.awt import Toolkit
 
-epik8sutil.dump_pv_tofile(widget)
+epik8sutil.dump_selected_tofile(widget)
 # clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
 # clipboard.setContents(StringSelection(listpv), None)
 

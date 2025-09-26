@@ -85,7 +85,7 @@ def conf_to_dev(widget):
     
     confpath = display_path + "/" + conffile    
 
-    print("LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + " typeSelector: \"" + str(typeSelector)+"\"")
+    print("LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
 
     iocs = conf_to_iocs(confpath)
     for ioc in iocs:
@@ -189,6 +189,119 @@ def dump_pv(widget,separator="\n"):
 
     return pvlist
 
+def _dump_devices_to_files(widget,devarray, group, name):
+    """Common function to dump device array to comprehensive files."""
+    if not devarray:
+        ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
+        return
+
+    sarfile = {}
+    sarfiles = ""
+    fcsvn_valueset_name = name + ".value_set.csv"
+    fcsvn_valuerb_name = name + ".value_rb.csv"
+    
+    for prop in pvsetrb.get(group, []):
+        sarfilen = name + "-" + prop + ".sar.csv"
+        sarfiles = sarfiles + sarfilen + "\n"
+        sarfile[prop] = open(sarfilen, 'w')
+        sarfile[prop].write("PV,READBACK,READ_ONLY\n")
+
+    # Open CSV files for writing
+    fcsvn_set = open(fcsvn_valueset_name, 'w')
+    fcsvn_rb = open(fcsvn_valuerb_name, 'w')
+    fcsvn_set.write("Name,Prefix,PV,Value\n")
+    fcsvn_rb.write("Name,Prefix,PV,Value\n")
+    
+    try:
+        for dev in devarray:
+            prefix = dev['P'] + ":" + dev['R']
+            
+            # Process setpoint PVs
+            for pv in pvset.get(group, []):
+                pvname = prefix + ":" + pv                       
+                try:
+                    remote_pv = PVUtil.createPV(pvname, 100)
+                    val = str(remote_pv.read().getValue())
+                    fcsvn_set.write(dev['NAME'] + "," + prefix + "," + pvname + "," + val + "\n")
+                except Exception as e:
+                    print("Error reading setpoint PV " + pvname + ": " + str(e))
+                    fcsvn_set.write(dev['NAME'] + "," + prefix + "," + pvname + ",ERROR\n")
+            
+            # Process readback PVs  
+            for pv in pvrb.get(group, []):
+                pvname = prefix + ":" + pv                       
+                try:
+                    remote_pv = PVUtil.createPV(pvname, 100)
+                    val = str(remote_pv.read().getValue())
+                    fcsvn_rb.write(dev['NAME'] + "," + prefix + "," + pvname + "," + val + "\n")
+                except Exception as e:
+                    print("Error reading readback PV " + pvname + ": " + str(e))
+                    fcsvn_rb.write(dev['NAME'] + "," + prefix + "," + pvname + ",ERROR\n")
+            
+            # Process SAR files
+            for prop in pvsetrb.get(group, []):
+                pv_base = prefix + ":" + prop
+                sarfile[prop].write(pv_base + "_SP," + pv_base + "_RB,0\n")
+
+        # Close all files
+        for prop in pvsetrb.get(group, []):
+            sarfile[prop].close()
+        
+        fcsvn_set.close()
+        fcsvn_rb.close()
+        
+        ScriptUtil.showMessageDialog(widget, "Generated SAR files: " + sarfiles + 
+                                   "\nDumped SET values to \"" + fcsvn_valueset_name + 
+                                   "\"\nDumped RB values to \"" + fcsvn_valuerb_name + 
+                                   "\"\nProcessed " + str(len(devarray)) + " devices")
+        
+    except Exception as e:
+        ScriptUtil.showMessageDialog(widget, "Error writing to files: " + str(e))
+
+def dump_selected_tofile(widget):
+    """Dump the selected PVs to comprehensive files like dump_pv_tofile but using selections."""
+    from org.phoebus.pv import PVPool
+    
+    name=widget.getPropertyValue("name")
+    group=widget.getEffectiveMacros().getValue("GROUP")
+    name=ScriptUtil.showSaveAsDialog(widget, name)
+
+    if name is None:
+        return
+    
+    print("Dumping selected PVs for group: " + group+ " to file: " + name)
+    
+    # Get selected devices from PV pool like SetCurrentSelected does
+    lpvs = PVPool.getPVReferences()
+    selected_devices = []
+    
+    for pvr in lpvs:
+        selection_pv = pvr.getEntry()
+        pv_name = selection_pv.getName()
+        
+        if pv_name.startswith("loc://selection:"):
+            if selection_pv.read().getValue() == 1:
+                pv_prefix = pv_name.replace("loc://selection:", "")
+                prefix, identifier = pv_prefix.rsplit(":", 1)
+                
+                # Create device entry similar to conf_to_dev format
+                dev = {
+                    'NAME': identifier,
+                    'R': identifier, 
+                    'P': prefix,
+                    'FUNC': group,  # Use group as function
+                    'TYPE': group,  # Use group as type
+                    'ZONE': 'SELECTED',
+                    'OPI': ''
+                }
+                selected_devices.append(dev)
+    
+    if not selected_devices:
+        ScriptUtil.showMessageDialog(widget, "No devices selected for group: " + group)
+        return
+
+    # Use common function to dump files
+    _dump_devices_to_files(widget, selected_devices, group, name)
 
 def dump_pv_tofile(widget):
     """Dump the PVs to a file."""
@@ -196,52 +309,14 @@ def dump_pv_tofile(widget):
     group=widget.getEffectiveMacros().getValue("GROUP")
     name=ScriptUtil.showSaveAsDialog(widget, name)
 
-    print("Dumping PVs for group: " + group+ " to file: " + name)
-    devarray = conf_to_dev(widget)
-    if not devarray:
-        ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
+    if name is None:
         return
 
-    sarfile= {}
-    sarfiles=""
-    fcsvn_valueset_name= name + ".value_set.csv"
-    fcsvn_valuerb_name= name + ".value_rb.csv"
-    for prop in pvsetrb.get(group, []):
-        sarfilen= name +"-"+prop+".sar.csv"
-        sarfiles= sarfiles + sarfilen + "\n"
-        sarfile[prop] = open(sarfilen, 'w')
-        sarfile[prop].write("PV,READBACK,READ_ONLY\n")
-
-
-
-        # Open a file for writing
-    fcsvn_set = open(fcsvn_valueset_name, 'w')
-    fcsvn_rb = open(fcsvn_valuerb_name, 'w')
-    fcsvn_set.write("Name,Prefix,PV,Value\n")
-    fcsvn_rb.write("Name,Prefix,PV,Value\n")
-    for dev in devarray:
-        for pv in pvset.get(group, []):
-            prefix=dev['P']+":"+dev['R']
-            pvname= prefix+":"+pv                       
-            remote_pv = PVUtil.createPV(pvname, 100)
-            val= str(remote_pv.read().getValue())
-            fcsvn_set.write(dev['NAME'] + "," + prefix+ "," + pvname + "," + val+"\n")
-        for pv in pvrb.get(group, []):
-            pvname= dev['P']+":"+dev['R']+":"+pv                       
-            remote_pv = PVUtil.createPV(pvname, 100)
-            val= str(remote_pv.read().getValue())
-            fcsvn_rb.write(dev['NAME'] + "," + prefix+ "," + pvname + "," + val+"\n")
-        for prop in pvsetrb.get(group, []):
-            name= dev['P']+":"+dev['R']+":"+prop
-            sarfile[prop].write(name + "_SP,"+name+"_RB,0\n")
-
-
-    for prop in pvsetrb.get(group, []):
-        sarfile[prop].close()
-
-    fcsvn_set.close()
-    fcsvn_rb.close()
-    ScriptUtil.showMessageDialog(widget, "Generated SAR files:"+sarfiles+"\ndumped SET values to \"" + fcsvn_valueset_name + "\"\ndumped RB values to \"" + fcsvn_valuerb_name + "\"\n")
+    print("Dumping PVs for group: " + group+ " to file: " + name)
+    devarray = conf_to_dev(widget)
+    
+    # Use common function to dump files
+    _dump_devices_to_files(widget, devarray, group, name)
 
 def load_pv_fromfile(widget,name):
     wtemplate = ScriptUtil.findWidgetByName(widget, "element_template") ## name of the hidden template
