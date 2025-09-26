@@ -202,15 +202,21 @@ def dump_pv_tofile(widget):
         ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
         return
 
-    fcsvn= name + ".sar.csv"
+    sarfile= {}
+    sarfiles=""
     fcsvn_valueset_name= name + ".value_set.csv"
     fcsvn_valuerb_name= name + ".value_rb.csv"
+    for prop in pvsetrb.get(group, []):
+        sarfilen= name +"-"+prop+".sar.csv"
+        sarfiles= sarfiles + sarfilen + "\n"
+        sarfile[prop] = open(sarfilen, 'w')
+        sarfile[prop].write("PV,READBACK,READ_ONLY\n")
+
+
 
         # Open a file for writing
-    fcsv = open(fcsvn, 'w')
     fcsvn_set = open(fcsvn_valueset_name, 'w')
     fcsvn_rb = open(fcsvn_valuerb_name, 'w')
-    fcsv.write("PV,READBACK,READ_ONLY\n")
     fcsvn_set.write("Name,Prefix,PV,Value\n")
     fcsvn_rb.write("Name,Prefix,PV,Value\n")
     for dev in devarray:
@@ -225,15 +231,17 @@ def dump_pv_tofile(widget):
             remote_pv = PVUtil.createPV(pvname, 100)
             val= str(remote_pv.read().getValue())
             fcsvn_rb.write(dev['NAME'] + "," + prefix+ "," + pvname + "," + val+"\n")
-        for pv in pvsetrb.get(group, []):
-            fcsv.write(pvname + "_SP,"+pvname+"_RB,0\n")
+        for prop in pvsetrb.get(group, []):
+            name= dev['P']+":"+dev['R']+":"+prop
+            sarfile[prop].write(name + "_SP,"+name+"_RB,0\n")
 
 
-    
-    fcsv.close()
+    for prop in pvsetrb.get(group, []):
+        sarfile[prop].close()
+
     fcsvn_set.close()
     fcsvn_rb.close()
-    ScriptUtil.showMessageDialog(widget, "Generated \"" + fcsvn + "\" SAR file\ndumped SET values to \"" + fcsvn_valueset_name + "\"\ndumped RB values to \"" + fcsvn_valuerb_name + "\"\n")
+    ScriptUtil.showMessageDialog(widget, "Generated SAR files:"+sarfiles+"\ndumped SET values to \"" + fcsvn_valueset_name + "\"\ndumped RB values to \"" + fcsvn_valuerb_name + "\"\n")
 
 def load_pv_fromfile(widget,name):
     wtemplate = ScriptUtil.findWidgetByName(widget, "element_template") ## name of the hidden template
