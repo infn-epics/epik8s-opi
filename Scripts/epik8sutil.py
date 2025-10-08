@@ -106,14 +106,15 @@ def conf_to_dev(widget):
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
                 iocroot=ioc.get("iocroot", "")
-
+                zones = ioc.get("zones", "ALL")
+                pathzone=zones
                 
                 if 'devfunc' in ioc:
                     devfunc  = ioc.get("devfunc", "")
                 else:
                     devfunc = devtype
                     if devgroup == "mag":
-                        if ('HCV' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
+                        if ('HCV' in name) or ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
                             devfunc="COR"
                         elif ('QUA' in name) or ('QUAD' in name):
                             devfunc="QUA"
@@ -134,6 +135,8 @@ def conf_to_dev(widget):
                     devtype=dev['devtype']
                 if 'zones' in dev:
                     zones=dev['zones']
+                    if pathzone!="ALL" and isinstance(pathzone, str):
+                        zones.append(pathzone)
                 if 'name' in dev:
                     if iocroot=="":
                         iocroot=dev['name']
