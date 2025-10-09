@@ -101,6 +101,7 @@ def conf_to_dev(widget):
         #print("Checking IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype)    
         if iocprefix and devgroup == group:
             devices = ioc.get("devices", [])
+            # print("Found IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype, "devices:", len(devices))
             for dev in devices:
                 name = dev['name']
                 prefix=iocprefix
@@ -168,8 +169,9 @@ def conf_to_dev(widget):
                     devfunc = "1"
                 elif devfunc == "ccg":
                     devfunc = "2"
-
-                devarray.append({'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone,"OPI":opi})
+                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone,"OPI":opi}
+                # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
+                devarray.append(obj)
     return devarray
 
 def dump_pv(widget,separator="\n"):

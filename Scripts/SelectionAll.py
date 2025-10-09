@@ -16,7 +16,6 @@ names=[]
 for i in range(len(devarray)):
     n=devarray[i]['P']+":"+devarray[i]['R']
     names.append(n)
-    print "* entry: "+n
 for pvr in pvrl:
     entry=pvr.getEntry()
     name=entry.getName()
