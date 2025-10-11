@@ -26,10 +26,12 @@ offset = 5
 embedded_width  = wtemplate.getPropertyValue("width")
 embedded_height = wtemplate.getPropertyValue("height") + offset
 devgroup_widget=widget.getEffectiveMacros().getValue("GROUP")
-
+bobitem=widget.getEffectiveMacros().getValue("BOBITEM")
+if bobitem is None:
+   bobitem=devgroup_widget+ "_channel.bob"
 display = widget.getDisplayModel()
 for i in range(len(devarray)):
     x = 0
     y = i * embedded_height
-    instance = epik8sutil.createInstance(embedded_width,embedded_height,devgroup_widget+str(i),devgroup_widget+ "_channel.bob",x, y, devarray[i])
+    instance = epik8sutil.createInstance(embedded_width,embedded_height,devgroup_widget+str(i),bobitem,x, y, devarray[i])
     widget.runtimeChildren().addChild(instance)

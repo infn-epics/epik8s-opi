@@ -22,37 +22,37 @@ pvsetrb = {
     'cool': ["STATE","TEMP"],
 }
 
-def conf_to_iocs(confpath):
+def conf_to_iocs(confpath, mywidget):
     """    Load the configuration from the YAML file and return the iocs section.
     """
     iocs=[]
 
     if not os.path.exists(confpath):
-        ScriptUtil.showMessageDialog(widget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
+        ScriptUtil.showMessageDialog(mywidget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
         return iocs
     yaml = Yaml()
     data = yaml.load(FileReader(confpath))
     epics_config = data.get("epicsConfiguration")
     if epics_config is None:
-        ScriptUtil.showMessageDialog(widget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
+        ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
         return iocs
 
 
     iocs = epics_config.get("iocs")
     if iocs is None:
-        ScriptUtil.showMessageDialog(widget, "Cannot find iocs section, please provide a valid values.yaml file")
+        ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section, please provide a valid values.yaml file")
         return dev
 
     return iocs
 
 
-def conf_to_dev(widget):
+def conf_to_dev(mywidget):
     devarray = []
 
-    pvs = ScriptUtil.getPVs(widget)
-    zoneSelector = widget.getEffectiveMacros().getValue("ZONE")
-    typeSelector = widget.getEffectiveMacros().getValue("TYPE")
-    typeFunc = widget.getEffectiveMacros().getValue("FUNC")
+    pvs = ScriptUtil.getPVs(mywidget)
+    zoneSelector = mywidget.getEffectiveMacros().getValue("ZONE")
+    typeSelector = mywidget.getEffectiveMacros().getValue("TYPE")
+    typeFunc = mywidget.getEffectiveMacros().getValue("FUNC")
 
     if len(pvs)>0 and zoneSelector == None:
         zoneSelector = PVUtil.getString(pvs[0])
@@ -70,24 +70,26 @@ def conf_to_dev(widget):
         typeFunc = "ALL"
 
     
-    group=widget.getEffectiveMacros().getValue("GROUP")
-    conffile = widget.getEffectiveMacros().getValue("CONFFILE")
-    display_model = widget.getDisplayModel()
+    group=mywidget.getEffectiveMacros().getValue("GROUP")
+    conffile = mywidget.getEffectiveMacros().getValue("CONFFILE")
+    display_model = mywidget.getDisplayModel()
     display_path = os.path.dirname(display_model.getUserData(display_model.USER_DATA_INPUT_FILE))
 
     if conffile is None:
-        ScriptUtil.showMessageDialog(widget, "## Please set CONFFILE macro to a correct YAML configuration file")
+        ScriptUtil.showMessageDialog(mywidget, "## Please set CONFFILE macro to a correct YAML configuration file")
         return devarray
     
     if group == None:
-        ScriptUtil.showMessageDialog(widget, "## Must Specify group widget (i.e unicool,univac,unimag) (GROUP Macro) \"" + confpath + "\" please set CONFFILE macro to a correct file")
+        ScriptUtil.showMessageDialog(mywidget, "## Must Specify group widget (i.e unicool,univac,unimag) (GROUP Macro) \"" + confpath + "\" please set CONFFILE macro to a correct file")
         return devarray
     
     confpath = display_path + "/" + conffile    
 
-    print("LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
+    print(mywidget.getName() + "] LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
 
-    iocs = conf_to_iocs(confpath)
+    iocs = conf_to_iocs(confpath,mywidget)
+    print(mywidget.getName() + "] Found "+str(len(iocs))+" IOCs in configuration file")
+
     for ioc in iocs:
         ioc_name = ioc.get("name", "")
         iocprefix = ioc.get("iocprefix", "")
@@ -174,14 +176,14 @@ def conf_to_dev(widget):
                 devarray.append(obj)
     return devarray
 
-def dump_pv(widget,separator="\n"):
+def dump_pv(mywidget,separator="\n"):
     
     """Dump the PVs to a file."""
-    devarray = conf_to_dev(widget)
-    group=widget.getEffectiveMacros().getValue("GROUP")
+    devarray = conf_to_dev(mywidget)
+    group=mywidget.getEffectiveMacros().getValue("GROUP")
 
     if not devarray:
-        ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
+        ScriptUtil.showMessageDialog(mywidget, "No devices found for group: " + group)
         return
     pvlist = ""
     for dev in devarray:
@@ -194,10 +196,10 @@ def dump_pv(widget,separator="\n"):
 
     return pvlist
 
-def _dump_devices_to_files(widget,devarray, group, name):
+def _dump_devices_to_files(mywidget,devarray, group, name):
     """Common function to dump device array to comprehensive files."""
     if not devarray:
-        ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
+        ScriptUtil.showMessageDialog(mywidget, "No devices found for group: " + group)
         return
 
     sarfile = {}
@@ -255,21 +257,21 @@ def _dump_devices_to_files(widget,devarray, group, name):
         fcsvn_set.close()
         fcsvn_rb.close()
         
-        ScriptUtil.showMessageDialog(widget, "Generated SAR files: " + sarfiles + 
+        ScriptUtil.showMessageDialog(mywidget, "Generated SAR files: " + sarfiles + 
                                    "\nDumped SET values to \"" + fcsvn_valueset_name + 
                                    "\"\nDumped RB values to \"" + fcsvn_valuerb_name + 
                                    "\"\nProcessed " + str(len(devarray)) + " devices")
         
     except Exception as e:
-        ScriptUtil.showMessageDialog(widget, "Error writing to files: " + str(e))
+        ScriptUtil.showMessageDialog(mywidget, "Error writing to files: " + str(e))
 
-def dump_selected_tofile(widget):
+def dump_selected_tofile(mywidget):
     """Dump the selected PVs to comprehensive files like dump_pv_tofile but using selections."""
     from org.phoebus.pv import PVPool
     
-    name=widget.getPropertyValue("name")
-    group=widget.getEffectiveMacros().getValue("GROUP")
-    name=ScriptUtil.showSaveAsDialog(widget, name)
+    name=mywidget.getPropertyValue("name")
+    group=mywidget.getEffectiveMacros().getValue("GROUP")
+    name=ScriptUtil.showSaveAsDialog(mywidget, name)
 
     if name is None:
         return
@@ -302,31 +304,31 @@ def dump_selected_tofile(widget):
                 selected_devices.append(dev)
     
     if not selected_devices:
-        ScriptUtil.showMessageDialog(widget, "No devices selected for group: " + group)
+        ScriptUtil.showMessageDialog(mywidget, "No devices selected for group: " + group)
         return
 
     # Use common function to dump files
-    _dump_devices_to_files(widget, selected_devices, group, name)
+    _dump_devices_to_files(mywidget, selected_devices, group, name)
 
-def dump_pv_tofile(widget):
+def dump_pv_tofile(mywidget):
     """Dump the PVs to a file."""
-    name=widget.getPropertyValue("name")
-    group=widget.getEffectiveMacros().getValue("GROUP")
-    name=ScriptUtil.showSaveAsDialog(widget, name)
+    name=mywidget.getPropertyValue("name")
+    group=mywidget.getEffectiveMacros().getValue("GROUP")
+    name=ScriptUtil.showSaveAsDialog(mywidget, name)
 
     if name is None:
         return
 
     print("Dumping PVs for group: " + group+ " to file: " + name)
-    devarray = conf_to_dev(widget)
+    devarray = conf_to_dev(mywidget)
     
     # Use common function to dump files
-    _dump_devices_to_files(widget, devarray, group, name)
+    _dump_devices_to_files(mywidget, devarray, group, name)
 
-def load_pv_fromfile(widget,name):
-    wtemplate = ScriptUtil.findWidgetByName(widget, "element_template") ## name of the hidden template
+def load_pv_fromfile(mywidget,name):
+    wtemplate = ScriptUtil.findWidgetByName(mywidget, "element_template") ## name of the hidden template
     interlinea=5
-    group = widget.getEffectiveMacros().getValue("GROUP")
+    group = mywidget.getEffectiveMacros().getValue("GROUP")
     embedded_width  = wtemplate.getPropertyValue("width")
     embedded_height = wtemplate.getPropertyValue("height") +interlinea
     offy=0
@@ -348,7 +350,7 @@ def load_pv_fromfile(widget,name):
             y= offy+ cnt * (embedded_height)
             m={'PVNAME': pvname,"P":prefix,"R":row['Name']}
             instance = createInstance(embedded_width,embedded_height,pvname,bobname,x, y, m)
-            widget.runtimeChildren().addChild(instance)
+            mywidget.runtimeChildren().addChild(instance)
             cnt=cnt+1
 
 
