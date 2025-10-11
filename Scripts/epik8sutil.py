@@ -53,19 +53,29 @@ def conf_to_dev(mywidget):
     zoneSelector = mywidget.getEffectiveMacros().getValue("ZONE")
     typeSelector = mywidget.getEffectiveMacros().getValue("TYPE")
     typeFunc = mywidget.getEffectiveMacros().getValue("FUNC")
+    pvzone = None
+    pvtype = None
+    pvfunc = None
+    for pv in pvs:
+        if "ZONE" in pv.getName():
+            pvzone = pv
+        elif "TYPE" in pv.getName():
+            pvtype = pv
+        elif "FUNC" in pv.getName():
+            pvfunc = pv
 
-    if len(pvs)>0 and zoneSelector == None:
-        zoneSelector = PVUtil.getString(pvs[0])
+    if pvzone and zoneSelector == None:
+        zoneSelector = PVUtil.getString(pvzone)
     elif zoneSelector is None:
         zoneSelector = "ALL"
 
-    if len(pvs)>1 and typeSelector == None:
-        typeSelector = PVUtil.getInt(pvs[1])
+    if pvtype and typeSelector == None:
+        typeSelector = PVUtil.getString(pvtype)
     elif typeSelector is None:
         typeSelector = "ALL"
 
-    if len(pvs)>2 and typeFunc == None:
-        typeFunc = PVUtil.getInt(pvs[2])
+    if pvfunc and typeFunc == None:
+        typeFunc = PVUtil.getString(pvfunc)
     elif typeFunc is None:
         typeFunc = "ALL"
 
@@ -119,12 +129,14 @@ def conf_to_dev(mywidget):
                     if devgroup == "mag":
                         if ('HCV' in name) or ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
                             devfunc="COR"
-                        elif ('QUA' in name) or ('QUAD' in name):
+                        elif ('QUA' in name) or ('QUAD' in name) or ('QSK' in name):
                             devfunc="QUA"
                         elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name):
                             devfunc="DIP"
                         elif ('SOL' in name) :
                             devfunc="SOL"
+                        elif ('SEX' in name) :
+                            devfunc="SEX"
                         elif ('UFS' in name) :
                             devfunc="UFS"
                     
@@ -373,7 +385,7 @@ def csv_to_list(csv_file):
 
 def createInstance(embedded_width,embedded_height,name,bobname,x, y, macros):
     embedded = WidgetFactory.getInstance().getWidgetDescriptor("embedded").createWidget()
-    embedded.setPropertyValue("name", name)
+    embedded.setPropertyValue("name", "Instance_" + name)
 
     embedded.setPropertyValue("x", x)
     embedded.setPropertyValue("y", y)

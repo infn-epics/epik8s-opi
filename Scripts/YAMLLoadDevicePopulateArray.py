@@ -30,6 +30,13 @@ bobitem=widget.getEffectiveMacros().getValue("BOBITEM")
 if bobitem is None:
    bobitem=devgroup_widget+ "_channel.bob"
 display = widget.getDisplayModel()
+# Remove all existing runtime children first
+children_prop = widget.runtimeChildren()
+for child in list(children_prop.getValue()):
+    if child.getPropertyValue("name").startswith("Instance_" + devgroup_widget):
+        children_prop.removeChild(child)
+
+
 for i in range(len(devarray)):
     x = 0
     y = i * embedded_height
