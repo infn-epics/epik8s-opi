@@ -19,3 +19,6 @@
 [submodule "screen-camera-opi"]
 	path = screen-camera-opi
 	url = ../screen-camera-opi.git
+[submodule "unimod-opi/scandinova-opi"]
+	path = unimod-opi/scandinova-opi
+	url = https://github.com/infn-epics/scandinova-opi.git
