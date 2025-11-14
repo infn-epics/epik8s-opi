@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <description>MOD001</description>
+        <file>ScandinovaRFMod_Main.bob</file>
+        <macros>
+          <DEVICE>MODHEL01</DEVICE>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <x>20</x>
+    <y>10</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="open_display">
+        <description>MOD002</description>
+        <file>ScandinovaRFMod_Main.bob</file>
+        <macros>
+          <DEVICE>MODHEL02</DEVICE>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <x>20</x>
+    <y>50</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_2</name>
+    <actions>
+      <action type="open_display">
+        <description>MOD003</description>
+        <file>ScandinovaRFMod_Main.bob</file>
+        <macros>
+          <DEVICE>MODHEL03</DEVICE>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <x>20</x>
+    <y>100</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+</display>
