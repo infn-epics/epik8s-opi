@@ -22,3 +22,6 @@
 [submodule "unimod-opi/scandinova-opi"]
 	path = unimod-opi/scandinova-opi
 	url = https://github.com/infn-epics/scandinova-opi.git
+[submodule "unibpm-opi"]
+	path = unibpm-opi
+	url = https://github.com/infn-epics/unibpm-opi.git
