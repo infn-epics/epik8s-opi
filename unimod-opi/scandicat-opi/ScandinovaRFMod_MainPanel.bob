@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-01-26 18:29:00 by michelottilabs-->
 <display version="2.0.0">
   <width>600</width>
   <height>570</height>
@@ -204,8 +203,40 @@
     <horizontal_alignment>1</horizontal_alignment>
     <actions>
     </actions>
-    <enabled>false</enabled>
     <border_width>2</border_width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>PLS_WDTH_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>457</x>
+    <y>75</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>PLS_WDTH_SP_Limit</name>
+    <pv_name>$(DEVICE):PLS:WDTH_SP.DRVH</pv_name>
+    <x>495</x>
+    <y>75</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>1</precision>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label Template_22</name>
@@ -342,6 +373,39 @@
     <actions>
     </actions>
     <border_width>2</border_width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>CCPS_V_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>147</x>
+    <y>75</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CCPS_V_SP_Limit</name>
+    <pv_name>$(DEVICE):CCPS:V_SP.DRVH</pv_name>
+    <x>185</x>
+    <y>75</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>0</precision>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Panel 2</name>
@@ -1071,6 +1135,39 @@
     <border_width>2</border_width>
   </widget>
   <widget type="label" version="2.0.0">
+    <name>FILPS_CURR_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>147</x>
+    <y>322</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>FILPS_CURR_SP_Limit</name>
+    <pv_name>$(DEVICE):FILPS:CURR_SP.DRVH</pv_name>
+    <x>185</x>
+    <y>322</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
     <name>Label Template_30</name>
     <text>Set Current</text>
     <x>46</x>
@@ -1503,6 +1600,100 @@
       <color name="IO PV OFF" red="77" green="77" blue="77">
       </color>
     </border_color>
+  </widget>
+  <widget type="progressbar" version="2.0.0">
+    <name>IonPump_AlarmBar</name>
+    <pv_name>$(DEVICE):IONPMP:R_RB</pv_name>
+    <x>456</x>
+    <y>523</y>
+    <width>133</width>
+    <height>16</height>
+    <limits_from_pv>false</limits_from_pv>
+    <minimum>0</minimum>
+    <maximum>10000</maximum>
+    <fill_color>
+      <color red="0" green="180" blue="0">
+      </color>
+    </fill_color>
+    <background_color>
+      <color red="200" green="200" blue="200">
+      </color>
+    </background_color>
+    <tooltip>Ion Pump alarm bar - 0 to HIHI scale, color shows alarm state</tooltip>
+    <rules>
+      <rule name="AlarmColor" prop_id="fill_color" out_exp="false">
+        <exp bool_exp="pv0 &gt;= pv2">
+          <value>
+            <color red="255" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="pv0 &gt;= pv1">
+          <value>
+            <color red="255" green="200" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color red="0" green="180" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):IONPMP:R_RB</pv_name>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIGH</pv_name>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+      </rule>
+      <rule name="DynamicMax" prop_id="maximum" out_exp="true">
+        <exp bool_exp="true">
+          <expression>pv0</expression>
+        </exp>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>IonPump_ZeroLabel</name>
+    <text>0</text>
+    <x>456</x>
+    <y>539</y>
+    <width>20</width>
+    <height>12</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="9.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>IonPump_HihiLabel</name>
+    <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+    <x>544</x>
+    <y>539</y>
+    <width>45</width>
+    <height>12</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="9.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="200" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="IO Grid" red="215" green="215" blue="215">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>2</horizontal_alignment>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <tooltip>HIHI alarm threshold (bar max)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_12</name>
