@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-11-04 16:12:39 by Andrea-->
 <display version="2.0.0">
   <width>600</width>
   <height>570</height>
@@ -16,8 +15,8 @@
     <text>CCPS1 Voltage</text>
     <x>20</x>
     <y>130</y>
-    <width>78</width>
-    <height>17</height>
+    <width>77</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -46,7 +45,7 @@
     <x>20</x>
     <y>169</y>
     <width>78</width>
-    <height>17</height>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -74,8 +73,8 @@
     <text>CCPS3 Voltage</text>
     <x>20</x>
     <y>209</y>
-    <width>78</width>
-    <height>17</height>
+    <width>79</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -103,8 +102,8 @@
     <text>Current</text>
     <x>387</x>
     <y>168</y>
-    <width>40</width>
-    <height>17</height>
+    <width>38</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -131,8 +130,8 @@
     <text>Voltage</text>
     <x>388</x>
     <y>209</y>
-    <width>41</width>
-    <height>17</height>
+    <width>39</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -159,8 +158,8 @@
     <text>Width</text>
     <x>402</x>
     <y>130</y>
-    <width>32</width>
-    <height>17</height>
+    <width>30</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -207,12 +206,45 @@
     <border_width>2</border_width>
   </widget>
   <widget type="label" version="2.0.0">
+    <name>PLS_WDTH_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>457</x>
+    <y>75</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>PLS_WDTH_SP_Limit</name>
+    <pv_name>$(DEVICE):PLS:WDTH_SP.DRVH</pv_name>
+    <x>495</x>
+    <y>75</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
     <name>Label Template_22</name>
     <text>Current</text>
     <x>76</x>
     <y>379</y>
-    <width>40</width>
-    <height>17</height>
+    <width>38</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -239,8 +271,8 @@
     <text>Voltage</text>
     <x>77</x>
     <y>419</y>
-    <width>41</width>
-    <height>17</height>
+    <width>39</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -267,8 +299,8 @@
     <text>Current</text>
     <x>387</x>
     <y>339</y>
-    <width>40</width>
-    <height>17</height>
+    <width>38</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -295,8 +327,8 @@
     <text>Voltage</text>
     <x>387</x>
     <y>379</y>
-    <width>41</width>
-    <height>17</height>
+    <width>39</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -341,6 +373,39 @@
     <actions>
     </actions>
     <border_width>2</border_width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>CCPS_V_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>147</x>
+    <y>75</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CCPS_V_SP_Limit</name>
+    <pv_name>$(DEVICE):CCPS:V_SP.DRVH</pv_name>
+    <x>185</x>
+    <y>75</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>0</precision>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Panel 2</name>
@@ -636,8 +701,8 @@
     <text>Set Voltage</text>
     <x>46</x>
     <y>50</y>
-    <width>61</width>
-    <height>17</height>
+    <width>58</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -664,8 +729,8 @@
     <text>Set Width</text>
     <x>370</x>
     <y>50</y>
-    <width>52</width>
-    <height>17</height>
+    <width>50</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -692,8 +757,8 @@
     <text>Repetition Rate</text>
     <x>326</x>
     <y>249</y>
-    <width>81</width>
-    <height>17</height>
+    <width>76</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1070,12 +1135,45 @@
     <border_width>2</border_width>
   </widget>
   <widget type="label" version="2.0.0">
+    <name>FILPS_CURR_SP_Limit_Label</name>
+    <text>Limit:</text>
+    <x>147</x>
+    <y>322</y>
+    <width>35</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>FILPS_CURR_SP_Limit</name>
+    <pv_name>$(DEVICE):FILPS:CURR_SP.DRVH</pv_name>
+    <x>185</x>
+    <y>322</y>
+    <width>93</width>
+    <height>16</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
     <name>Label Template_30</name>
     <text>Set Current</text>
     <x>46</x>
     <y>297</y>
-    <width>60</width>
-    <height>17</height>
+    <width>57</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1192,8 +1290,8 @@
     <text>Temp.</text>
     <x>401</x>
     <y>419</y>
-    <width>33</width>
-    <height>17</height>
+    <width>32</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1250,8 +1348,8 @@
     <text>Controller</text>
     <x>367</x>
     <y>499</y>
-    <width>53</width>
-    <height>17</height>
+    <width>49</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1278,8 +1376,8 @@
     <text>Oil Level</text>
     <x>68</x>
     <y>539</y>
-    <width>45</width>
-    <height>17</height>
+    <width>43</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1306,8 +1404,8 @@
     <text>Oil Temp.</text>
     <x>65</x>
     <y>499</y>
-    <width>51</width>
-    <height>17</height>
+    <width>48</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1503,6 +1601,100 @@
       </color>
     </border_color>
   </widget>
+  <widget type="progressbar" version="2.0.0">
+    <name>IonPump_AlarmBar</name>
+    <pv_name>$(DEVICE):IONPMP:R_RB</pv_name>
+    <x>456</x>
+    <y>523</y>
+    <width>133</width>
+    <height>16</height>
+    <limits_from_pv>false</limits_from_pv>
+    <minimum>0</minimum>
+    <maximum>10000</maximum>
+    <fill_color>
+      <color red="0" green="180" blue="0">
+      </color>
+    </fill_color>
+    <background_color>
+      <color red="200" green="200" blue="200">
+      </color>
+    </background_color>
+    <tooltip>Ion Pump alarm bar - 0 to HIHI scale, color shows alarm state</tooltip>
+    <rules>
+      <rule name="AlarmColor" prop_id="fill_color" out_exp="false">
+        <exp bool_exp="pv0 &gt;= pv2">
+          <value>
+            <color red="255" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="pv0 &gt;= pv1">
+          <value>
+            <color red="255" green="200" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color red="0" green="180" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):IONPMP:R_RB</pv_name>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIGH</pv_name>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+      </rule>
+      <rule name="DynamicMax" prop_id="maximum" out_exp="true">
+        <exp bool_exp="true">
+          <expression>pv0</expression>
+        </exp>
+        <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>IonPump_ZeroLabel</name>
+    <text>0</text>
+    <x>456</x>
+    <y>539</y>
+    <width>20</width>
+    <height>12</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="9.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>IonPump_HihiLabel</name>
+    <pv_name>$(DEVICE):IONPMP:R_RB.HIHI</pv_name>
+    <x>544</x>
+    <y>539</y>
+    <width>45</width>
+    <height>12</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="9.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="200" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="IO Grid" red="215" green="215" blue="215">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>2</horizontal_alignment>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <tooltip>HIHI alarm threshold (bar max)</tooltip>
+  </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_12</name>
     <pv_name>$(DEVICE):OIL:TEMP_RB</pv_name>
@@ -1568,8 +1760,8 @@
     <text>Set Width RBV</text>
     <x>332</x>
     <y>90</y>
-    <width>77</width>
-    <height>17</height>
+    <width>74</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1597,8 +1789,8 @@
     <text>Set Voltage RBV</text>
     <x>8</x>
     <y>90</y>
-    <width>85</width>
-    <height>17</height>
+    <width>82</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>
@@ -1626,8 +1818,8 @@
     <text>Set Current RBV</text>
     <x>10</x>
     <y>339</y>
-    <width>84</width>
-    <height>17</height>
+    <width>82</width>
+    <height>15</height>
     <font>
       <font family="Sans" style="REGULAR" size="11.881188118811881">
       </font>

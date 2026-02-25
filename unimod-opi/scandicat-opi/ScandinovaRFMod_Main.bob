@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-01-27 16:40:30 by prelz-->
+<!--Saved on 2026-01-31 18:03:17 by michelottilabs-->
 <display version="2.0.0">
   <width>900</width>
   <height>760</height>
@@ -143,9 +143,72 @@
       <color name="IO Grid" red="215" green="215" blue="215">
       </color>
     </background_color>
-    <active_tab>2</active_tab>
     <tab_height>10</tab_height>
     <actions>
     </actions>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Version_Value</name>
+    <pv_name>$(DEVICE):EPIK8S:IOC:VERSION</pv_name>
+    <x>81</x>
+    <y>93</y>
+    <width>150</width>
+    <height>18</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="80" green="80" blue="80">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Version_Label</name>
+    <text>IOC Version:</text>
+    <x>6</x>
+    <y>93</y>
+    <width>70</width>
+    <height>18</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Version_Label_1</name>
+    <text>IOC Name:</text>
+    <x>6</x>
+    <y>111</y>
+    <width>70</width>
+    <height>18</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="100">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Version_Value_1</name>
+    <pv_name>$(DEVICE):EPIK8S:IOC:NAME</pv_name>
+    <x>81</x>
+    <y>111</y>
+    <width>150</width>
+    <height>18</height>
+    <font>
+      <font family="Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="80" green="80" blue="80">
+      </color>
+    </foreground_color>
   </widget>
 </display>
