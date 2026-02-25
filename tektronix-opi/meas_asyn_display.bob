@@ -9,7 +9,7 @@
   </background_color>
   <widget type="label" version="2.0.0">
     <name>Title</name>
-    <text>Tektronix MSO58LP - BCM Measurements (ASYN)</text>
+    <text>Tektronix MSO58LP - Measurements</text>
     <x>10</x>
     <y>10</y>
     <width>880</width>
