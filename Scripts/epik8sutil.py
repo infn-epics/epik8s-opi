@@ -127,7 +127,7 @@ def conf_to_dev(mywidget):
                 else:
                     devfunc = devtype
                     if devgroup == "mag":
-                        if ('HCV' in name) or ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
+                        if ('HCV' in name) or ('HCOR' in name) or ('VCOR' in name) or ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
                             devfunc="COR"
                         elif ('QUA' in name) or ('QUAD' in name) or ('QSK' in name):
                             devfunc="QUA"
