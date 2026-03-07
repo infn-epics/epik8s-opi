@@ -22,8 +22,24 @@ pvsetrb = {
     'cool': ["STATE","TEMP"],
 }
 
+def _merge_ioc_defaults(ioc_defaults, ioc):
+    """Merge iocDefaults template values into an IOC entry. IOC-specific values take precedence."""
+    if not ioc_defaults:
+        return ioc
+    tmpl = ioc.get('template') or ioc.get('devtype') or ''
+    if not tmpl:
+        return ioc
+    tmpl_defaults = ioc_defaults.get(tmpl)
+    if tmpl_defaults is None:
+        return ioc
+    merged = dict(tmpl_defaults)
+    merged.update(dict(ioc))
+    return merged
+
+
 def conf_to_iocs(confpath, mywidget):
-    """    Load the configuration from the YAML file and return the iocs section.
+    """Load the configuration from the YAML file and return the iocs section
+    with iocDefaults merged in.
     """
     iocs=[]
 
@@ -37,11 +53,14 @@ def conf_to_iocs(confpath, mywidget):
         ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
         return iocs
 
-
     iocs = epics_config.get("iocs")
     if iocs is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section, please provide a valid values.yaml file")
-        return dev
+        return iocs
+
+    ioc_defaults = data.get("iocDefaults") or {}
+    if ioc_defaults:
+        iocs = [_merge_ioc_defaults(ioc_defaults, ioc) for ioc in iocs]
 
     return iocs
 
