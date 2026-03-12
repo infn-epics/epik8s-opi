@@ -98,6 +98,7 @@ def conf_to_dev(mywidget):
     elif typeFunc is None:
         typeFunc = "ALL"
 
+    forceopi=mywidget.getEffectiveMacros().getValue("OPI")
     
     group=mywidget.getEffectiveMacros().getValue("GROUP")
     conffile = mywidget.getEffectiveMacros().getValue("CONFFILE")
@@ -158,6 +159,21 @@ def conf_to_dev(mywidget):
                             devfunc="SEX"
                         elif ('UFS' in name) :
                             devfunc="UFS"
+                    if devgroup == "mot":
+                        if ('SLT' in name) :
+                            devfunc="SLT"
+                        elif ('FLG' in name):
+                            devfunc="FLG"
+                        elif ('MIR' in name) or ('MIR' in iocprefix) :
+                            devfunc="MIR"
+                        elif ('HMOT' in name) :
+                            devfunc="HMOT"
+                        elif ('VMOT' in name) :
+                            devfunc="VMOT"
+                        else:
+                            devfunc="MOT"
+
+                        
                     
                     if(devgroup == "vac" and  'SIP' in name):
                         devfunc="ion"
@@ -202,7 +218,12 @@ def conf_to_dev(mywidget):
                     devfunc = "1"
                 elif devfunc == "ccg":
                     devfunc = "2"
-                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone,"OPI":opi}
+                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone}
+                if forceopi:
+                    obj["OPI"] = forceopi
+                    print("Forcing OPI \""+forceopi+"\" for device "+name)
+                elif opi:
+                    obj["OPI"] = opi
                 # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
                 devarray.append(obj)
     return devarray
@@ -364,7 +385,9 @@ def load_pv_fromfile(mywidget,name):
     embedded_height = wtemplate.getPropertyValue("height") +interlinea
     offy=0
     cnt=0
-    bobname = "uni"+group+"-opi/"+group + "_channel_load.bob"
+    bobitem=widget.getEffectiveMacros().getValue("BOBITEM")
+    if bobitem is None:
+        bobname = "uni"+group+"-opi/"+group + "_channel_load.bob"
     if name.endswith(".csv"):
         # Load the CSV file
         data = csv_to_list(name)
