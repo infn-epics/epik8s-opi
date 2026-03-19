@@ -22,8 +22,24 @@ pvsetrb = {
     'cool': ["STATE","TEMP"],
 }
 
+def _merge_ioc_defaults(ioc_defaults, ioc):
+    """Merge iocDefaults template values into an IOC entry. IOC-specific values take precedence."""
+    if not ioc_defaults:
+        return ioc
+    tmpl = ioc.get('template') or ioc.get('devtype') or ''
+    if not tmpl:
+        return ioc
+    tmpl_defaults = ioc_defaults.get(tmpl)
+    if tmpl_defaults is None:
+        return ioc
+    merged = dict(tmpl_defaults)
+    merged.update(dict(ioc))
+    return merged
+
+
 def conf_to_iocs(confpath, mywidget):
-    """    Load the configuration from the YAML file and return the iocs section.
+    """Load the configuration from the YAML file and return the iocs section
+    with iocDefaults merged in.
     """
     iocs=[]
 
@@ -37,11 +53,14 @@ def conf_to_iocs(confpath, mywidget):
         ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
         return iocs
 
-
     iocs = epics_config.get("iocs")
     if iocs is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section, please provide a valid values.yaml file")
-        return dev
+        return iocs
+
+    ioc_defaults = data.get("iocDefaults") or {}
+    if ioc_defaults:
+        iocs = [_merge_ioc_defaults(ioc_defaults, ioc) for ioc in iocs]
 
     return iocs
 
@@ -79,6 +98,7 @@ def conf_to_dev(mywidget):
     elif typeFunc is None:
         typeFunc = "ALL"
 
+    forceopi=mywidget.getEffectiveMacros().getValue("OPI")
     
     group=mywidget.getEffectiveMacros().getValue("GROUP")
     conffile = mywidget.getEffectiveMacros().getValue("CONFFILE")
@@ -139,6 +159,21 @@ def conf_to_dev(mywidget):
                             devfunc="SEX"
                         elif ('UFS' in name) :
                             devfunc="UFS"
+                    if devgroup == "mot":
+                        if ('SLT' in name) :
+                            devfunc="SLT"
+                        elif ('FLG' in name):
+                            devfunc="FLG"
+                        elif ('MIR' in name) or ('MIR' in iocprefix) :
+                            devfunc="MIR"
+                        elif ('HMOT' in name) :
+                            devfunc="HMOT"
+                        elif ('VMOT' in name) :
+                            devfunc="VMOT"
+                        else:
+                            devfunc="MOT"
+
+                        
                     
                     if(devgroup == "vac" and  'SIP' in name):
                         devfunc="ion"
@@ -183,7 +218,12 @@ def conf_to_dev(mywidget):
                     devfunc = "1"
                 elif devfunc == "ccg":
                     devfunc = "2"
-                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone,"OPI":opi}
+                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone}
+                if forceopi:
+                    obj["OPI"] = forceopi
+                    print("Forcing OPI \""+forceopi+"\" for device "+name)
+                elif opi:
+                    obj["OPI"] = opi
                 # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
                 devarray.append(obj)
     return devarray
@@ -345,7 +385,9 @@ def load_pv_fromfile(mywidget,name):
     embedded_height = wtemplate.getPropertyValue("height") +interlinea
     offy=0
     cnt=0
-    bobname = "uni"+group+"-opi/"+group + "_channel_load.bob"
+    bobitem=widget.getEffectiveMacros().getValue("BOBITEM")
+    if bobitem is None:
+        bobname = "uni"+group+"-opi/"+group + "_channel_load.bob"
     if name.endswith(".csv"):
         # Load the CSV file
         data = csv_to_list(name)
