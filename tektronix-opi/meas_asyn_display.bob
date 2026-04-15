@@ -268,7 +268,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>H_Value</name>
-      <text>Current Value</text>
+      <text>Charge</text>
       <x>370</x>
       <y>5</y>
       <width>130</width>
@@ -280,7 +280,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>H_Mean</name>
-      <text>Mean</text>
+      <text>Charge Day</text>
       <x>510</x>
       <y>5</y>
       <font>
@@ -291,7 +291,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>H_Min</name>
-      <text>Min</text>
+      <text>Value Raw</text>
       <x>620</x>
       <y>5</y>
       <width>80</width>
@@ -303,7 +303,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>H_Max</name>
-      <text>Max</text>
+      <text>Mean Raw</text>
       <x>710</x>
       <y>5</y>
       <width>80</width>
@@ -315,7 +315,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>H_Stddev</name>
-      <text>StdDev</text>
+      <text>StdDev Raw</text>
       <x>800</x>
       <y>5</y>
       <width>70</width>

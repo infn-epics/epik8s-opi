@@ -98,7 +98,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Value</name>
-    <pv_name>$(P):MEAS$(MEAS):VALUE</pv_name>
+    <pv_name>$(P):MEAS$(MEAS):Charge</pv_name>
     <x>370</x>
     <y>8</y>
     <width>130</width>
@@ -117,8 +117,8 @@
     <tooltip>Current measurement value (via alias: $(P):$(NAME):Value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>Mean</name>
-    <pv_name>$(P):MEAS$(MEAS):Mean</pv_name>
+    <name>ChargeDay</name>
+    <pv_name>$(P):$(NAME):CHARGE_DAY</pv_name>
     <x>510</x>
     <y>10</y>
     <height>22</height>
@@ -135,14 +135,14 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>Min</name>
-    <pv_name>$(P):MEAS$(MEAS):Min</pv_name>
+    <name>Value</name>
+    <pv_name>$(P):MEAS$(MEAS):VALUE</pv_name>
     <x>620</x>
     <y>10</y>
     <width>80</width>
     <height>22</height>
     <font>
-      <font family="Liberation Mono" style="REGULAR" size="10.0">
+      <font family="Liberation Mono" style="BOLD" size="10.0">
       </font>
     </font>
     <background_color>
@@ -154,8 +154,8 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>Max</name>
-    <pv_name>$(P):MEAS$(MEAS):Max</pv_name>
+    <name>Mean Value</name>
+    <pv_name>$(P):MEAS$(MEAS):Mean</pv_name>
     <x>710</x>
     <y>10</y>
     <width>80</width>
@@ -174,7 +174,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>StdDev</name>
-    <pv_name>$(P):MEAS$(MEAS):Stddev</pv_name>
+    <pv_name>$(P):MEAS$(MEAS):ChargeDay</pv_name>
     <x>800</x>
     <y>10</y>
     <width>70</width>
