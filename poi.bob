@@ -36,7 +36,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Current Value</name>
-      <pv_name>$(P):$(R):$(READBACK)</pv_name>
+      <pv_name>$(P):$(R)$(READBACK)</pv_name>
       <x>170</x>
       <y>5</y>
       <width>150</width>
@@ -88,7 +88,6 @@
       <name>CurrentPOILabel_1</name>
       <text>IndexI:</text>
       <x>582</x>
-      <y>-8</y>
       <width>80</width>
       <height>25</height>
     </widget>
