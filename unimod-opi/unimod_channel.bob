@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-01-27 18:28:48 by michelottilabs-->
 <display version="2.0.0">
   <name>Display</name>
   <width>510</width>
@@ -48,7 +47,6 @@
     <y>3</y>
     <width>78</width>
     <tooltip>$(actions)</tooltip>
-    <show_confirm_dialog>true</show_confirm_dialog>
     <confirm_message>Reserved to operators</confirm_message>
     <password>eli2025</password>
   </widget>
