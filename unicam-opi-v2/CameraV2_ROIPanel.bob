@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - ROI Panel-->
+<display version="2.0.0">
+  <name>ROI Panel</name>
+  <width>340</width>
+  <height>800</height>
+  <background_color>
+    <color red="50" green="58" blue="72" alpha="0"/>
+  </background_color>
+
+  <!-- ROI Enable Section -->
+  <widget type="label" version="2.0.0">
+    <name>ROIHeader</name>
+    <text>🔲 Region of Interest (ROI)</text>
+    <x>10</x>
+    <y>10</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="180" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>ROISectionBg</name>
+    <x>10</x>
+    <y>42</y>
+    <width>320</width>
+    <height>350</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Enable ROI -->
+  <widget type="label" version="2.0.0">
+    <name>ROIEnableLabel</name>
+    <text>Enable ROI Processing:</text>
+    <x>20</x>
+    <y>55</y>
+    <width>180</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ROIEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:EnableCallbacks</pv_name>
+    <x>200</x>
+    <y>55</y>
+    <width>120</width>
+    <height>30</height>
+    <off_label>DISABLED</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>ENABLED</on_label>
+    <on_color>
+      <color red="0" green="180" blue="100"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Input Source -->
+  <widget type="label" version="2.0.0">
+    <name>InputLabel</name>
+    <text>Input Source:</text>
+    <x>20</x>
+    <y>95</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>InputSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:NDArrayPort_RBV</pv_name>
+    <x>130</x>
+    <y>95</y>
+    <width>180</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Position Section -->
+  <widget type="label" version="2.0.0">
+    <name>PositionLabel</name>
+    <text>📍 ROI Position (Start)</text>
+    <x>20</x>
+    <y>135</y>
+    <width>200</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="200" blue="220"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Min X -->
+  <widget type="label" version="2.0.0">
+    <name>MinXLabel</name>
+    <text>X Start:</text>
+    <x>30</x>
+    <y>165</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>MinXEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:MinX</pv_name>
+    <x>105</x>
+    <y>165</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MinXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:MinX_RBV</pv_name>
+    <x>210</x>
+    <y>165</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Min Y -->
+  <widget type="label" version="2.0.0">
+    <name>MinYLabel</name>
+    <text>Y Start:</text>
+    <x>30</x>
+    <y>197</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>MinYEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:MinY</pv_name>
+    <x>105</x>
+    <y>197</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MinYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:MinY_RBV</pv_name>
+    <x>210</x>
+    <y>197</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Size Section -->
+  <widget type="label" version="2.0.0">
+    <name>SizeLabel</name>
+    <text>📐 ROI Size</text>
+    <x>20</x>
+    <y>235</y>
+    <width>200</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="200" blue="220"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Size X -->
+  <widget type="label" version="2.0.0">
+    <name>SizeXLabel</name>
+    <text>Width:</text>
+    <x>30</x>
+    <y>265</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeXEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:SizeX</pv_name>
+    <x>105</x>
+    <y>265</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:SizeX_RBV</pv_name>
+    <x>210</x>
+    <y>265</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Size Y -->
+  <widget type="label" version="2.0.0">
+    <name>SizeYLabel</name>
+    <text>Height:</text>
+    <x>30</x>
+    <y>297</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeYEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:SizeY</pv_name>
+    <x>105</x>
+    <y>297</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:SizeY_RBV</pv_name>
+    <x>210</x>
+    <y>297</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Quick Preset Buttons -->
+  <widget type="label" version="2.0.0">
+    <name>PresetsLabel</name>
+    <text>Quick Presets:</text>
+    <x>20</x>
+    <y>340</y>
+    <width>120</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>FullFrameBtn</name>
+    <x>145</x>
+    <y>340</y>
+    <width>80</width>
+    <height>26</height>
+    <text>Full</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="70" green="100" blue="140"/>
+    </background_color>
+    <tooltip>Set ROI to full frame</tooltip>
+    <actions>
+      <action type="execute">
+        <description>Set Full Frame ROI</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[
+# Set ROI to full sensor size
+from org.csstudio.display.builder.runtime.script import PVUtil
+
+pv_minx = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:MinX", 1000)
+pv_miny = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:MinY", 1000)
+pv_sizex = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:SizeX", 1000)
+pv_sizey = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:SizeY", 1000)
+pv_maxsizex = PVUtil.createPV("$(DEVICE):$(CAM):MaxSizeX_RBV", 1000)
+pv_maxsizey = PVUtil.createPV("$(DEVICE):$(CAM):MaxSizeY_RBV", 1000)
+
+maxX = PVUtil.getInt(pv_maxsizex)
+maxY = PVUtil.getInt(pv_maxsizey)
+
+pv_minx.setValue(0)
+pv_miny.setValue(0)
+pv_sizex.setValue(maxX)
+pv_sizey.setValue(maxY)
+          ]]></text>
+        </script>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>CenterBtn</name>
+    <x>230</x>
+    <y>340</y>
+    <width>80</width>
+    <height>26</height>
+    <text>Center</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="70" green="100" blue="140"/>
+    </background_color>
+    <tooltip>Center ROI in frame</tooltip>
+    <actions>
+      <action type="execute">
+        <description>Center ROI</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[
+# Center ROI in frame
+from org.csstudio.display.builder.runtime.script import PVUtil
+
+pv_minx = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:MinX", 1000)
+pv_miny = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:MinY", 1000)
+pv_sizex = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:SizeX_RBV", 1000)
+pv_sizey = PVUtil.createPV("$(DEVICE):$(CAM):Roi1:SizeY_RBV", 1000)
+pv_maxsizex = PVUtil.createPV("$(DEVICE):$(CAM):MaxSizeX_RBV", 1000)
+pv_maxsizey = PVUtil.createPV("$(DEVICE):$(CAM):MaxSizeY_RBV", 1000)
+
+maxX = PVUtil.getInt(pv_maxsizex)
+maxY = PVUtil.getInt(pv_maxsizey)
+sizeX = PVUtil.getInt(pv_sizex)
+sizeY = PVUtil.getInt(pv_sizey)
+
+newMinX = (maxX - sizeX) // 2
+newMinY = (maxY - sizeY) // 2
+
+pv_minx.setValue(newMinX)
+pv_miny.setValue(newMinY)
+          ]]></text>
+        </script>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Binning Section -->
+  <widget type="label" version="2.0.0">
+    <name>BinningHeader</name>
+    <text>🔢 Binning</text>
+    <x>10</x>
+    <y>405</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="180" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>BinningSectionBg</name>
+    <x>10</x>
+    <y>437</y>
+    <width>320</width>
+    <height>100</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Bin X -->
+  <widget type="label" version="2.0.0">
+    <name>BinXLabel</name>
+    <text>Bin X:</text>
+    <x>30</x>
+    <y>455</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>BinXEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:BinX</pv_name>
+    <x>105</x>
+    <y>455</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>BinXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:BinX_RBV</pv_name>
+    <x>190</x>
+    <y>455</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Bin Y -->
+  <widget type="label" version="2.0.0">
+    <name>BinYLabel</name>
+    <text>Bin Y:</text>
+    <x>30</x>
+    <y>487</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>BinYEntry</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:BinY</pv_name>
+    <x>105</x>
+    <y>487</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>BinYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:BinY_RBV</pv_name>
+    <x>190</x>
+    <y>487</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- ROI Status -->
+  <widget type="label" version="2.0.0">
+    <name>StatusHeader</name>
+    <text>📋 ROI Output Info</text>
+    <x>10</x>
+    <y>550</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="180" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>StatusSectionBg</name>
+    <x>10</x>
+    <y>582</y>
+    <width>320</width>
+    <height>100</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Output Size -->
+  <widget type="label" version="2.0.0">
+    <name>OutSizeLabel</name>
+    <text>Output Size:</text>
+    <x>20</x>
+    <y>600</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>OutSizeXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:ArraySizeX_RBV</pv_name>
+    <x>130</x>
+    <y>600</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>XLabel</name>
+    <text>x</text>
+    <x>205</x>
+    <y>600</y>
+    <width>20</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>OutSizeYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:ArraySizeY_RBV</pv_name>
+    <x>230</x>
+    <y>600</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Array Counter -->
+  <widget type="label" version="2.0.0">
+    <name>ArrayCountLabel</name>
+    <text>Arrays:</text>
+    <x>20</x>
+    <y>632</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ROIArrayCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Roi1:ArrayCounter_RBV</pv_name>
+    <x>130</x>
+    <y>632</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+</display>

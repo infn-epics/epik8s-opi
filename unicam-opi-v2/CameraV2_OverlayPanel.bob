@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Overlay Panel (NDOverlay controls)-->
+<display version="2.0.0">
+  <name>Overlay Panel</name>
+  <width>340</width>
+  <height>620</height>
+  <background_color>
+    <color red="40" green="46" blue="58" alpha="0"/>
+  </background_color>
+
+  <!-- Header -->
+  <widget type="label" version="2.0.0">
+    <name>HeaderLabel</name>
+    <text>🎨 Overlays &amp; Annotations</text>
+    <x>5</x>
+    <y>5</y>
+    <width>330</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="180" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Enable Toggle -->
+  <widget type="rectangle" version="2.0.0">
+    <name>EnableSectionBg</name>
+    <x>5</x>
+    <y>45</y>
+    <width>330</width>
+    <height>60</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>OverlayEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:EnableCallbacks</pv_name>
+    <x>15</x>
+    <y>55</y>
+    <width>140</width>
+    <height>40</height>
+    <off_label>Overlays Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Overlays On</on_label>
+    <on_color>
+      <color red="60" green="140" blue="220"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Input Source -->
+  <widget type="label" version="2.0.0">
+    <name>InputLabel</name>
+    <text>← Input:</text>
+    <x>165</x>
+    <y>55</y>
+    <width>55</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>InputSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:NDArrayPort_RBV</pv_name>
+    <x>220</x>
+    <y>55</y>
+    <width>105</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ArraysLabel</name>
+    <text>Arrays:</text>
+    <x>165</x>
+    <y>78</y>
+    <width>55</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCounterRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:ArrayCounter_RBV</pv_name>
+    <x>220</x>
+    <y>78</y>
+    <width>105</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Overlay 1: Crosshair (Centroid) -->
+  <widget type="label" version="2.0.0">
+    <name>Overlay1Header</name>
+    <text>➕ Overlay 1: Crosshair</text>
+    <x>5</x>
+    <y>115</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="150" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>Overlay1SectionBg</name>
+    <x>5</x>
+    <y>145</y>
+    <width>330</width>
+    <height>145</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>Overlay1EnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:Use</pv_name>
+    <x>15</x>
+    <y>155</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Hidden</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Visible</on_label>
+    <on_color>
+      <color red="220" green="120" blue="60"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Shape Selection -->
+  <widget type="label" version="2.0.0">
+    <name>Shape1Label</name>
+    <text>Shape:</text>
+    <x>125</x>
+    <y>157</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>Shape1Combo</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:Shape</pv_name>
+    <x>175</x>
+    <y>157</y>
+    <width>150</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <!-- Position X/Y -->
+  <widget type="label" version="2.0.0">
+    <name>PosX1Label</name>
+    <text>X:</text>
+    <x>15</x>
+    <y>195</y>
+    <width>25</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>PosX1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:CenterX</pv_name>
+    <x>40</x>
+    <y>195</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PosY1Label</name>
+    <text>Y:</text>
+    <x>120</x>
+    <y>195</y>
+    <width>25</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>PosY1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:CenterY</pv_name>
+    <x>145</x>
+    <y>195</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Link to centroid -->
+  <widget type="bool_button" version="2.0.0">
+    <name>UseStatsBtn1</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:CenterXLink</pv_name>
+    <x>225</x>
+    <y>195</y>
+    <width>100</width>
+    <height>26</height>
+    <off_label>Manual</off_label>
+    <off_color>
+      <color red="60" green="70" blue="90"/>
+    </off_color>
+    <on_label>From Stats</on_label>
+    <on_color>
+      <color red="0" green="150" blue="130"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Size -->
+  <widget type="label" version="2.0.0">
+    <name>Size1Label</name>
+    <text>Size:</text>
+    <x>15</x>
+    <y>228</y>
+    <width>40</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeX1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:SizeX</pv_name>
+    <x>55</x>
+    <y>228</y>
+    <width>55</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SizeXY1Label</name>
+    <text>x</text>
+    <x>115</x>
+    <y>228</y>
+    <width>15</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeY1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:SizeY</pv_name>
+    <x>130</x>
+    <y>228</y>
+    <width>55</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Color -->
+  <widget type="label" version="2.0.0">
+    <name>Color1Label</name>
+    <text>RGB:</text>
+    <x>200</x>
+    <y>228</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Red1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:Red</pv_name>
+    <x>235</x>
+    <y>228</y>
+    <width>30</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="100" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="40" blue="40"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Green1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:Green</pv_name>
+    <x>267</x>
+    <y>228</y>
+    <width>30</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="80" blue="40"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Blue1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:Blue</pv_name>
+    <x>299</x>
+    <y>228</y>
+    <width>30</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="40" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Draw Mode -->
+  <widget type="label" version="2.0.0">
+    <name>DrawMode1Label</name>
+    <text>Mode:</text>
+    <x>15</x>
+    <y>260</y>
+    <width>45</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>DrawMode1Combo</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:DrawMode</pv_name>
+    <x>60</x>
+    <y>258</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>Width1Label</name>
+    <text>Width:</text>
+    <x>175</x>
+    <y>260</y>
+    <width>45</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Width1Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:1:WidthX</pv_name>
+    <x>220</x>
+    <y>258</y>
+    <width>50</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Overlay 2: ROI Box -->
+  <widget type="label" version="2.0.0">
+    <name>Overlay2Header</name>
+    <text>⬜ Overlay 2: ROI Box</text>
+    <x>5</x>
+    <y>300</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>Overlay2SectionBg</name>
+    <x>5</x>
+    <y>330</y>
+    <width>330</width>
+    <height>110</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>Overlay2EnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:Use</pv_name>
+    <x>15</x>
+    <y>340</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Hidden</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Visible</on_label>
+    <on_color>
+      <color red="60" green="200" blue="140"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>Shape2Combo</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:Shape</pv_name>
+    <x>125</x>
+    <y>342</y>
+    <width>100</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>UseROIBtn2</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:CenterXLink</pv_name>
+    <x>235</x>
+    <y>342</y>
+    <width>90</width>
+    <height>28</height>
+    <off_label>Manual</off_label>
+    <off_color>
+      <color red="60" green="70" blue="90"/>
+    </off_color>
+    <on_label>From ROI</on_label>
+    <on_color>
+      <color red="0" green="130" blue="200"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Position/Size for Overlay 2 -->
+  <widget type="label" version="2.0.0">
+    <name>PosXY2Label</name>
+    <text>X:</text>
+    <x>15</x>
+    <y>378</y>
+    <width>20</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>PosX2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:CenterX</pv_name>
+    <x>35</x>
+    <y>378</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PosY2Lbl</name>
+    <text>Y:</text>
+    <x>100</x>
+    <y>378</y>
+    <width>20</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>PosY2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:CenterY</pv_name>
+    <x>118</x>
+    <y>378</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SizeX2Lbl</name>
+    <text>W:</text>
+    <x>185</x>
+    <y>378</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeX2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:SizeX</pv_name>
+    <x>206</x>
+    <y>378</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SizeY2Lbl</name>
+    <text>H:</text>
+    <x>262</x>
+    <y>378</y>
+    <width>20</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>SizeY2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:SizeY</pv_name>
+    <x>280</x>
+    <y>378</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Color for overlay 2 -->
+  <widget type="label" version="2.0.0">
+    <name>Color2Label</name>
+    <text>RGB:</text>
+    <x>15</x>
+    <y>408</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Red2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:Red</pv_name>
+    <x>50</x>
+    <y>408</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="100" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="40" blue="40"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Green2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:Green</pv_name>
+    <x>82</x>
+    <y>408</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="80" blue="40"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Blue2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:Blue</pv_name>
+    <x>114</x>
+    <y>408</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="100" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="40" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>DrawMode2Combo</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:DrawMode</pv_name>
+    <x>155</x>
+    <y>408</y>
+    <width>80</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>Width2Input</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:2:WidthX</pv_name>
+    <x>245</x>
+    <y>408</y>
+    <width>40</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>Wid2Lbl</name>
+    <text>px</text>
+    <x>290</x>
+    <y>408</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Presets Section -->
+  <widget type="label" version="2.0.0">
+    <name>PresetsHeader</name>
+    <text>⚡ Quick Presets</text>
+    <x>5</x>
+    <y>450</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="220" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>PresetsSectionBg</name>
+    <x>5</x>
+    <y>480</y>
+    <width>330</width>
+    <height>130</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Preset buttons -->
+  <widget type="action_button" version="3.0.0">
+    <name>PresetCentroidBtn</name>
+    <x>15</x>
+    <y>495</y>
+    <width>145</width>
+    <height>35</height>
+    <text>🎯 Centroid Crosshair</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="200" green="100" blue="60"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:Use</pv_name>
+        <value>1</value>
+        <description>Enable</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:Shape</pv_name>
+        <value>0</value>
+        <description>Cross</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:CenterXLink</pv_name>
+        <value>$(DEVICE):$(CAM):Stats1:CentroidX_RBV</value>
+        <description>Link X</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:CenterYLink</pv_name>
+        <value>$(DEVICE):$(CAM):Stats1:CentroidY_RBV</value>
+        <description>Link Y</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>PresetROIBoxBtn</name>
+    <x>170</x>
+    <y>495</y>
+    <width>155</width>
+    <height>35</height>
+    <text>⬜ Show ROI Region</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="130" blue="200"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:2:Use</pv_name>
+        <value>1</value>
+        <description>Enable</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:2:Shape</pv_name>
+        <value>1</value>
+        <description>Rectangle</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>PresetGridBtn</name>
+    <x>15</x>
+    <y>540</y>
+    <width>100</width>
+    <height>30</height>
+    <text>📐 Center Grid</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="100" green="80" blue="140"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:3:Use</pv_name>
+        <value>1</value>
+        <description>Enable</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:3:Shape</pv_name>
+        <value>0</value>
+        <description>Cross</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>HideAllBtn</name>
+    <x>125</x>
+    <y>540</y>
+    <width>100</width>
+    <height>30</height>
+    <text>🚫 Hide All</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="120" green="60" blue="60"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:Use</pv_name>
+        <value>0</value>
+        <description>Disable 1</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:2:Use</pv_name>
+        <value>0</value>
+        <description>Disable 2</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:3:Use</pv_name>
+        <value>0</value>
+        <description>Disable 3</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:4:Use</pv_name>
+        <value>0</value>
+        <description>Disable 4</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>ShowAllBtn</name>
+    <x>235</x>
+    <y>540</y>
+    <width>90</width>
+    <height>30</height>
+    <text>✅ Show All</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="130" blue="60"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:1:Use</pv_name>
+        <value>1</value>
+        <description>Enable 1</description>
+      </action>
+      <action type="write_pv">
+        <pv_name>$(DEVICE):$(CAM):Over1:2:Use</pv_name>
+        <value>1</value>
+        <description>Enable 2</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Info Row -->
+  <widget type="label" version="2.0.0">
+    <name>InfoLabel</name>
+    <text>ℹ️ Overlays are burned into the output image</text>
+    <x>15</x>
+    <y>580</y>
+    <width>310</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="ITALIC" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+</display>

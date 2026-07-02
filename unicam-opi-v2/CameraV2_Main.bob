@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Progressive Plugin Chain Display - 2026-01-28-->
+<display version="2.0.0">
+  <name>Camera V2 - Progressive Chain</name>
+  <macros>
+    <CAM>$(CAM)</CAM>
+    <DEVICE>$(DEVICE)</DEVICE>
+    <ROI_ENABLED>$(ROI_ENABLED)</ROI_ENABLED>
+    <PROC_ENABLED>$(PROC_ENABLED)</PROC_ENABLED>
+    <STATS_ENABLED>$(STATS_ENABLED)</STATS_ENABLED>
+    <OVERLAY_ENABLED>$(OVERLAY_ENABLED)</OVERLAY_ENABLED>
+    <TIFF_ENABLED>$(TIFF_ENABLED)</TIFF_ENABLED>
+    <STREAM_ENABLED>$(STREAM_ENABLED)</STREAM_ENABLED>
+  </macros>
+  <width>1600</width>
+  <height>950</height>
+  <background_color>
+    <color red="30" green="34" blue="42"/>
+  </background_color>
+  <grid_step_x>5</grid_step_x>
+  <grid_step_y>5</grid_step_y>
+
+  <!-- Header Banner with Gradient Effect -->
+  <widget type="rectangle" version="2.0.0">
+    <name>HeaderBg</name>
+    <width>1600</width>
+    <height>60</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="45" green="52" blue="70"/>
+    </background_color>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>TitleLabel</name>
+    <text>📷 Camera: $(DEVICE):$(CAM)</text>
+    <x>20</x>
+    <y>12</y>
+    <width>500</width>
+    <height>36</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="22.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Connection Status Indicator -->
+  <widget type="led" version="2.0.0">
+    <name>ConnectionLED</name>
+    <pv_name>$(DEVICE):$(CAM):AcquireBusy</pv_name>
+    <x>540</x>
+    <y>18</y>
+    <width>24</width>
+    <height>24</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="0" green="255" blue="100"/>
+    </on_color>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>StatusText</name>
+    <pv_name>$(DEVICE):$(CAM):DetectorState_RBV</pv_name>
+    <x>570</x>
+    <y>18</y>
+    <width>150</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="70"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Processing Chain Indicator Bar -->
+  <widget type="rectangle" version="2.0.0">
+    <name>ChainBarBg</name>
+    <x>750</x>
+    <y>10</y>
+    <width>830</width>
+    <height>40</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="40" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ChainLabel</name>
+    <text>Processing Chain:</text>
+    <x>760</x>
+    <y>18</y>
+    <width>130</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Chain Stage Indicators -->
+  <widget type="embedded" version="2.0.0">
+    <name>ChainIndicators</name>
+    <file>CameraV2_ChainIndicator.bob</file>
+    <x>890</x>
+    <y>12</y>
+    <width>680</width>
+    <height>36</height>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Left Panel: Controls -->
+  <widget type="rectangle" version="2.0.0">
+    <name>LeftPanelBg</name>
+    <x>10</x>
+    <y>70</y>
+    <width>360</width>
+    <height>870</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="60" green="70" blue="90"/>
+    </line_color>
+    <background_color>
+      <color red="40" green="46" blue="58"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="tabs" version="2.0.0">
+    <name>ControlTabs</name>
+    <x>15</x>
+    <y>80</y>
+    <width>350</width>
+    <height>850</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <background_color>
+      <color red="50" green="58" blue="72"/>
+    </background_color>
+    <tabs>
+      <tab>
+        <name>📸 Acquire</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>AcquirePanel</name>
+            <file>CameraV2_AcquirePanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>🔲 ROI</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>ROIPanel</name>
+            <file>CameraV2_ROIPanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>⚙️ Process</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>ProcessPanel</name>
+            <file>CameraV2_ProcessPanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>📊 Stats</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>StatsPanel</name>
+            <file>CameraV2_StatsPanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>🎨 Overlay</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>OverlayPanel</name>
+            <file>CameraV2_OverlayPanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>💾 Save</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>SavePanel</name>
+            <file>CameraV2_SavePanel.bob</file>
+            <width>340</width>
+            <height>800</height>
+            <transparent>true</transparent>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+  </widget>
+
+  <!-- Main Image Display Area -->
+  <widget type="rectangle" version="2.0.0">
+    <name>ImageAreaBg</name>
+    <x>380</x>
+    <y>70</y>
+    <width>900</width>
+    <height>700</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="70" green="130" blue="180"/>
+    </line_color>
+    <background_color>
+      <color red="25" green="28" blue="35"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <!-- Image Source Selector -->
+  <widget type="group" version="3.0.0">
+    <name>ImageSourceGroup</name>
+    <x>390</x>
+    <y>78</y>
+    <width>880</width>
+    <height>36</height>
+    <style>3</style>
+    <transparent>true</transparent>
+    
+    <widget type="label" version="2.0.0">
+      <name>SourceLabel</name>
+      <text>View Source:</text>
+      <width>100</width>
+      <height>32</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <foreground_color>
+        <color red="200" green="200" blue="200"/>
+      </foreground_color>
+      <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+
+    <widget type="choice" version="2.0.0">
+      <name>ImageSourceChoice</name>
+      <pv_name>loc://$(DEVICE):$(CAM):ImageSource&lt;VEnum&gt;(0,"Raw","ROI","Proc","Stats","Overlay")</pv_name>
+      <x>105</x>
+      <width>500</width>
+      <height>32</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="11.0"/>
+      </font>
+      <foreground_color>
+        <color red="255" green="255" blue="255"/>
+      </foreground_color>
+      <background_color>
+        <color red="60" green="90" blue="130"/>
+      </background_color>
+      <selected_color>
+        <color red="80" green="180" blue="255"/>
+      </selected_color>
+      <horizontal>true</horizontal>
+    </widget>
+
+    <!-- Auto-Follow Chain Toggle -->
+    <widget type="bool_button" version="2.0.0">
+      <name>AutoFollowBtn</name>
+      <pv_name>loc://$(DEVICE):$(CAM):AutoFollow(1)</pv_name>
+      <x>620</x>
+      <width>120</width>
+      <height>32</height>
+      <off_label>Manual</off_label>
+      <off_color>
+        <color red="80" green="80" blue="80"/>
+      </off_color>
+      <on_label>Auto-Follow</on_label>
+      <on_color>
+        <color red="0" green="180" blue="100"/>
+      </on_color>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="10.0"/>
+      </font>
+      <foreground_color>
+        <color red="255" green="255" blue="255"/>
+      </foreground_color>
+    </widget>
+    
+    <!-- Fullscreen Button -->
+    <widget type="action_button" version="3.0.0">
+      <name>FullscreenBtn</name>
+      <x>750</x>
+      <width>120</width>
+      <height>32</height>
+      <text>⛶ Fullscreen</text>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="10.0"/>
+      </font>
+      <foreground_color>
+        <color red="255" green="255" blue="255"/>
+      </foreground_color>
+      <background_color>
+        <color red="70" green="80" blue="100"/>
+      </background_color>
+      <actions>
+        <action type="open_display">
+          <file>CameraV2_ImageFullscreen.bob</file>
+          <target>window</target>
+          <description>Open Fullscreen View</description>
+        </action>
+      </actions>
+    </widget>
+  </widget>
+
+  <!-- Embedded Image Display -->
+  <widget type="embedded" version="2.0.0">
+    <name>ImageDisplay</name>
+    <file>CameraV2_ImageDisplay.bob</file>
+    <x>385</x>
+    <y>118</y>
+    <width>890</width>
+    <height>645</height>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Right Panel: Quick Stats & Info -->
+  <widget type="rectangle" version="2.0.0">
+    <name>RightPanelBg</name>
+    <x>1290</x>
+    <y>70</y>
+    <width>300</width>
+    <height>700</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="60" green="70" blue="90"/>
+    </line_color>
+    <background_color>
+      <color red="40" green="46" blue="58"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="embedded" version="2.0.0">
+    <name>QuickStatsPanel</name>
+    <file>CameraV2_QuickStats.bob</file>
+    <x>1295</x>
+    <y>75</y>
+    <width>290</width>
+    <height>690</height>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Bottom Status Bar -->
+  <widget type="rectangle" version="2.0.0">
+    <name>BottomBarBg</name>
+    <x>380</x>
+    <y>780</y>
+    <width>1210</width>
+    <height>160</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="60" green="70" blue="90"/>
+    </line_color>
+    <background_color>
+      <color red="40" green="46" blue="58"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="embedded" version="2.0.0">
+    <name>BottomStatusPanel</name>
+    <file>CameraV2_BottomStatus.bob</file>
+    <x>385</x>
+    <y>785</y>
+    <width>1200</width>
+    <height>150</height>
+    <transparent>true</transparent>
+  </widget>
+
+</display>

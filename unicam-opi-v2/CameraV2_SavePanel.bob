@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Save Panel (TIFF File Writing)-->
+<display version="2.0.0">
+  <name>Save Panel</name>
+  <width>340</width>
+  <height>620</height>
+  <background_color>
+    <color red="40" green="46" blue="58" alpha="0"/>
+  </background_color>
+
+  <!-- Header -->
+  <widget type="label" version="2.0.0">
+    <name>HeaderLabel</name>
+    <text>💾 Image File Writer</text>
+    <x>5</x>
+    <y>5</y>
+    <width>330</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Enable Section -->
+  <widget type="rectangle" version="2.0.0">
+    <name>EnableSectionBg</name>
+    <x>5</x>
+    <y>45</y>
+    <width>330</width>
+    <height>60</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>TIFFEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:EnableCallbacks</pv_name>
+    <x>15</x>
+    <y>55</y>
+    <width>140</width>
+    <height>40</height>
+    <off_label>TIFF Writer Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>TIFF Writer On</on_label>
+    <on_color>
+      <color red="80" green="160" blue="80"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Input Source -->
+  <widget type="label" version="2.0.0">
+    <name>InputLabel</name>
+    <text>← Input:</text>
+    <x>165</x>
+    <y>55</y>
+    <width>55</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>InputSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:NDArrayPort_RBV</pv_name>
+    <x>220</x>
+    <y>55</y>
+    <width>105</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ArraysLabel</name>
+    <text>Arrays:</text>
+    <x>165</x>
+    <y>78</y>
+    <width>55</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCounterRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:ArrayCounter_RBV</pv_name>
+    <x>220</x>
+    <y>78</y>
+    <width>105</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- File Path Section -->
+  <widget type="label" version="2.0.0">
+    <name>FilePathHeader</name>
+    <text>📁 File Location</text>
+    <x>5</x>
+    <y>115</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="220" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>FilePathSectionBg</name>
+    <x>5</x>
+    <y>145</y>
+    <width>330</width>
+    <height>120</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- File Path -->
+  <widget type="label" version="2.0.0">
+    <name>PathLabel</name>
+    <text>Path:</text>
+    <x>15</x>
+    <y>155</y>
+    <width>45</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>FilePathInput</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FilePath</pv_name>
+    <x>60</x>
+    <y>155</y>
+    <width>265</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>6</format>
+  </widget>
+
+  <!-- File Name -->
+  <widget type="label" version="2.0.0">
+    <name>NameLabel</name>
+    <text>Name:</text>
+    <x>15</x>
+    <y>188</y>
+    <width>45</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>FileNameInput</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileName</pv_name>
+    <x>60</x>
+    <y>188</y>
+    <width>180</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>6</format>
+  </widget>
+
+  <!-- File Template -->
+  <widget type="label" version="2.0.0">
+    <name>TemplateLabel</name>
+    <text>Template:</text>
+    <x>15</x>
+    <y>221</y>
+    <width>65</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>FileTemplateInput</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileTemplate</pv_name>
+    <x>80</x>
+    <y>221</y>
+    <width>245</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>6</format>
+  </widget>
+
+  <!-- Auto Increment / Number -->
+  <widget type="bool_button" version="2.0.0">
+    <name>AutoIncrBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:AutoIncrement</pv_name>
+    <x>248</x>
+    <y>188</y>
+    <width>77</width>
+    <height>26</height>
+    <off_label>No Incr</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Auto #</on_label>
+    <on_color>
+      <color red="60" green="140" blue="180"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Write Mode Section -->
+  <widget type="label" version="2.0.0">
+    <name>WriteModeHeader</name>
+    <text>📝 Write Mode</text>
+    <x>5</x>
+    <y>275</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>WriteModeSectionBg</name>
+    <x>5</x>
+    <y>305</y>
+    <width>330</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>WriteModeCombo</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileWriteMode</pv_name>
+    <x>15</x>
+    <y>320</y>
+    <width>150</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <!-- Number to Capture (for Stream/Capture modes) -->
+  <widget type="label" version="2.0.0">
+    <name>NumCaptureLabel</name>
+    <text>Num to Capture:</text>
+    <x>175</x>
+    <y>320</y>
+    <width>95</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>NumCaptureInput</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:NumCapture</pv_name>
+    <x>270</x>
+    <y>320</y>
+    <width>55</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Captured count -->
+  <widget type="label" version="2.0.0">
+    <name>CapturedLabel</name>
+    <text>Captured:</text>
+    <x>15</x>
+    <y>360</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>NumCapturedRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:NumCaptured_RBV</pv_name>
+    <x>90</x>
+    <y>360</y>
+    <width>75</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- File # -->
+  <widget type="label" version="2.0.0">
+    <name>FileNumLabel</name>
+    <text>File #:</text>
+    <x>175</x>
+    <y>360</y>
+    <width>50</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>FileNumberInput</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileNumber</pv_name>
+    <x>230</x>
+    <y>360</y>
+    <width>95</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Actions Section -->
+  <widget type="label" version="2.0.0">
+    <name>ActionsHeader</name>
+    <text>⚡ Actions</text>
+    <x>5</x>
+    <y>405</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="255" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>ActionsSectionBg</name>
+    <x>5</x>
+    <y>435</y>
+    <width>330</width>
+    <height>80</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Capture / Write buttons -->
+  <widget type="action_button" version="3.0.0">
+    <name>CaptureBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:Capture</pv_name>
+    <x>15</x>
+    <y>450</y>
+    <width>95</width>
+    <height>50</height>
+    <text>📸 Capture</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="160" blue="80"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Start Capture</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>WriteFileBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:WriteFile</pv_name>
+    <x>120</x>
+    <y>450</y>
+    <width>95</width>
+    <height>50</height>
+    <text>✏️ Write File</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="120" blue="180"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Write File</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>WriteStatusRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:WriteStatus</pv_name>
+    <x>225</x>
+    <y>450</y>
+    <width>100</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="WriteStatusColor" prop_id="foreground_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="100" green="255" blue="150"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="255" green="100" blue="100"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):TIFF1:WriteStatus</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>WriteMessageRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:WriteMessage</pv_name>
+    <x>225</x>
+    <y>475</y>
+    <width>100</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Last File Section -->
+  <widget type="label" version="2.0.0">
+    <name>LastFileHeader</name>
+    <text>📄 Last Saved File</text>
+    <x>5</x>
+    <y>525</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="180" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>LastFileSectionBg</name>
+    <x>5</x>
+    <y>555</y>
+    <width>330</width>
+    <height>58</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FullFileNameRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FullFileName_RBV</pv_name>
+    <x>15</x>
+    <y>565</y>
+    <width>310</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PathExistsLabel</name>
+    <text>Path:</text>
+    <x>15</x>
+    <y>590</y>
+    <width>40</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FilePathExistsRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FilePathExists_RBV</pv_name>
+    <x>55</x>
+    <y>590</y>
+    <width>60</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="PathExistsColor" prop_id="foreground_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="255" green="100" blue="100"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0!=0">
+          <value>
+            <color red="100" green="255" blue="150"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):TIFF1:FilePathExists_RBV</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>AutoSaveBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:AutoSave</pv_name>
+    <x>125</x>
+    <y>586</y>
+    <width>90</width>
+    <height>22</height>
+    <off_label>No Auto</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>AutoSave</on_label>
+    <on_color>
+      <color red="80" green="140" blue="80"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>CreateDirBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:CreateDirectory</pv_name>
+    <x>225</x>
+    <y>586</y>
+    <width>100</width>
+    <height>22</height>
+    <text>📁 Create Dir</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="100" blue="140"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Create Directory</description>
+      </action>
+    </actions>
+  </widget>
+
+</display>

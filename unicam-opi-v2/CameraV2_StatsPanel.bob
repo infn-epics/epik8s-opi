@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Stats Panel (Full Statistics Display)-->
+<display version="2.0.0">
+  <name>Stats Panel</name>
+  <width>340</width>
+  <height>620</height>
+  <background_color>
+    <color red="40" green="46" blue="58" alpha="0"/>
+  </background_color>
+
+  <!-- Header -->
+  <widget type="label" version="2.0.0">
+    <name>HeaderLabel</name>
+    <text>📊 Image Statistics</text>
+    <x>5</x>
+    <y>5</y>
+    <width>330</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="180" blue="50"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Enable Section -->
+  <widget type="rectangle" version="2.0.0">
+    <name>EnableSectionBg</name>
+    <x>5</x>
+    <y>45</y>
+    <width>330</width>
+    <height>60</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>StatsEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:EnableCallbacks</pv_name>
+    <x>15</x>
+    <y>55</y>
+    <width>140</width>
+    <height>40</height>
+    <off_label>Stats Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Stats On</on_label>
+    <on_color>
+      <color red="220" green="130" blue="40"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Input Source -->
+  <widget type="label" version="2.0.0">
+    <name>InputLabel</name>
+    <text>← Input:</text>
+    <x>165</x>
+    <y>55</y>
+    <width>55</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>InputSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:NDArrayPort_RBV</pv_name>
+    <x>220</x>
+    <y>55</y>
+    <width>105</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ArraysLabel</name>
+    <text>Arrays:</text>
+    <x>165</x>
+    <y>78</y>
+    <width>55</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCounterRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ArrayCounter_RBV</pv_name>
+    <x>220</x>
+    <y>78</y>
+    <width>105</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Basic Statistics Section -->
+  <widget type="label" version="2.0.0">
+    <name>BasicStatsHeader</name>
+    <text>📈 Basic Statistics</text>
+    <x>5</x>
+    <y>115</y>
+    <width>230</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ComputeStatsBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ComputeStatistics</pv_name>
+    <x>235</x>
+    <y>112</y>
+    <width>100</width>
+    <height>28</height>
+    <off_label>Stats Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Computing</on_label>
+    <on_color>
+      <color red="60" green="150" blue="220"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>BasicStatsSectionBg</name>
+    <x>5</x>
+    <y>145</y>
+    <width>330</width>
+    <height>120</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Min -->
+  <widget type="label" version="2.0.0">
+    <name>MinLabel</name>
+    <text>Min:</text>
+    <x>15</x>
+    <y>158</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MinValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MinValue_RBV</pv_name>
+    <x>65</x>
+    <y>158</y>
+    <width>90</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Max -->
+  <widget type="label" version="2.0.0">
+    <name>MaxLabel</name>
+    <text>Max:</text>
+    <x>175</x>
+    <y>158</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MaxValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MaxValue_RBV</pv_name>
+    <x>225</x>
+    <y>158</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="100" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Mean -->
+  <widget type="label" version="2.0.0">
+    <name>MeanLabel</name>
+    <text>Mean:</text>
+    <x>15</x>
+    <y>188</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MeanValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MeanValue_RBV</pv_name>
+    <x>65</x>
+    <y>188</y>
+    <width>90</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaLabel</name>
+    <text>Sigma:</text>
+    <x>175</x>
+    <y>188</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Sigma_RBV</pv_name>
+    <x>225</x>
+    <y>188</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Net -->
+  <widget type="label" version="2.0.0">
+    <name>NetLabel</name>
+    <text>Net:</text>
+    <x>15</x>
+    <y>218</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>NetValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Net_RBV</pv_name>
+    <x>65</x>
+    <y>218</y>
+    <width>90</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>5</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Total -->
+  <widget type="label" version="2.0.0">
+    <name>TotalLabel</name>
+    <text>Total:</text>
+    <x>175</x>
+    <y>218</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TotalValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Total_RBV</pv_name>
+    <x>225</x>
+    <y>218</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="180" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>5</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Centroid Section -->
+  <widget type="label" version="2.0.0">
+    <name>CentroidHeader</name>
+    <text>🎯 Centroid</text>
+    <x>5</x>
+    <y>275</y>
+    <width>230</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ComputeCentroidBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ComputeCentroid</pv_name>
+    <x>235</x>
+    <y>272</y>
+    <width>100</width>
+    <height>28</height>
+    <off_label>Centroid Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Computing</on_label>
+    <on_color>
+      <color red="0" green="180" blue="160"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>CentroidSectionBg</name>
+    <x>5</x>
+    <y>305</y>
+    <width>330</width>
+    <height>120</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Centroid X -->
+  <widget type="label" version="2.0.0">
+    <name>CentXLabel</name>
+    <text>X:</text>
+    <x>15</x>
+    <y>318</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidX_RBV</pv_name>
+    <x>45</x>
+    <y>318</y>
+    <width>110</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>CentXUnit</name>
+    <text>px</text>
+    <x>160</x>
+    <y>318</y>
+    <width>25</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Centroid Y -->
+  <widget type="label" version="2.0.0">
+    <name>CentYLabel</name>
+    <text>Y:</text>
+    <x>195</x>
+    <y>318</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidY_RBV</pv_name>
+    <x>225</x>
+    <y>318</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma X -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaXLabel</name>
+    <text>σX:</text>
+    <x>15</x>
+    <y>348</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:SigmaX_RBV</pv_name>
+    <x>45</x>
+    <y>348</y>
+    <width>110</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma Y -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaYLabel</name>
+    <text>σY:</text>
+    <x>195</x>
+    <y>348</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:SigmaY_RBV</pv_name>
+    <x>225</x>
+    <y>348</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Centroid Threshold -->
+  <widget type="label" version="2.0.0">
+    <name>CentThreshLabel</name>
+    <text>Threshold:</text>
+    <x>15</x>
+    <y>388</y>
+    <width>70</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>CentThreshInput</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidThreshold</pv_name>
+    <x>90</x>
+    <y>388</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Histogram Section -->
+  <widget type="label" version="2.0.0">
+    <name>HistogramHeader</name>
+    <text>📊 Histogram</text>
+    <x>5</x>
+    <y>435</y>
+    <width>230</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="100" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ComputeHistogramBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ComputeHistogram</pv_name>
+    <x>235</x>
+    <y>432</y>
+    <width>100</width>
+    <height>28</height>
+    <off_label>Histogram Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Computing</on_label>
+    <on_color>
+      <color red="180" green="80" blue="180"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>HistogramSectionBg</name>
+    <x>5</x>
+    <y>465</y>
+    <width>330</width>
+    <height>145</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Histogram Min/Max -->
+  <widget type="label" version="2.0.0">
+    <name>HistMinLabel</name>
+    <text>Min:</text>
+    <x>15</x>
+    <y>478</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>HistMinInput</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:HistMin</pv_name>
+    <x>50</x>
+    <y>478</y>
+    <width>70</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>HistMaxLabel</name>
+    <text>Max:</text>
+    <x>135</x>
+    <y>478</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>HistMaxInput</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:HistMax</pv_name>
+    <x>170</x>
+    <y>478</y>
+    <width>70</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>HistSizeLabel</name>
+    <text>Bins:</text>
+    <x>255</x>
+    <y>478</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>HistSizeInput</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:HistSize</pv_name>
+    <x>290</x>
+    <y>478</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Histogram Plot -->
+  <widget type="xyplot" version="3.0.0">
+    <name>HistogramPlot</name>
+    <x>15</x>
+    <y>510</y>
+    <width>310</width>
+    <height>90</height>
+    <background_color>
+      <color red="25" green="30" blue="40"/>
+    </background_color>
+    <title></title>
+    <show_toolbar>false</show_toolbar>
+    <show_legend>false</show_legend>
+    <x_axis>
+      <title>Bin</title>
+      <autoscale>true</autoscale>
+      <visible>false</visible>
+      <title_font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+      </title_font>
+    </x_axis>
+    <y_axes>
+      <y_axis>
+        <title>Count</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <visible>false</visible>
+        <title_font>
+          <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+        </title_font>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Histogram</name>
+        <y_pv>$(DEVICE):$(CAM):Stats1:Histogram_RBV</y_pv>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="200" green="100" blue="200"/>
+        </color>
+        <line_width>2</line_width>
+      </trace>
+    </traces>
+  </widget>
+
+</display>

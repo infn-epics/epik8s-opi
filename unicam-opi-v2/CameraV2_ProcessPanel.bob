@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Process Panel (NDProcess controls)-->
+<display version="2.0.0">
+  <name>Process Panel</name>
+  <width>340</width>
+  <height>620</height>
+  <background_color>
+    <color red="40" green="46" blue="58" alpha="0"/>
+  </background_color>
+
+  <!-- Header -->
+  <widget type="label" version="2.0.0">
+    <name>HeaderLabel</name>
+    <text>⚙️ Image Processing</text>
+    <x>5</x>
+    <y>5</y>
+    <width>330</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="160" green="100" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <!-- Enable Toggle -->
+  <widget type="rectangle" version="2.0.0">
+    <name>EnableSectionBg</name>
+    <x>5</x>
+    <y>45</y>
+    <width>330</width>
+    <height>60</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ProcEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableCallbacks</pv_name>
+    <x>15</x>
+    <y>55</y>
+    <width>140</width>
+    <height>40</height>
+    <off_label>Processing Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Processing On</on_label>
+    <on_color>
+      <color red="140" green="80" blue="180"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Input Source -->
+  <widget type="label" version="2.0.0">
+    <name>InputLabel</name>
+    <text>← Input:</text>
+    <x>165</x>
+    <y>55</y>
+    <width>55</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>InputSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:NDArrayPort_RBV</pv_name>
+    <x>220</x>
+    <y>55</y>
+    <width>105</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ArraysLabel</name>
+    <text>Arrays:</text>
+    <x>165</x>
+    <y>78</y>
+    <width>55</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCounterRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:ArrayCounter_RBV</pv_name>
+    <x>220</x>
+    <y>78</y>
+    <width>105</width>
+    <height>18</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Background Subtraction Section -->
+  <widget type="label" version="2.0.0">
+    <name>BgSubHeader</name>
+    <text>🎨 Background Subtraction</text>
+    <x>5</x>
+    <y>115</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="150" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>BgSubSectionBg</name>
+    <x>5</x>
+    <y>145</y>
+    <width>330</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>EnableBgSubBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableBackground</pv_name>
+    <x>15</x>
+    <y>155</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Disabled</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Enabled</on_label>
+    <on_color>
+      <color red="120" green="80" blue="180"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>SaveBgBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:SaveBackground</pv_name>
+    <x>125</x>
+    <y>155</y>
+    <width>90</width>
+    <height>32</height>
+    <text>Save Bg</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="80" blue="130"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Save Background</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>BgValidRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:ValidBackground_RBV</pv_name>
+    <x>225</x>
+    <y>155</y>
+    <width>100</width>
+    <height>32</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="BgValidColor" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="100" green="60" blue="60"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0!=0">
+          <value>
+            <color red="60" green="120" blue="60"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Proc1:ValidBackground_RBV</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Flat Field Section -->
+  <widget type="label" version="2.0.0">
+    <name>FlatFieldHeader</name>
+    <text>📐 Flat Field Correction</text>
+    <x>5</x>
+    <y>245</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>FlatFieldSectionBg</name>
+    <x>5</x>
+    <y>275</y>
+    <width>330</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>EnableFlatFieldBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableFlatField</pv_name>
+    <x>15</x>
+    <y>285</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Disabled</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Enabled</on_label>
+    <on_color>
+      <color red="200" green="140" blue="40"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>SaveFlatBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:SaveFlatField</pv_name>
+    <x>125</x>
+    <y>285</y>
+    <width>90</width>
+    <height>32</height>
+    <text>Save Flat</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="80" blue="130"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Save Flat Field</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FlatValidRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:ValidFlatField_RBV</pv_name>
+    <x>225</x>
+    <y>285</y>
+    <width>100</width>
+    <height>32</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="FlatValidColor" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="100" green="60" blue="60"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0!=0">
+          <value>
+            <color red="60" green="120" blue="60"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Proc1:ValidFlatField_RBV</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Scaling Section -->
+  <widget type="label" version="2.0.0">
+    <name>ScalingHeader</name>
+    <text>📊 Scaling & Offset</text>
+    <x>5</x>
+    <y>375</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>ScalingSectionBg</name>
+    <x>5</x>
+    <y>405</y>
+    <width>330</width>
+    <height>115</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>EnableScalingBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableOffsetScale</pv_name>
+    <x>15</x>
+    <y>415</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Disabled</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Enabled</on_label>
+    <on_color>
+      <color red="60" green="140" blue="200"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>AutoOffsetBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:AutoOffsetScale</pv_name>
+    <x>125</x>
+    <y>415</y>
+    <width>90</width>
+    <height>32</height>
+    <off_label>Manual</off_label>
+    <off_color>
+      <color red="60" green="80" blue="100"/>
+    </off_color>
+    <on_label>Auto</on_label>
+    <on_color>
+      <color red="40" green="120" blue="180"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Scale -->
+  <widget type="label" version="2.0.0">
+    <name>ScaleLabel</name>
+    <text>Scale:</text>
+    <x>15</x>
+    <y>455</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>ScaleInput</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:Scale</pv_name>
+    <x>70</x>
+    <y>455</y>
+    <width>85</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Offset -->
+  <widget type="label" version="2.0.0">
+    <name>OffsetLabel</name>
+    <text>Offset:</text>
+    <x>170</x>
+    <y>455</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>OffsetInput</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:Offset</pv_name>
+    <x>225</x>
+    <y>455</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Low/High Clip -->
+  <widget type="label" version="2.0.0">
+    <name>LowClipLabel</name>
+    <text>Low:</text>
+    <x>15</x>
+    <y>488</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>LowClipInput</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:LowClip</pv_name>
+    <x>70</x>
+    <y>488</y>
+    <width>85</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>HighClipLabel</name>
+    <text>High:</text>
+    <x>170</x>
+    <y>488</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>HighClipInput</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:HighClip</pv_name>
+    <x>225</x>
+    <y>488</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Filtering Section -->
+  <widget type="label" version="2.0.0">
+    <name>FilterHeader</name>
+    <text>🔬 Recursive Filter</text>
+    <x>5</x>
+    <y>530</y>
+    <width>330</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="220" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>FilterSectionBg</name>
+    <x>5</x>
+    <y>560</y>
+    <width>330</width>
+    <height>55</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>EnableFilterBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableFilter</pv_name>
+    <x>15</x>
+    <y>570</y>
+    <width>100</width>
+    <height>32</height>
+    <off_label>Disabled</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Enabled</on_label>
+    <on_color>
+      <color red="100" green="180" blue="100"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>FilterNLabel</name>
+    <text>N:</text>
+    <x>130</x>
+    <y>575</y>
+    <width>25</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>FilterNInput</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:NumFilter</pv_name>
+    <x>155</x>
+    <y>573</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>FilterTypeCombo</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:FilterType</pv_name>
+    <x>225</x>
+    <y>573</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+</display>

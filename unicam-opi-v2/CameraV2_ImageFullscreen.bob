@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Fullscreen Image Display-->
+<display version="2.0.0">
+  <name>Fullscreen Image</name>
+  <width>1280</width>
+  <height>960</height>
+  <background_color>
+    <color red="10" green="12" blue="18"/>
+  </background_color>
+
+  <!-- Background -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Background</name>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>960</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="10" green="12" blue="18"/>
+    </background_color>
+  </widget>
+
+  <!-- Main Image -->
+  <widget type="image" version="2.0.0">
+    <name>FullscreenImage</name>
+    <pv_name>pva://$(DEVICE):$(CAM):PVA:OUTPUT</pv_name>
+    <x>40</x>
+    <y>50</y>
+    <width>1200</width>
+    <height>850</height>
+    <color_mode>1</color_mode>
+    <background_color>
+      <color red="10" green="12" blue="18"/>
+    </background_color>
+    <x_axis>
+      <visible>false</visible>
+    </x_axis>
+    <y_axis>
+      <visible>false</visible>
+    </y_axis>
+    <color_bar>
+      <visible>false</visible>
+    </color_bar>
+    <autoscale>true</autoscale>
+    <rules>
+      <rule name="ImageSourceRule" prop_id="pv_name" out_exp="true">
+        <exp bool_exp="pv0==0">
+          <expression>"pva://$(DEVICE):$(CAM):PVA:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <expression>"pva://$(DEVICE):$(CAM):ROI1:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==2">
+          <expression>"pva://$(DEVICE):$(CAM):PROC:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==3">
+          <expression>"pva://$(DEVICE):$(CAM):OVERLAY1:OUTPUT"</expression>
+        </exp>
+        <pv_name>loc://$(DEVICE):$(CAM):FullscreenSource&lt;VEnum&gt;(0, "Raw", "ROI", "Processed", "Overlay")</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Top Bar -->
+  <widget type="rectangle" version="2.0.0">
+    <name>TopBar</name>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>45</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="20" green="24" blue="32"/>
+    </background_color>
+  </widget>
+
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>TitleLabel</name>
+    <text>$(DEVICE):$(CAM) - Fullscreen View</text>
+    <x>15</x>
+    <y>8</y>
+    <width>400</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Source Selector -->
+  <widget type="label" version="2.0.0">
+    <name>SourceLabel</name>
+    <text>Source:</text>
+    <x>430</x>
+    <y>8</y>
+    <width>60</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>SourceCombo</name>
+    <pv_name>loc://$(DEVICE):$(CAM):FullscreenSource&lt;VEnum&gt;(0, "Raw", "ROI", "Processed", "Overlay")</pv_name>
+    <x>495</x>
+    <y>8</y>
+    <width>120</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <!-- Colormap Selector -->
+  <widget type="label" version="2.0.0">
+    <name>ColormapLabel</name>
+    <text>Colormap:</text>
+    <x>640</x>
+    <y>8</y>
+    <width>70</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>ColormapCombo</name>
+    <pv_name>loc://$(DEVICE):$(CAM):Colormap&lt;VEnum&gt;(0, "Gray", "Viridis", "Plasma", "Hot", "Cool")</pv_name>
+    <x>715</x>
+    <y>8</y>
+    <width>100</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+  </widget>
+
+  <!-- Frame Info -->
+  <widget type="label" version="2.0.0">
+    <name>SizeLabel</name>
+    <text>Size:</text>
+    <x>840</x>
+    <y>8</y>
+    <width>40</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeX_RBV</pv_name>
+    <x>880</x>
+    <y>8</y>
+    <width>55</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>1</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SizeXLabel</name>
+    <text>x</text>
+    <x>938</x>
+    <y>8</y>
+    <width>12</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeY_RBV</pv_name>
+    <x>952</x>
+    <y>8</y>
+    <width>55</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>1</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Frame Counter and FPS -->
+  <widget type="label" version="2.0.0">
+    <name>FPSLabel</name>
+    <text>FPS:</text>
+    <x>1030</x>
+    <y>8</y>
+    <width>40</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FrameRateRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayRate_RBV</pv_name>
+    <x>1070</x>
+    <y>8</y>
+    <width>60</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <precision>1</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>HzLabel</name>
+    <text>Hz</text>
+    <x>1135</x>
+    <y>8</y>
+    <width>25</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Frame Counter -->
+  <widget type="label" version="2.0.0">
+    <name>FrameLabel</name>
+    <text>#</text>
+    <x>1175</x>
+    <y>8</y>
+    <width>15</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FrameCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayCounter_RBV</pv_name>
+    <x>1190</x>
+    <y>8</y>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>1</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Bottom Info Bar -->
+  <widget type="rectangle" version="2.0.0">
+    <name>BottomBar</name>
+    <x>0</x>
+    <y>905</y>
+    <width>1280</width>
+    <height>55</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="20" green="24" blue="32"/>
+    </background_color>
+  </widget>
+
+  <!-- Statistics Summary -->
+  <widget type="label" version="2.0.0">
+    <name>MinValLabel</name>
+    <text>Min:</text>
+    <x>20</x>
+    <y>918</y>
+    <width>35</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MinValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MinValue_RBV</pv_name>
+    <x>55</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>MaxValLabel</name>
+    <text>Max:</text>
+    <x>150</x>
+    <y>918</y>
+    <width>40</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MaxValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MaxValue_RBV</pv_name>
+    <x>190</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="100" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>MeanValLabel</name>
+    <text>Mean:</text>
+    <x>290</x>
+    <y>918</y>
+    <width>45</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MeanValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MeanValue_RBV</pv_name>
+    <x>335</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SigmaValLabel</name>
+    <text>σ:</text>
+    <x>435</x>
+    <y>918</y>
+    <width>25</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Sigma_RBV</pv_name>
+    <x>460</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Centroid -->
+  <widget type="label" version="2.0.0">
+    <name>CentXLabel</name>
+    <text>Centroid X:</text>
+    <x>580</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidX_RBV</pv_name>
+    <x>660</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <precision>1</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>CentYLabel</name>
+    <text>Y:</text>
+    <x>760</x>
+    <y>918</y>
+    <width>20</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidY_RBV</pv_name>
+    <x>780</x>
+    <y>918</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <format>0</format>
+    <precision>1</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Acquisition controls -->
+  <widget type="action_button" version="3.0.0">
+    <name>StartBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Acquire</pv_name>
+    <x>920</x>
+    <y>915</y>
+    <width>80</width>
+    <height>35</height>
+    <text>▶ Start</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="140" blue="40"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Start Acquisition</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>StopBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Acquire</pv_name>
+    <x>1010</x>
+    <y>915</y>
+    <width>80</width>
+    <height>35</height>
+    <text>⏹ Stop</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="180" green="50" blue="50"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>0</value>
+        <description>Stop Acquisition</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Capture Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>CaptureBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:Capture</pv_name>
+    <x>1100</x>
+    <y>915</y>
+    <width>90</width>
+    <height>35</height>
+    <text>📸 Capture</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="120" blue="180"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Capture Image</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Close/Back Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>CloseBtn</name>
+    <x>1200</x>
+    <y>915</y>
+    <width>70</width>
+    <height>35</height>
+    <text>✕ Close</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="100" green="60" blue="60"/>
+    </background_color>
+    <actions>
+      <action type="open_display">
+        <file>CameraV2_Main.bob</file>
+        <target>replace</target>
+        <description>Back to Main</description>
+      </action>
+    </actions>
+  </widget>
+
+</display>

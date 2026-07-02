@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Quick Stats Panel (Right Side)-->
+<display version="2.0.0">
+  <name>Quick Stats</name>
+  <width>290</width>
+  <height>690</height>
+  <background_color>
+    <color red="40" green="46" blue="58" alpha="0"/>
+  </background_color>
+
+  <!-- Live Statistics Section -->
+  <widget type="label" version="2.0.0">
+    <name>StatsHeader</name>
+    <text>📊 Live Statistics</text>
+    <x>5</x>
+    <y>5</y>
+    <width>280</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="180" blue="50"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>StatsSectionBg</name>
+    <x>5</x>
+    <y>37</y>
+    <width>280</width>
+    <height>200</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Min Value -->
+  <widget type="label" version="2.0.0">
+    <name>MinLabel</name>
+    <text>Min:</text>
+    <x>15</x>
+    <y>50</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MinValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MinValue_RBV</pv_name>
+    <x>80</x>
+    <y>50</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Max Value -->
+  <widget type="label" version="2.0.0">
+    <name>MaxLabel</name>
+    <text>Max:</text>
+    <x>15</x>
+    <y>80</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MaxValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MaxValue_RBV</pv_name>
+    <x>80</x>
+    <y>80</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="100" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Mean Value -->
+  <widget type="label" version="2.0.0">
+    <name>MeanLabel</name>
+    <text>Mean:</text>
+    <x>15</x>
+    <y>110</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>MeanValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:MeanValue_RBV</pv_name>
+    <x>80</x>
+    <y>110</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma Value -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaLabel</name>
+    <text>Sigma:</text>
+    <x>15</x>
+    <y>140</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Sigma_RBV</pv_name>
+    <x>80</x>
+    <y>140</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Total Value -->
+  <widget type="label" version="2.0.0">
+    <name>TotalLabel</name>
+    <text>Total:</text>
+    <x>15</x>
+    <y>170</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TotalValueRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:Total_RBV</pv_name>
+    <x>80</x>
+    <y>170</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="180" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>5</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Stats Enable Toggle -->
+  <widget type="bool_button" version="2.0.0">
+    <name>StatsEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:EnableCallbacks</pv_name>
+    <x>190</x>
+    <y>50</y>
+    <width>80</width>
+    <height>60</height>
+    <off_label>OFF</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>ON</on_label>
+    <on_color>
+      <color red="255" green="150" blue="50"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Centroid Section -->
+  <widget type="label" version="2.0.0">
+    <name>CentroidHeader</name>
+    <text>🎯 Centroid</text>
+    <x>5</x>
+    <y>250</y>
+    <width>280</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>CentroidSectionBg</name>
+    <x>5</x>
+    <y>282</y>
+    <width>280</width>
+    <height>130</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Centroid X -->
+  <widget type="label" version="2.0.0">
+    <name>CentXLabel</name>
+    <text>X:</text>
+    <x>15</x>
+    <y>295</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidX_RBV</pv_name>
+    <x>50</x>
+    <y>295</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>CentXUnit</name>
+    <text>px</text>
+    <x>155</x>
+    <y>295</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Centroid Y -->
+  <widget type="label" version="2.0.0">
+    <name>CentYLabel</name>
+    <text>Y:</text>
+    <x>15</x>
+    <y>325</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CentroidYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:CentroidY_RBV</pv_name>
+    <x>50</x>
+    <y>325</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="0" green="200" blue="180"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>CentYUnit</name>
+    <text>px</text>
+    <x>155</x>
+    <y>325</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma X -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaXLabel</name>
+    <text>σX:</text>
+    <x>15</x>
+    <y>355</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:SigmaX_RBV</pv_name>
+    <x>50</x>
+    <y>355</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Sigma Y -->
+  <widget type="label" version="2.0.0">
+    <name>SigmaYLabel</name>
+    <text>σY:</text>
+    <x>15</x>
+    <y>385</y>
+    <width>30</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SigmaYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:SigmaY_RBV</pv_name>
+    <x>50</x>
+    <y>385</y>
+    <width>100</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <precision>2</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Compute Stats Button -->
+  <widget type="bool_button" version="2.0.0">
+    <name>ComputeStatsBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ComputeStatistics</pv_name>
+    <x>190</x>
+    <y>295</y>
+    <width>80</width>
+    <height>50</height>
+    <off_label>Stats Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Computing</on_label>
+    <on_color>
+      <color red="0" green="180" blue="160"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <widget type="bool_button" version="2.0.0">
+    <name>ComputeCentroidBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:ComputeCentroid</pv_name>
+    <x>190</x>
+    <y>355</y>
+    <width>80</width>
+    <height>50</height>
+    <off_label>Cent Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>Computing</on_label>
+    <on_color>
+      <color red="0" green="180" blue="160"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- File Writer Status Section -->
+  <widget type="label" version="2.0.0">
+    <name>FileWriterHeader</name>
+    <text>💾 TIFF Writer Status</text>
+    <x>5</x>
+    <y>425</y>
+    <width>280</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="100"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>FileWriterSectionBg</name>
+    <x>5</x>
+    <y>457</y>
+    <width>280</width>
+    <height>120</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- TIFF Enable -->
+  <widget type="bool_button" version="2.0.0">
+    <name>TIFFEnableBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:EnableCallbacks</pv_name>
+    <x>15</x>
+    <y>470</y>
+    <width>100</width>
+    <height>30</height>
+    <off_label>TIFF Off</off_label>
+    <off_color>
+      <color red="80" green="80" blue="80"/>
+    </off_color>
+    <on_label>TIFF On</on_label>
+    <on_color>
+      <color red="100" green="180" blue="100"/>
+    </on_color>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+  </widget>
+
+  <!-- Write Mode -->
+  <widget type="textupdate" version="2.0.0">
+    <name>WriteModeRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileWriteMode_RBV</pv_name>
+    <x>120</x>
+    <y>470</y>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Capture Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>CaptureBtn</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:Capture</pv_name>
+    <x>205</x>
+    <y>470</y>
+    <width>70</width>
+    <height>30</height>
+    <text>📸 Save</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="140" blue="80"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Capture Image</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- File Counter -->
+  <widget type="label" version="2.0.0">
+    <name>FileCountLabel</name>
+    <text>Files:</text>
+    <x>15</x>
+    <y>510</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FileCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileNumber_RBV</pv_name>
+    <x>70</x>
+    <y>510</y>
+    <width>80</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Write Status -->
+  <widget type="textupdate" version="2.0.0">
+    <name>WriteStatusRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:WriteStatus</pv_name>
+    <x>160</x>
+    <y>510</y>
+    <width>115</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="WriteStatusColor" prop_id="foreground_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="100" green="255" blue="150"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="255" green="100" blue="100"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):TIFF1:WriteStatus</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Current File Name -->
+  <widget type="label" version="2.0.0">
+    <name>FileNameLabel</name>
+    <text>Last:</text>
+    <x>15</x>
+    <y>540</y>
+    <width>40</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FileNameRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FullFileName_RBV</pv_name>
+    <x>60</x>
+    <y>540</y>
+    <width>215</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="9.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Plugin Links Section -->
+  <widget type="label" version="2.0.0">
+    <name>LinksHeader</name>
+    <text>🔗 Plugin Details</text>
+    <x>5</x>
+    <y>590</y>
+    <width>280</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="220"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>LinksSectionBg</name>
+    <x>5</x>
+    <y>622</y>
+    <width>280</width>
+    <height>60</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>ROIDetailsBtn</name>
+    <x>15</x>
+    <y>635</y>
+    <width>60</width>
+    <height>32</height>
+    <text>ROI</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="130" blue="200"/>
+    </background_color>
+    <actions>
+      <action type="open_display">
+        <file>genicam/ADROI.bob</file>
+        <target>tab</target>
+        <description>ROI Details</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>ProcDetailsBtn</name>
+    <x>80</x>
+    <y>635</y>
+    <width>60</width>
+    <height>32</height>
+    <text>Proc</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="160" green="80" blue="180"/>
+    </background_color>
+    <actions>
+      <action type="open_display">
+        <file>genicam/ADProcess.bob</file>
+        <target>tab</target>
+        <description>Process Details</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>StatsDetailsBtn</name>
+    <x>145</x>
+    <y>635</y>
+    <width>60</width>
+    <height>32</height>
+    <text>Stats</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="220" green="130" blue="40"/>
+    </background_color>
+    <actions>
+      <action type="open_display">
+        <file>genicam/ADStats.bob</file>
+        <target>tab</target>
+        <description>Stats Details</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>TIFFDetailsBtn</name>
+    <x>210</x>
+    <y>635</y>
+    <width>60</width>
+    <height>32</height>
+    <text>TIFF</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="160" blue="80"/>
+    </background_color>
+    <actions>
+      <action type="open_display">
+        <file>genicam/ADFileTIFF.bob</file>
+        <target>tab</target>
+        <description>TIFF Details</description>
+      </action>
+    </actions>
+  </widget>
+
+</display>

@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Acquire Panel-->
+<display version="2.0.0">
+  <name>Acquire Panel</name>
+  <width>340</width>
+  <height>800</height>
+  <background_color>
+    <color red="50" green="58" blue="72" alpha="0"/>
+  </background_color>
+
+  <!-- Acquisition Control Section -->
+  <widget type="label" version="2.0.0">
+    <name>AcquireHeader</name>
+    <text>🎬 Acquisition Control</text>
+    <x>10</x>
+    <y>10</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>AcquireSectionBg</name>
+    <x>10</x>
+    <y>42</y>
+    <width>320</width>
+    <height>140</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Start/Stop Buttons -->
+  <widget type="action_button" version="3.0.0">
+    <name>StartBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Acquire</pv_name>
+    <x>20</x>
+    <y>55</y>
+    <width>145</width>
+    <height>50</height>
+    <text>▶ START</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="150" blue="80"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Start Acquisition</description>
+      </action>
+    </actions>
+  </widget>
+
+  <widget type="action_button" version="3.0.0">
+    <name>StopBtn</name>
+    <pv_name>$(DEVICE):$(CAM):Acquire</pv_name>
+    <x>175</x>
+    <y>55</y>
+    <width>145</width>
+    <height>50</height>
+    <text>⏹ STOP</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="200" green="50" blue="50"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>0</value>
+        <description>Stop Acquisition</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Acquire Mode -->
+  <widget type="label" version="2.0.0">
+    <name>ModeLabel</name>
+    <text>Mode:</text>
+    <x>20</x>
+    <y>115</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>ImageModeCombo</name>
+    <pv_name>$(DEVICE):$(CAM):ImageMode</pv_name>
+    <x>85</x>
+    <y>115</y>
+    <width>150</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ImageModeRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ImageMode_RBV</pv_name>
+    <x>240</x>
+    <y>115</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Number of Images -->
+  <widget type="label" version="2.0.0">
+    <name>NumImagesLabel</name>
+    <text>Num Images:</text>
+    <x>20</x>
+    <y>150</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>NumImagesEntry</name>
+    <pv_name>$(DEVICE):$(CAM):NumImages</pv_name>
+    <x>125</x>
+    <y>150</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>1</format>
+  </widget>
+
+  <!-- Timing Section -->
+  <widget type="label" version="2.0.0">
+    <name>TimingHeader</name>
+    <text>⏱️ Timing</text>
+    <x>10</x>
+    <y>195</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>TimingSectionBg</name>
+    <x>10</x>
+    <y>227</y>
+    <width>320</width>
+    <height>120</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Exposure Time -->
+  <widget type="label" version="2.0.0">
+    <name>ExposureLabel</name>
+    <text>Exposure (s):</text>
+    <x>20</x>
+    <y>240</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>ExposureEntry</name>
+    <pv_name>$(DEVICE):$(CAM):AcquireTime</pv_name>
+    <x>125</x>
+    <y>240</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>0</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ExposureRBV</name>
+    <pv_name>$(DEVICE):$(CAM):AcquireTime_RBV</pv_name>
+    <x>230</x>
+    <y>240</y>
+    <width>90</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Acquire Period -->
+  <widget type="label" version="2.0.0">
+    <name>PeriodLabel</name>
+    <text>Period (s):</text>
+    <x>20</x>
+    <y>272</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textentry" version="3.0.0">
+    <name>PeriodEntry</name>
+    <pv_name>$(DEVICE):$(CAM):AcquirePeriod</pv_name>
+    <x>125</x>
+    <y>272</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <format>0</format>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>PeriodRBV</name>
+    <pv_name>$(DEVICE):$(CAM):AcquirePeriod_RBV</pv_name>
+    <x>230</x>
+    <y>272</y>
+    <width>90</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Frame Rate -->
+  <widget type="label" version="2.0.0">
+    <name>FrameRateLabel</name>
+    <text>Frame Rate:</text>
+    <x>20</x>
+    <y>304</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FrameRateRBV</name>
+    <pv_name>$(DEVICE):$(CAM):FrameRate_RBV</pv_name>
+    <x>125</x>
+    <y>304</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>FPSLabel</name>
+    <text>fps</text>
+    <x>230</x>
+    <y>304</y>
+    <width>40</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Gain Section -->
+  <widget type="label" version="2.0.0">
+    <name>GainHeader</name>
+    <text>📶 Gain &amp; Offset</text>
+    <x>10</x>
+    <y>360</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>GainSectionBg</name>
+    <x>10</x>
+    <y>392</y>
+    <width>320</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Gain -->
+  <widget type="label" version="2.0.0">
+    <name>GainLabel</name>
+    <text>Gain:</text>
+    <x>20</x>
+    <y>405</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="scrollbar" version="2.0.0">
+    <name>GainSlider</name>
+    <pv_name>$(DEVICE):$(CAM):Gain</pv_name>
+    <x>85</x>
+    <y>405</y>
+    <width>160</width>
+    <height>26</height>
+    <horizontal>true</horizontal>
+    <limits_from_pv>true</limits_from_pv>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>GainRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Gain_RBV</pv_name>
+    <x>250</x>
+    <y>405</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Offset -->
+  <widget type="label" version="2.0.0">
+    <name>OffsetLabel</name>
+    <text>Offset:</text>
+    <x>20</x>
+    <y>437</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="scrollbar" version="2.0.0">
+    <name>OffsetSlider</name>
+    <pv_name>$(DEVICE):$(CAM):Offset</pv_name>
+    <x>85</x>
+    <y>437</y>
+    <width>160</width>
+    <height>26</height>
+    <horizontal>true</horizontal>
+    <limits_from_pv>true</limits_from_pv>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>OffsetRBV</name>
+    <pv_name>$(DEVICE):$(CAM):Offset_RBV</pv_name>
+    <x>250</x>
+    <y>437</y>
+    <width>70</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>0</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Trigger Section -->
+  <widget type="label" version="2.0.0">
+    <name>TriggerHeader</name>
+    <text>⚡ Trigger</text>
+    <x>10</x>
+    <y>495</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>TriggerSectionBg</name>
+    <x>10</x>
+    <y>527</y>
+    <width>320</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Trigger Mode -->
+  <widget type="label" version="2.0.0">
+    <name>TrigModeLabel</name>
+    <text>Mode:</text>
+    <x>20</x>
+    <y>540</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>TrigModeCombo</name>
+    <pv_name>$(DEVICE):$(CAM):TriggerMode</pv_name>
+    <x>85</x>
+    <y>540</y>
+    <width>150</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TrigModeRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TriggerMode_RBV</pv_name>
+    <x>240</x>
+    <y>540</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Trigger Source -->
+  <widget type="label" version="2.0.0">
+    <name>TrigSourceLabel</name>
+    <text>Source:</text>
+    <x>20</x>
+    <y>572</y>
+    <width>60</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>TrigSourceCombo</name>
+    <pv_name>$(DEVICE):$(CAM):TriggerSource</pv_name>
+    <x>85</x>
+    <y>572</y>
+    <width>150</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TrigSourceRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TriggerSource_RBV</pv_name>
+    <x>240</x>
+    <y>572</y>
+    <width>80</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Counter Display -->
+  <widget type="label" version="2.0.0">
+    <name>CounterHeader</name>
+    <text>📊 Counters</text>
+    <x>10</x>
+    <y>630</y>
+    <width>320</width>
+    <height>28</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+  </widget>
+
+  <widget type="rectangle" version="2.0.0">
+    <name>CounterSectionBg</name>
+    <x>10</x>
+    <y>662</y>
+    <width>320</width>
+    <height>90</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <corner_width>8</corner_width>
+    <corner_height>8</corner_height>
+  </widget>
+
+  <!-- Image Counter -->
+  <widget type="label" version="2.0.0">
+    <name>ImgCountLabel</name>
+    <text>Images:</text>
+    <x>20</x>
+    <y>680</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ImgCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):NumImagesCounter_RBV</pv_name>
+    <x>105</x>
+    <y>680</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>OfLabel</name>
+    <text>/</text>
+    <x>188</x>
+    <y>680</y>
+    <width>20</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>NumImgRBV</name>
+    <pv_name>$(DEVICE):$(CAM):NumImages_RBV</pv_name>
+    <x>210</x>
+    <y>680</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Array Counter -->
+  <widget type="label" version="2.0.0">
+    <name>ArrayCountLabel</name>
+    <text>Arrays:</text>
+    <x>20</x>
+    <y>712</y>
+    <width>80</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayCounter_RBV</pv_name>
+    <x>105</x>
+    <y>712</y>
+    <width>100</width>
+    <height>26</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="50" blue="65"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Reset Counter Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>ResetCounterBtn</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayCounter</pv_name>
+    <x>220</x>
+    <y>712</y>
+    <width>100</width>
+    <height>26</height>
+    <text>Reset</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="100" green="100" blue="120"/>
+    </background_color>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>0</value>
+        <description>Reset Counter</description>
+      </action>
+    </actions>
+  </widget>
+
+</display>

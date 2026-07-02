@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 Wrapper - Reads CONFFILE and initializes macros dynamically - 2026-01-28-->
+<display version="2.0.0">
+  <name>Camera V2</name>
+  <macros>
+    <CONFFILE>$(CONFFILE)</CONFFILE>
+    <GROUP>cam</GROUP>
+    <DID>$(DID)</DID>
+  </macros>
+  <width>1650</width>
+  <height>1000</height>
+  <background_color>
+    <color red="30" green="34" blue="42"/>
+  </background_color>
+  <scripts>
+    <script file="Scripts/LoadDeviceV2.py" check_connections="false">
+      <pv_name>loc://DeviceNameV2_$(DID)&lt;VString&gt;("")</pv_name>
+    </script>
+  </scripts>
+  <grid_step_x>5</grid_step_x>
+  <grid_step_y>5</grid_step_y>
+
+  <!-- Camera Selection Header -->
+  <widget type="rectangle" version="2.0.0">
+    <name>SelectionHeaderBg</name>
+    <x>10</x>
+    <y>10</y>
+    <width>500</width>
+    <height>50</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="45" green="52" blue="70"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>SelectionLabel</name>
+    <text>📷 Camera Selection</text>
+    <x>25</x>
+    <y>20</y>
+    <width>180</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="combo" version="2.0.0">
+    <name>DeviceCombo</name>
+    <pv_name>loc://DeviceNameV2_$(DID)&lt;VString&gt;("")</pv_name>
+    <x>200</x>
+    <y>18</y>
+    <width>295</width>
+    <height>34</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="90" blue="130"/>
+    </background_color>
+    <items_from_pv>false</items_from_pv>
+  </widget>
+
+  <!-- Configuration Status Indicator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>ConfigStatusBg</name>
+    <x>520</x>
+    <y>10</y>
+    <width>400</width>
+    <height>50</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="45" green="52" blue="70"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ConfigLabel</name>
+    <text>Config:</text>
+    <x>535</x>
+    <y>20</y>
+    <width>60</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ConfigFileName</name>
+    <text>$(CONFFILE)</text>
+    <x>595</x>
+    <y>20</y>
+    <width>310</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Mono" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Plugin Enable Status Display -->
+  <widget type="rectangle" version="2.0.0">
+    <name>PluginStatusBg</name>
+    <x>930</x>
+    <y>10</y>
+    <width>710</width>
+    <height>50</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="70" green="80" blue="100"/>
+    </line_color>
+    <background_color>
+      <color red="45" green="52" blue="70"/>
+    </background_color>
+    <corner_width>10</corner_width>
+    <corner_height>10</corner_height>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginLabel</name>
+    <text>Enabled Plugins:</text>
+    <x>945</x>
+    <y>20</y>
+    <width>120</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="180" green="180" blue="180"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Plugin indicators will be updated by macros from CameraV2_Main -->
+  <widget type="label" version="2.0.0">
+    <name>PluginROI</name>
+    <text>ROI</text>
+    <x>1070</x>
+    <y>20</y>
+    <width>50</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="80" blue="60"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginProc</name>
+    <text>Proc</text>
+    <x>1130</x>
+    <y>20</y>
+    <width>50</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="60" blue="80"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginStats</name>
+    <text>Stats</text>
+    <x>1190</x>
+    <y>20</y>
+    <width>55</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="60" blue="40"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginOverlay</name>
+    <text>Ovl</text>
+    <x>1255</x>
+    <y>20</y>
+    <width>50</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="150" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="40" blue="80"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginTIFF</name>
+    <text>TIFF</text>
+    <x>1315</x>
+    <y>20</y>
+    <width>50</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="150" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="80" green="40" blue="40"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>PluginStream</name>
+    <text>Stream</text>
+    <x>1375</x>
+    <y>20</y>
+    <width>60</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="255" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="80" blue="60"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Help Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>HelpBtn</name>
+    <x>1560</x>
+    <y>18</y>
+    <width>70</width>
+    <height>34</height>
+    <text>❓ Help</text>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="70" green="80" blue="100"/>
+    </background_color>
+    <actions>
+      <action type="open_file">
+        <file>README.md</file>
+        <description>Open Help</description>
+      </action>
+    </actions>
+  </widget>
+
+  <!-- Embedded CameraV2_Main Display -->
+  <widget type="embedded" version="2.0.0">
+    <name>CameraV2Container</name>
+    <file>CameraV2_Main.bob</file>
+    <x>10</x>
+    <y>70</y>
+    <width>1630</width>
+    <height>920</height>
+    <transparent>true</transparent>
+    <scripts>
+      <script file="Scripts/DeviceSelectV2.py">
+        <pv_name>loc://DeviceNameV2_$(DID)&lt;VString&gt;("")</pv_name>
+      </script>
+    </scripts>
+  </widget>
+
+</display>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Processing Chain Status Indicator-->
+<display version="2.0.0">
+  <name>Chain Indicator</name>
+  <width>680</width>
+  <height>36</height>
+  <background_color>
+    <color red="35" green="40" blue="55" alpha="0"/>
+  </background_color>
+
+  <!-- RAW Stage (Always Active) -->
+  <widget type="rectangle" version="2.0.0">
+    <name>RawBg</name>
+    <width>80</width>
+    <height>30</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="0" green="180" blue="100"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel</name>
+    <text>📷 Raw</text>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Arrow 1 -->
+  <widget type="label" version="2.0.0">
+    <name>Arrow1</name>
+    <text>→</text>
+    <x>82</x>
+    <y>3</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- ROI Stage -->
+  <widget type="rectangle" version="2.0.0">
+    <name>ROIBg</name>
+    <x>108</x>
+    <width>80</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="ROI_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="0" green="150" blue="220"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Roi1:EnableCallbacks</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ROILabel</name>
+    <text>🔲 ROI</text>
+    <x>108</x>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="ROI_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(ROI_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Arrow 2 -->
+  <widget type="label" version="2.0.0">
+    <name>Arrow2</name>
+    <text>→</text>
+    <x>190</x>
+    <y>3</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- PROC Stage -->
+  <widget type="rectangle" version="2.0.0">
+    <name>ProcBg</name>
+    <x>216</x>
+    <width>80</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="Proc_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="180" green="100" blue="200"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Proc1:EnableCallbacks</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ProcLabel</name>
+    <text>⚙️ Proc</text>
+    <x>216</x>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="Proc_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(PROC_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Arrow 3 -->
+  <widget type="label" version="2.0.0">
+    <name>Arrow3</name>
+    <text>→</text>
+    <x>298</x>
+    <y>3</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- STATS Stage -->
+  <widget type="rectangle" version="2.0.0">
+    <name>StatsBg</name>
+    <x>324</x>
+    <width>80</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="Stats_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="255" green="150" blue="50"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Stats1:EnableCallbacks</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StatsLabel</name>
+    <text>📊 Stats</text>
+    <x>324</x>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="Stats_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(STATS_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Arrow 4 -->
+  <widget type="label" version="2.0.0">
+    <name>Arrow4</name>
+    <text>→</text>
+    <x>406</x>
+    <y>3</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- OVERLAY Stage -->
+  <widget type="rectangle" version="2.0.0">
+    <name>OverlayBg</name>
+    <x>432</x>
+    <width>90</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="Overlay_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="220" green="50" blue="100"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Overlay1:EnableCallbacks</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>OverlayLabel</name>
+    <text>🎨 Overlay</text>
+    <x>432</x>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="Overlay_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(OVERLAY_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Arrow 5 -->
+  <widget type="label" version="2.0.0">
+    <name>Arrow5</name>
+    <text>→</text>
+    <x>524</x>
+    <y>3</y>
+    <width>24</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- TIFF1 Output Stage -->
+  <widget type="rectangle" version="2.0.0">
+    <name>TIFF1Bg</name>
+    <x>550</x>
+    <width>80</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="TIFF_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="100" green="200" blue="100"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):TIFF1:EnableCallbacks</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>TIFF1Label</name>
+    <text>💾 TIFF</text>
+    <x>550</x>
+    <width>80</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Stream Indicator (Parallel Path) -->
+  <widget type="rectangle" version="2.0.0">
+    <name>StreamBg</name>
+    <x>640</x>
+    <width>35</width>
+    <height>30</height>
+    <line_width>2</line_width>
+    <line_color>
+      <color red="80" green="80" blue="80"/>
+    </line_color>
+    <background_color>
+      <color red="50" green="60" blue="80"/>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+    <rules>
+      <rule name="Stream_Active" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="255" green="80" blue="80"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):Stream1:EnableCallbacks</pv_name>
+      </rule>
+      <rule name="Stream_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(STREAM_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StreamLabel</name>
+    <text>📺</text>
+    <x>640</x>
+    <width>35</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="Stream_Label_Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="$(STREAM_ENABLED)==0">
+          <value>false</value>
+        </exp>
+      </rule>
+    </rules>
+    <tooltip>HTTP Stream (parallel path from Raw)</tooltip>
+  </widget>
+
+</display>

@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Camera V2 - Bottom Status Bar-->
+<display version="2.0.0">
+  <name>Bottom Status</name>
+  <width>1590</width>
+  <height>36</height>
+  <background_color>
+    <color red="25" green="30" blue="38"/>
+  </background_color>
+
+  <!-- Status Background -->
+  <widget type="rectangle" version="2.0.0">
+    <name>StatusBarBg</name>
+    <x>0</x>
+    <y>0</y>
+    <width>1590</width>
+    <height>36</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="25" green="30" blue="38"/>
+    </background_color>
+  </widget>
+
+  <!-- Top border line -->
+  <widget type="rectangle" version="2.0.0">
+    <name>TopBorder</name>
+    <x>0</x>
+    <y>0</y>
+    <width>1590</width>
+    <height>1</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Camera Status -->
+  <widget type="label" version="2.0.0">
+    <name>CamStatusLabel</name>
+    <text>Camera:</text>
+    <x>10</x>
+    <y>7</y>
+    <width>55</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>CameraStatusRBV</name>
+    <pv_name>$(DEVICE):$(CAM):DetectorState_RBV</pv_name>
+    <x>65</x>
+    <y>7</y>
+    <width>80</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="DetectorStateColor" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="60" green="60" blue="60"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="40" green="120" blue="40"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==2">
+          <value>
+            <color red="180" green="180" blue="40"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==3">
+          <value>
+            <color red="180" green="100" blue="40"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0>=4">
+          <value>
+            <color red="180" green="40" blue="40"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):DetectorState_RBV</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep1</name>
+    <x>155</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Frame Counter -->
+  <widget type="label" version="2.0.0">
+    <name>FrameLabel</name>
+    <text>Frames:</text>
+    <x>165</x>
+    <y>7</y>
+    <width>55</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ArrayCounterRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayCounter_RBV</pv_name>
+    <x>220</x>
+    <y>7</y>
+    <width>80</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep2</name>
+    <x>310</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Frame Rate -->
+  <widget type="label" version="2.0.0">
+    <name>FPSLabel</name>
+    <text>FPS:</text>
+    <x>320</x>
+    <y>7</y>
+    <width>35</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FrameRateRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArrayRate_RBV</pv_name>
+    <x>355</x>
+    <y>7</y>
+    <width>60</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="255" blue="150"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>0</format>
+    <precision>1</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>FPSUnit</name>
+    <text>Hz</text>
+    <x>420</x>
+    <y>7</y>
+    <width>25</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep3</name>
+    <x>455</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Image Dimensions -->
+  <widget type="label" version="2.0.0">
+    <name>DimLabel</name>
+    <text>Image:</text>
+    <x>465</x>
+    <y>7</y>
+    <width>50</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeXRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeX_RBV</pv_name>
+    <x>515</x>
+    <y>7</y>
+    <width>55</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>DimX</name>
+    <text>x</text>
+    <x>573</x>
+    <y>7</y>
+    <width>12</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeYRBV</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeY_RBV</pv_name>
+    <x>588</x>
+    <y>7</y>
+    <width>55</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep4</name>
+    <x>655</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Data Type -->
+  <widget type="label" version="2.0.0">
+    <name>TypeLabel</name>
+    <text>Type:</text>
+    <x>665</x>
+    <y>7</y>
+    <width>40</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>DataTypeRBV</name>
+    <pv_name>$(DEVICE):$(CAM):DataType_RBV</pv_name>
+    <x>705</x>
+    <y>7</y>
+    <width>65</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep5</name>
+    <x>780</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Temperature -->
+  <widget type="label" version="2.0.0">
+    <name>TempLabel</name>
+    <text>Temp:</text>
+    <x>790</x>
+    <y>7</y>
+    <width>45</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TemperatureRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TemperatureActual</pv_name>
+    <x>835</x>
+    <y>7</y>
+    <width>55</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>0</format>
+    <precision>1</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>TempUnit</name>
+    <text>°C</text>
+    <x>893</x>
+    <y>7</y>
+    <width>25</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep6</name>
+    <x>925</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Exposure -->
+  <widget type="label" version="2.0.0">
+    <name>ExpLabel</name>
+    <text>Exp:</text>
+    <x>935</x>
+    <y>7</y>
+    <width>35</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>ExposureRBV</name>
+    <pv_name>$(DEVICE):$(CAM):AcquireTime_RBV</pv_name>
+    <x>970</x>
+    <y>7</y>
+    <width>70</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="200" green="200" blue="200"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>0</format>
+    <precision>4</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="label" version="2.0.0">
+    <name>ExpUnit</name>
+    <text>s</text>
+    <x>1043</x>
+    <y>7</y>
+    <width>15</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep7</name>
+    <x>1065</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Connection Status -->
+  <widget type="label" version="2.0.0">
+    <name>ConnLabel</name>
+    <text>Link:</text>
+    <x>1075</x>
+    <y>7</y>
+    <width>40</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="led" version="2.0.0">
+    <name>ConnectionLED</name>
+    <pv_name>$(DEVICE):$(CAM):AsynIO.CNCT</pv_name>
+    <x>1115</x>
+    <y>9</y>
+    <width>18</width>
+    <height>18</height>
+    <off_color>
+      <color red="180" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="60" green="180" blue="60"/>
+    </on_color>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep8</name>
+    <x>1145</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- TIFF Writer Status -->
+  <widget type="label" version="2.0.0">
+    <name>TIFFLabel</name>
+    <text>💾 TIFF:</text>
+    <x>1155</x>
+    <y>7</y>
+    <width>60</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>TIFFStatusRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:Capture_RBV</pv_name>
+    <x>1215</x>
+    <y>7</y>
+    <width>70</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <rules>
+      <rule name="TIFFColor" prop_id="foreground_color" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>
+            <color red="180" green="180" blue="180"/>
+          </value>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <value>
+            <color red="100" green="255" blue="150"/>
+          </value>
+        </exp>
+        <pv_name>$(DEVICE):$(CAM):TIFF1:Capture_RBV</pv_name>
+      </rule>
+    </rules>
+  </widget>
+
+  <!-- Files written -->
+  <widget type="label" version="2.0.0">
+    <name>FilesLabel</name>
+    <text>#</text>
+    <x>1290</x>
+    <y>7</y>
+    <width>15</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <widget type="textupdate" version="2.0.0">
+    <name>FileCountRBV</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:FileNumber_RBV</pv_name>
+    <x>1305</x>
+    <y>7</y>
+    <width>60</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="100"/>
+    </foreground_color>
+    <background_color>
+      <color red="35" green="42" blue="55"/>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- Separator -->
+  <widget type="rectangle" version="2.0.0">
+    <name>Sep9</name>
+    <x>1375</x>
+    <y>5</y>
+    <width>1</width>
+    <height>26</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="60" green="70" blue="90"/>
+    </background_color>
+  </widget>
+
+  <!-- Plugin Chain Status Icons -->
+  <widget type="label" version="2.0.0">
+    <name>ChainLabel</name>
+    <text>Chain:</text>
+    <x>1385</x>
+    <y>7</y>
+    <width>50</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0"/>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150"/>
+    </foreground_color>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+
+  <!-- ROI Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>ROILED</name>
+    <pv_name>$(DEVICE):$(CAM):ROI1:EnableCallbacks_RBV</pv_name>
+    <x>1440</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="0" green="150" blue="220"/>
+    </on_color>
+    <tooltip>ROI</tooltip>
+  </widget>
+
+  <!-- Proc Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>ProcLED</name>
+    <pv_name>$(DEVICE):$(CAM):Proc1:EnableCallbacks_RBV</pv_name>
+    <x>1462</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="160" green="80" blue="200"/>
+    </on_color>
+    <tooltip>Processing</tooltip>
+  </widget>
+
+  <!-- Stats Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>StatsLED</name>
+    <pv_name>$(DEVICE):$(CAM):Stats1:EnableCallbacks_RBV</pv_name>
+    <x>1484</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="255" green="150" blue="50"/>
+    </on_color>
+    <tooltip>Statistics</tooltip>
+  </widget>
+
+  <!-- Overlay Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>OverlayLED</name>
+    <pv_name>$(DEVICE):$(CAM):Over1:EnableCallbacks_RBV</pv_name>
+    <x>1506</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="100" green="180" blue="255"/>
+    </on_color>
+    <tooltip>Overlay</tooltip>
+  </widget>
+
+  <!-- TIFF Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>TIFFLED</name>
+    <pv_name>$(DEVICE):$(CAM):TIFF1:EnableCallbacks_RBV</pv_name>
+    <x>1528</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="100" green="200" blue="100"/>
+    </on_color>
+    <tooltip>TIFF Writer</tooltip>
+  </widget>
+
+  <!-- Stream Status LED -->
+  <widget type="led" version="2.0.0">
+    <name>StreamLED</name>
+    <pv_name>$(DEVICE):$(CAM):Pva1:EnableCallbacks_RBV</pv_name>
+    <x>1550</x>
+    <y>9</y>
+    <width>16</width>
+    <height>16</height>
+    <off_color>
+      <color red="60" green="60" blue="60"/>
+    </off_color>
+    <on_color>
+      <color red="255" green="100" blue="150"/>
+    </on_color>
+    <tooltip>PVA Stream</tooltip>
+  </widget>
+
+  <!-- Time indicator (right corner) -->
+  <widget type="textupdate" version="2.0.0">
+    <name>TimeStamp</name>
+    <pv_name>$(DEVICE):$(CAM):TimeStamp_RBV</pv_name>
+    <x>1575</x>
+    <y>7</y>
+    <width>0</width>
+    <height>0</height>
+    <visible>false</visible>
+  </widget>
+
+</display>

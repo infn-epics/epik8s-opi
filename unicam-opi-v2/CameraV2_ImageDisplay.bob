@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-01-29 17:01:28 by michelottilabs-->
+<display version="2.0.0">
+  <name>Image Display</name>
+  <width>890</width>
+  <height>645</height>
+  <background_color>
+    <color red="25" green="28" blue="35" alpha="0">
+    </color>
+  </background_color>
+  <widget type="image" version="2.0.0">
+    <name>MainImage</name>
+    <pv_name>pva://$(DEVICE):$(CAM):PVA:OUTPUT</pv_name>
+    <x>5</x>
+    <y>5</y>
+    <width>880</width>
+    <height>590</height>
+    <foreground_color>
+      <color red="0" green="32" blue="92">
+      </color>
+    </foreground_color>
+    <color_bar>
+      <visible>true</visible>
+      <bar_size>50</bar_size>
+      <scale_font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0">
+        </font>
+      </scale_font>
+    </color_bar>
+    <x_axis>
+      <visible>true</visible>
+      <title>X (pixels)</title>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <title_font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0">
+        </font>
+      </scale_font>
+    </x_axis>
+    <y_axis>
+      <visible>true</visible>
+      <title>Y (pixels)</title>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <title_font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0">
+        </font>
+      </scale_font>
+    </y_axis>
+    <rules>
+      <rule name="ImageSource_PV" prop_id="pv_name" out_exp="true">
+        <exp bool_exp="pv0==0">
+          <expression>"pva://" + macroStr("DEVICE") + ":" + macroStr("CAM") + ":PVA:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==1">
+          <expression>"pva://" + macroStr("DEVICE") + ":" + macroStr("CAM") + ":ROI1:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==2">
+          <expression>"pva://" + macroStr("DEVICE") + ":" + macroStr("CAM") + ":PROC:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==3">
+          <expression>"pva://" + macroStr("DEVICE") + ":" + macroStr("CAM") + ":STATS:OUTPUT"</expression>
+        </exp>
+        <exp bool_exp="pv0==4">
+          <expression>"pva://" + macroStr("DEVICE") + ":" + macroStr("CAM") + ":OVERLAY1:OUTPUT"</expression>
+        </exp>
+        <pv_name>loc://$(DEVICE):$(CAM):ImageSource&lt;VEnum&gt;(0,"Raw","ROI","Proc","Stats","Overlay")</pv_name>
+      </rule>
+    </rules>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>InfoBarBg</name>
+    <x>5</x>
+    <y>600</y>
+    <width>880</width>
+    <height>40</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="35" green="40" blue="50">
+      </color>
+    </background_color>
+    <corner_width>6</corner_width>
+    <corner_height>6</corner_height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SourceInfoLabel</name>
+    <text>Source:</text>
+    <x>15</x>
+    <y>608</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>SourceNameDisplay</name>
+    <pv_name>loc://$(DEVICE):$(CAM):ImageSource&lt;VEnum&gt;(0,"Raw","ROI","Proc","Stats","Overlay")</pv_name>
+    <x>75</x>
+    <y>608</y>
+    <width>80</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="100" green="200" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="65">
+      </color>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SizeInfoLabel</name>
+    <text>Size:</text>
+    <x>170</x>
+    <y>608</y>
+    <width>40</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeXDisplay</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeX_RBV</pv_name>
+    <x>210</x>
+    <y>608</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="65">
+      </color>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SizeXLabel</name>
+    <text>x</text>
+    <x>272</x>
+    <y>608</y>
+    <width>16</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>SizeYDisplay</name>
+    <pv_name>$(DEVICE):$(CAM):ArraySizeY_RBV</pv_name>
+    <x>290</x>
+    <y>608</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="200" blue="100">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="65">
+      </color>
+    </background_color>
+    <format>1</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>TypeInfoLabel</name>
+    <text>Type:</text>
+    <x>370</x>
+    <y>608</y>
+    <width>40</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>DataTypeDisplay</name>
+    <pv_name>$(DEVICE):$(CAM):DataType_RBV</pv_name>
+    <x>410</x>
+    <y>608</y>
+    <width>70</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="180" green="200" blue="220">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="65">
+      </color>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FPSInfoLabel</name>
+    <text>FPS:</text>
+    <x>500</x>
+    <y>608</y>
+    <width>35</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>FPSDisplay</name>
+    <pv_name>$(DEVICE):$(CAM):FrameRate_RBV</pv_name>
+    <x>535</x>
+    <y>608</y>
+    <width>60</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="255" blue="150">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="45" green="52" blue="65">
+      </color>
+    </background_color>
+    <precision>1</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColorMapLabel</name>
+    <text>Color:</text>
+    <x>610</x>
+    <y>608</y>
+    <width>45</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="11.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>ColorMapCombo</name>
+    <pv_name>loc://$(DEVICE):$(CAM):ColorMap&lt;VEnum&gt;(0,"GRAY","JET","HOT","COOL","VIRIDIS")</pv_name>
+    <x>655</x>
+    <y>608</y>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="60" green="70" blue="90">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>ZoomFitBtn</name>
+    <text>Fit</text>
+    <x>770</x>
+    <y>608</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="70" green="100" blue="140">
+      </color>
+    </background_color>
+    <tooltip>Fit image to window</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Zoom100Btn</name>
+    <text>1:1</text>
+    <x>825</x>
+    <y>608</y>
+    <width>50</width>
+    <height>24</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="10.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="70" green="100" blue="140">
+      </color>
+    </background_color>
+    <tooltip>Zoom to 100%</tooltip>
+  </widget>
+</display>
