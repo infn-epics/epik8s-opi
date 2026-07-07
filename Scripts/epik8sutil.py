@@ -139,8 +139,8 @@ def conf_to_dev(mywidget):
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
                 iocroot=ioc.get("iocroot", "")
-                zones = ioc.get("zones", "ALL")
-                pathzone=zones
+                pathzone = ioc.get("zones", "ALL")
+                zones = [pathzone] if isinstance(pathzone, basestring) else list(pathzone)
                 
                 if 'devfunc' in ioc:
                     devfunc  = ioc.get("devfunc", "")
@@ -184,8 +184,9 @@ def conf_to_dev(mywidget):
                 if 'devtype' in dev:
                     devtype=dev['devtype']
                 if 'zones' in dev:
-                    zones=dev['zones']
-                    if pathzone!="ALL" and isinstance(pathzone, str):
+                    devzones = dev['zones']
+                    zones = [devzones] if isinstance(devzones, basestring) else list(devzones)
+                    if pathzone!="ALL" and isinstance(pathzone, basestring) and pathzone not in zones:
                         zones.append(pathzone)
                 if 'name' in dev:
                     if iocroot=="":
@@ -210,7 +211,7 @@ def conf_to_dev(mywidget):
                 if len(zones)==1:
                     zone=zones[0]
                 else:
-                    zone=str(zones)
+                    zone=",".join(zones)
 
                 if devfunc == "ion":
                     devfunc = "0"
