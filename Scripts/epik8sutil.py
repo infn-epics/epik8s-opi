@@ -144,6 +144,8 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
             # print("Found IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype, "devices:", len(devices))
             for dev in devices:
                 name = dev['name']
+                if not name:
+                    continue
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
                 iocroot=ioc.get("iocroot", "")
