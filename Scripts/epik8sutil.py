@@ -65,13 +65,21 @@ def conf_to_iocs(confpath, mywidget):
     return iocs
 
 
-def conf_to_dev(mywidget):
+def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=None):
+    """Build the filtered device array for mywidget's GROUP/CONFFILE.
+
+    zoneOverride/typeOverride/funcOverride let a caller force the current
+    Zone/Type/Func selector values (e.g. read directly from the loc:// PVs)
+    instead of relying on this widget's own macros/attached PVs, which is
+    useful for widgets (like the select-all checkbox) that don't sit under
+    the Selection group and so can't see those macros/PVs directly.
+    """
     devarray = []
 
     pvs = ScriptUtil.getPVs(mywidget)
-    zoneSelector = mywidget.getEffectiveMacros().getValue("ZONE")
-    typeSelector = mywidget.getEffectiveMacros().getValue("TYPE")
-    typeFunc = mywidget.getEffectiveMacros().getValue("FUNC")
+    zoneSelector = zoneOverride if zoneOverride is not None else mywidget.getEffectiveMacros().getValue("ZONE")
+    typeSelector = typeOverride if typeOverride is not None else mywidget.getEffectiveMacros().getValue("TYPE")
+    typeFunc = funcOverride if funcOverride is not None else mywidget.getEffectiveMacros().getValue("FUNC")
     pvzone = None
     pvtype = None
     pvfunc = None
@@ -199,6 +207,7 @@ def conf_to_dev(mywidget):
                     name=dev['alias']
                 if 'prefix' in dev:
                     prefix=dev['prefix']
+                geo=dev.get('geo', None)
                 # print(devgroup_widget+"-"+devtype+" filtering object "+str(dev))
 
                 if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
@@ -226,8 +235,12 @@ def conf_to_dev(mywidget):
                 elif opi:
                     obj["OPI"] = opi
                 # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
-                devarray.append(obj)
-    return devarray
+                devarray.append((geo, obj))
+
+    # Order by the physical position along the beamline (geo) when provided.
+    # Devices without a geo keep their original relative order, appended after the ordered ones.
+    devarray.sort(key=lambda item: (item[0] is None, item[0] if item[0] is not None else 0))
+    return [obj for geo, obj in devarray]
 
 def dump_pv(mywidget,separator="\n"):
     
