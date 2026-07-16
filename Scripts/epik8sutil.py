@@ -116,12 +116,24 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
     if conffile is None:
         ScriptUtil.showMessageDialog(mywidget, "## Please set CONFFILE macro to a correct YAML configuration file")
         return devarray
-    
+
     if group == None:
-        ScriptUtil.showMessageDialog(mywidget, "## Must Specify group widget (i.e unicool,univac,unimag) (GROUP Macro) \"" + confpath + "\" please set CONFFILE macro to a correct file")
+        ScriptUtil.showMessageDialog(mywidget, "## Must Specify group widget (i.e unicool,univac,unimag) (GROUP Macro) please set CONFFILE macro to a correct file")
         return devarray
-    
-    confpath = display_path + "/" + conffile    
+
+    confpath = display_path + "/" + conffile
+    if not os.path.exists(confpath):
+        ## display embedded a few directories deeper than where CONFFILE is anchored
+        ## (e.g. pretune/ under unimag-opi/): walk up looking for a matching file.
+        search_dir = display_path
+        for _ in range(5):
+            search_dir = os.path.dirname(search_dir)
+            if not search_dir:
+                break
+            candidate = search_dir + "/" + conffile
+            if os.path.exists(candidate):
+                confpath = candidate
+                break
 
     print(mywidget.getName() + "] LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
 
