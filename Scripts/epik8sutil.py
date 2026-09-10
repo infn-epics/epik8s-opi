@@ -147,6 +147,7 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         devgroup = ioc.get("devgroup", "")
         devfunc  = ioc.get("devfun", "")
         opi  = ioc.get("opi", "")
+        opi_debug = ioc.get("opi_debug", "")
         zones = ioc.get("zones", "ALL")
         iocroot=ioc.get("iocroot", "")
 
@@ -203,6 +204,8 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
 
                 if 'opi' in dev:
                     opi=dev['opi']
+                if 'opi_debug' in dev:
+                    opi_debug=dev['opi_debug']
                 if 'devtype' in dev:
                     devtype=dev['devtype']
                 if 'zones' in dev:
@@ -248,6 +251,8 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                     print("Forcing OPI \""+forceopi+"\" for device "+name)
                 elif opi:
                     obj["OPI"] = opi
+                if opi_debug:
+                    obj["OPI_DEBUG"] = opi_debug
                 # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
                 devarray.append((geo, obj))
 
