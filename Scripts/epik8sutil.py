@@ -145,7 +145,7 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         iocprefix = ioc.get("iocprefix", "")
         devtype = ioc.get("devtype", "ALL")
         devgroup = ioc.get("devgroup", "")
-        devfunc  = ioc.get("devfun", "")
+        devfunc  = ioc.get("devfunc", "")
         opi  = ioc.get("opi", "")
         opi_debug = ioc.get("opi_debug", "")
         zones = ioc.get("zones", "ALL")
@@ -218,7 +218,7 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                         iocroot=dev['name']
                     else:
                         iocroot=iocroot+":"+dev['name']
-                if 'devfun' in dev:
+                if 'devfunc' in dev:
                     devfunc=dev['devfunc']
                 if 'alias' in dev:
                     name=dev['alias']
