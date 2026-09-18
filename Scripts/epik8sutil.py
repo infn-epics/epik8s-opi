@@ -57,6 +57,8 @@ def conf_to_iocs(confpath, mywidget):
     if iocs is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section, please provide a valid values.yaml file")
         return iocs
+    if hasattr(iocs, "values"):
+        iocs = list(iocs.values())
 
     ioc_defaults = data.get("iocDefaults") or {}
     if ioc_defaults:
