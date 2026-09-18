@@ -35,6 +35,8 @@ iocs = epics_config.get("iocs")
 if iocs is None:
     ScriptUtil.showMessageDialog(widget, "Cannot find iocs section")
     exit()
+if hasattr(iocs, "values"):
+    iocs = list(iocs.values())
 
 # Collect all day_accumulators from all (or filtered) IOCs
 accumulators = []

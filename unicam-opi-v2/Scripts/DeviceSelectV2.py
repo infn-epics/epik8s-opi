@@ -33,7 +33,9 @@ def get_camera_iocs_from_config(confpath, mywidget, devgroup="cam"):
     iocs = epics_config.get("iocs")
     if iocs is None:
         return cameras
-    
+    if hasattr(iocs, "values"):
+        iocs = list(iocs.values())
+
     for ioc in iocs:
         ioc_devgroup = ioc.get("devgroup", "")
         

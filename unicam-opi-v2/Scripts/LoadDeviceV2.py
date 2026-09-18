@@ -36,7 +36,9 @@ def get_camera_iocs_from_config(confpath, mywidget, devgroup="cam"):
     if iocs is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section in configuration file")
         return cameras
-    
+    if hasattr(iocs, "values"):
+        iocs = list(iocs.values())
+
     for ioc in iocs:
         ioc_devgroup = ioc.get("devgroup", "")
         
