@@ -248,10 +248,6 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                 elif devfunc == "ccg":
                     devfunc = "2"
                 obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone}
-                tags = dev.get('tags', ioc.get('tags', []))
-                if isinstance(tags, basestring):
-                    tags = [tags]
-                obj['TAGS'] = list(tags or [])
                 if forceopi:
                     obj["OPI"] = forceopi
                     print("Forcing OPI \""+forceopi+"\" for device "+name)
