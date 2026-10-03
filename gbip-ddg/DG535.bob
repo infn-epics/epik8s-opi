@@ -1,12 +1,8 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>DG535 $(P):$(R)</name>
   <width>1125</width>
   <height>640</height>
-  <macros>
-    <P>TEST</P>
-    <R>DDG535</R>
-  </macros>
   <widget type="label" version="2.0.0">
     <name>Label_148</name>
     <text>SRS DG535 Delay Generator   $(P):$(R)</text>
@@ -15,9 +11,9 @@
     <width>1105</width>
     <height>32</height>
     <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0"/>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
     </font>
-    <horizontal_alignment>0</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="group" version="3.0.0">
@@ -34,9 +30,9 @@
       <width>180</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
@@ -47,9 +43,9 @@
       <width>90</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
@@ -60,9 +56,9 @@
       <width>150</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
@@ -73,9 +69,9 @@
       <width>220</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
@@ -86,9 +82,9 @@
       <width>30</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -98,9 +94,8 @@
       <y>32</y>
       <width>150</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_7</name>
@@ -130,7 +125,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_10</name>
@@ -153,7 +147,6 @@
       <precision>9</precision>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_12</name>
@@ -163,9 +156,9 @@
       <width>30</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -175,9 +168,8 @@
       <y>62</y>
       <width>150</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_14</name>
@@ -207,7 +199,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_17</name>
@@ -230,7 +221,6 @@
       <precision>9</precision>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_19</name>
@@ -240,9 +230,9 @@
       <width>30</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -252,9 +242,8 @@
       <y>92</y>
       <width>150</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_21</name>
@@ -284,7 +273,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_24</name>
@@ -307,7 +295,6 @@
       <precision>9</precision>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_26</name>
@@ -317,9 +304,9 @@
       <width>30</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -329,9 +316,8 @@
       <y>122</y>
       <width>150</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_28</name>
@@ -361,7 +347,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_31</name>
@@ -384,7 +369,6 @@
       <precision>9</precision>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
@@ -400,7 +384,6 @@
       <y>4</y>
       <width>160</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -412,7 +395,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_145</name>
@@ -421,7 +403,6 @@
       <y>34</y>
       <width>160</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -433,7 +414,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_147</name>
@@ -442,7 +422,6 @@
       <y>64</y>
       <width>560</width>
       <height>40</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
   </widget>
@@ -459,7 +438,6 @@
       <y>4</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
@@ -467,7 +445,6 @@
       <pv_name>$(P):$(R):TRIG_MODE_SP</pv_name>
       <x>145</x>
       <y>4</y>
-      <width>100</width>
       <height>22</height>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -475,11 +452,9 @@
       <pv_name>$(P):$(R):TRIG_MODE_RB</pv_name>
       <x>255</x>
       <y>4</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_36</name>
@@ -488,7 +463,6 @@
       <y>34</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textentry" version="3.0.0">
@@ -496,7 +470,6 @@
       <pv_name>$(P):$(R):TRIG_RATE_SP</pv_name>
       <x>145</x>
       <y>34</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
@@ -505,11 +478,9 @@
       <pv_name>$(P):$(R):TRIG_RATE_RB</pv_name>
       <x>255</x>
       <y>34</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_39</name>
@@ -518,7 +489,6 @@
       <y>64</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textentry" version="3.0.0">
@@ -526,7 +496,6 @@
       <pv_name>$(P):$(R):TRIG_LEVEL_SP</pv_name>
       <x>145</x>
       <y>64</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
@@ -535,11 +504,9 @@
       <pv_name>$(P):$(R):TRIG_LEVEL_RB</pv_name>
       <x>255</x>
       <y>64</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_42</name>
@@ -548,7 +515,6 @@
       <y>94</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
@@ -556,7 +522,6 @@
       <pv_name>$(P):$(R):TRIG_SLOPE_SP</pv_name>
       <x>145</x>
       <y>94</y>
-      <width>100</width>
       <height>22</height>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -564,11 +529,9 @@
       <pv_name>$(P):$(R):TRIG_SLOPE_RB</pv_name>
       <x>255</x>
       <y>94</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_45</name>
@@ -577,7 +540,6 @@
       <y>124</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
@@ -585,7 +547,6 @@
       <pv_name>$(P):$(R):TRIG_LOAD_SP</pv_name>
       <x>145</x>
       <y>124</y>
-      <width>100</width>
       <height>22</height>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -593,11 +554,9 @@
       <pv_name>$(P):$(R):TRIG_LOAD_RB</pv_name>
       <x>255</x>
       <y>124</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_48</name>
@@ -606,7 +565,6 @@
       <y>154</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textentry" version="3.0.0">
@@ -614,7 +572,6 @@
       <pv_name>$(P):$(R):BURST_RATE_SP</pv_name>
       <x>145</x>
       <y>154</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
@@ -623,11 +580,9 @@
       <pv_name>$(P):$(R):BURST_RATE_RB</pv_name>
       <x>255</x>
       <y>154</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_51</name>
@@ -636,7 +591,6 @@
       <y>184</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textentry" version="3.0.0">
@@ -644,7 +598,6 @@
       <pv_name>$(P):$(R):BURST_COUNT_SP</pv_name>
       <x>145</x>
       <y>184</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
@@ -653,11 +606,9 @@
       <pv_name>$(P):$(R):BURST_COUNT_RB</pv_name>
       <x>255</x>
       <y>184</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_54</name>
@@ -666,7 +617,6 @@
       <y>214</y>
       <width>130</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textentry" version="3.0.0">
@@ -674,7 +624,6 @@
       <pv_name>$(P):$(R):BURST_PERIOD_SP</pv_name>
       <x>145</x>
       <y>214</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
@@ -683,26 +632,24 @@
       <pv_name>$(P):$(R):BURST_PERIOD_RB</pv_name>
       <x>255</x>
       <y>214</y>
-      <width>100</width>
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>Button_57</name>
       <actions>
         <action type="write_pv">
+          <description>Single Shot</description>
           <pv_name>$(P):$(R):SINGLE_SHOT_CMD</pv_name>
           <value>1</value>
-          <description>Single Shot</description>
         </action>
       </actions>
       <text>Single Shot</text>
       <x>145</x>
       <y>244</y>
-      <width>100</width>
       <height>26</height>
+      <tooltip>$(actions)</tooltip>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
@@ -719,7 +666,8 @@
       <width>170</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -732,7 +680,8 @@
       <width>170</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -745,7 +694,8 @@
       <width>170</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -758,7 +708,8 @@
       <width>170</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -771,7 +722,8 @@
       <width>170</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -784,9 +736,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -796,9 +748,8 @@
       <y>32</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_65</name>
@@ -817,7 +768,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_67</name>
@@ -836,7 +786,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_69</name>
@@ -856,7 +805,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_71</name>
@@ -876,7 +824,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_73</name>
@@ -895,7 +842,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_75</name>
@@ -905,9 +851,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -917,9 +863,8 @@
       <y>62</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_77</name>
@@ -938,7 +883,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_79</name>
@@ -957,7 +901,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_81</name>
@@ -977,7 +920,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_83</name>
@@ -997,7 +939,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_85</name>
@@ -1016,7 +957,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_87</name>
@@ -1026,9 +966,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1038,9 +978,8 @@
       <y>92</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_89</name>
@@ -1059,7 +998,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_91</name>
@@ -1078,7 +1016,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_93</name>
@@ -1098,7 +1035,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_95</name>
@@ -1118,7 +1054,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_97</name>
@@ -1137,7 +1072,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_99</name>
@@ -1147,9 +1081,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1159,9 +1093,8 @@
       <y>122</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_101</name>
@@ -1180,7 +1113,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_103</name>
@@ -1200,7 +1132,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_105</name>
@@ -1220,7 +1151,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_107</name>
@@ -1239,7 +1169,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_109</name>
@@ -1249,9 +1178,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1261,9 +1190,8 @@
       <y>152</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_111</name>
@@ -1282,7 +1210,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_113</name>
@@ -1301,7 +1228,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_115</name>
@@ -1321,7 +1247,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_117</name>
@@ -1341,7 +1266,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_119</name>
@@ -1360,7 +1284,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_121</name>
@@ -1370,9 +1293,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1382,9 +1305,8 @@
       <y>182</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_123</name>
@@ -1403,7 +1325,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_125</name>
@@ -1422,7 +1343,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_127</name>
@@ -1442,7 +1362,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_129</name>
@@ -1462,7 +1381,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_131</name>
@@ -1481,7 +1399,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_133</name>
@@ -1491,9 +1408,9 @@
       <width>35</width>
       <height>22</height>
       <font>
-        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
       </font>
-      <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1503,9 +1420,8 @@
       <y>212</y>
       <width>145</width>
       <height>22</height>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
       <transparent>true</transparent>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_135</name>
@@ -1524,7 +1440,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_137</name>
@@ -1544,7 +1459,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Setpoint_139</name>
@@ -1564,7 +1478,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
     <widget type="combo" version="2.0.0">
       <name>Combo_141</name>
@@ -1583,7 +1496,6 @@
       <height>22</height>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-      <border_alarm_sensitive>true</border_alarm_sensitive>
     </widget>
   </widget>
 </display>
