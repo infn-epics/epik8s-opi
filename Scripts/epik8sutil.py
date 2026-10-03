@@ -37,6 +37,50 @@ def _merge_ioc_defaults(ioc_defaults, ioc):
     return merged
 
 
+def _deep_merge(dst, src):
+    """Merge map src into map dst like helm does with multiple valueFiles:
+    maps are merged recursively, anything else (lists included) is replaced."""
+    for key in src:
+        sval = src.get(key)
+        dval = dst.get(key)
+        if hasattr(sval, "keySet") and hasattr(dval, "keySet"):
+            _deep_merge(dval, sval)
+        else:
+            dst.put(key, sval)
+    return dst
+
+
+def load_conf(confpath):
+    """Load confpath; when it is a values.yaml, also merge the sibling
+    values-*.yaml files (e.g. values-linac.yaml, values-accumulator.yaml)
+    that the beamline chart deploys together with it.
+    When it is one of those values-*.yaml, only its own iocs are used but
+    iocDefaults still come from the sibling values.yaml."""
+    yaml = Yaml()
+    data = yaml.load(FileReader(confpath))
+    confdir = os.path.dirname(confpath) or "."
+    fname = os.path.basename(confpath)
+    if fname.startswith("values-") and fname.endswith(".yaml"):
+        basepath = os.path.join(confdir, "values.yaml")
+        if os.path.exists(basepath):
+            base = yaml.load(FileReader(basepath))
+            defaults = base.get("iocDefaults") if base is not None else None
+            if defaults is not None:
+                if data.get("iocDefaults") is not None:
+                    _deep_merge(defaults, data.get("iocDefaults"))
+                data.put("iocDefaults", defaults)
+        return data
+    if fname != "values.yaml":
+        return data
+    for fname in sorted(os.listdir(confdir)):
+        if fname.startswith("values-") and fname.endswith(".yaml"):
+            extra = yaml.load(FileReader(os.path.join(confdir, fname)))
+            if extra is not None and hasattr(extra, "keySet"):
+                print("merging configuration \"" + fname + "\"")
+                _deep_merge(data, extra)
+    return data
+
+
 def conf_to_iocs(confpath, mywidget):
     """Load the configuration from the YAML file and return the iocs section
     with iocDefaults merged in.
@@ -46,8 +90,7 @@ def conf_to_iocs(confpath, mywidget):
     if not os.path.exists(confpath):
         ScriptUtil.showMessageDialog(mywidget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
         return iocs
-    yaml = Yaml()
-    data = yaml.load(FileReader(confpath))
+    data = load_conf(confpath)
     epics_config = data.get("epicsConfiguration")
     if epics_config is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
@@ -153,7 +196,10 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         zones = ioc.get("zones", "ALL")
         iocroot=ioc.get("iocroot", "")
 
-        #print("Checking IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype)    
+        #print("Checking IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype)
+        if str(ioc.get("disable", False)).lower() == "true":
+            ## not deployed by the chart (e.g. placeholders)
+            continue
         if iocprefix and devgroup == group:
             devices = ioc.get("devices", [])
             # print("Found IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype, "devices:", len(devices))
