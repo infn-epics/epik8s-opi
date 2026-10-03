@@ -1,0 +1,1589 @@
+<?xml version="1.0" ?>
+<display version="2.0.0">
+  <name>DG535 $(P):$(R)</name>
+  <width>1125</width>
+  <height>640</height>
+  <macros>
+    <P>TEST</P>
+    <R>DDG535</R>
+  </macros>
+  <widget type="label" version="2.0.0">
+    <name>Label_148</name>
+    <text>SRS DG535 Delay Generator   $(P):$(R)</text>
+    <x>10</x>
+    <y>8</y>
+    <width>1105</width>
+    <height>32</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Delays (s)</name>
+    <x>10</x>
+    <y>50</y>
+    <width>715</width>
+    <height>190</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_1</name>
+      <text>Channel</text>
+      <x>10</x>
+      <y>4</y>
+      <width>180</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_2</name>
+      <text>Reference</text>
+      <x>205</x>
+      <y>4</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>Delay setpoint</text>
+      <x>305</x>
+      <y>4</y>
+      <width>150</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_4</name>
+      <text>Readback</text>
+      <x>470</x>
+      <y>4</y>
+      <width>220</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_5</name>
+      <text>A</text>
+      <x>10</x>
+      <y>32</y>
+      <width>30</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_6</name>
+      <pv_name>$(P):$(R):A_LABEL</pv_name>
+      <x>40</x>
+      <y>32</y>
+      <width>150</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_7</name>
+      <pv_name>$(P):$(R):A_REF_SP</pv_name>
+      <x>205</x>
+      <y>32</y>
+      <width>90</width>
+      <height>22</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_8</name>
+      <pv_name>$(P):$(R):A_DELAY_SP</pv_name>
+      <x>305</x>
+      <y>32</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_9</name>
+      <pv_name>$(P):$(R):A_REF_RB</pv_name>
+      <x>470</x>
+      <y>32</y>
+      <width>50</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>+</text>
+      <x>523</x>
+      <y>32</y>
+      <width>14</width>
+      <height>22</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_11</name>
+      <pv_name>$(P):$(R):A_DELAY_RB</pv_name>
+      <x>540</x>
+      <y>32</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_12</name>
+      <text>B</text>
+      <x>10</x>
+      <y>62</y>
+      <width>30</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_13</name>
+      <pv_name>$(P):$(R):B_LABEL</pv_name>
+      <x>40</x>
+      <y>62</y>
+      <width>150</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_14</name>
+      <pv_name>$(P):$(R):B_REF_SP</pv_name>
+      <x>205</x>
+      <y>62</y>
+      <width>90</width>
+      <height>22</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_15</name>
+      <pv_name>$(P):$(R):B_DELAY_SP</pv_name>
+      <x>305</x>
+      <y>62</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_16</name>
+      <pv_name>$(P):$(R):B_REF_RB</pv_name>
+      <x>470</x>
+      <y>62</y>
+      <width>50</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_17</name>
+      <text>+</text>
+      <x>523</x>
+      <y>62</y>
+      <width>14</width>
+      <height>22</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_18</name>
+      <pv_name>$(P):$(R):B_DELAY_RB</pv_name>
+      <x>540</x>
+      <y>62</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_19</name>
+      <text>C</text>
+      <x>10</x>
+      <y>92</y>
+      <width>30</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_20</name>
+      <pv_name>$(P):$(R):C_LABEL</pv_name>
+      <x>40</x>
+      <y>92</y>
+      <width>150</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_21</name>
+      <pv_name>$(P):$(R):C_REF_SP</pv_name>
+      <x>205</x>
+      <y>92</y>
+      <width>90</width>
+      <height>22</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_22</name>
+      <pv_name>$(P):$(R):C_DELAY_SP</pv_name>
+      <x>305</x>
+      <y>92</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_23</name>
+      <pv_name>$(P):$(R):C_REF_RB</pv_name>
+      <x>470</x>
+      <y>92</y>
+      <width>50</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_24</name>
+      <text>+</text>
+      <x>523</x>
+      <y>92</y>
+      <width>14</width>
+      <height>22</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_25</name>
+      <pv_name>$(P):$(R):C_DELAY_RB</pv_name>
+      <x>540</x>
+      <y>92</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_26</name>
+      <text>D</text>
+      <x>10</x>
+      <y>122</y>
+      <width>30</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_27</name>
+      <pv_name>$(P):$(R):D_LABEL</pv_name>
+      <x>40</x>
+      <y>122</y>
+      <width>150</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_28</name>
+      <pv_name>$(P):$(R):D_REF_SP</pv_name>
+      <x>205</x>
+      <y>122</y>
+      <width>90</width>
+      <height>22</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_29</name>
+      <pv_name>$(P):$(R):D_DELAY_SP</pv_name>
+      <x>305</x>
+      <y>122</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_30</name>
+      <pv_name>$(P):$(R):D_REF_RB</pv_name>
+      <x>470</x>
+      <y>122</y>
+      <width>50</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_31</name>
+      <text>+</text>
+      <x>523</x>
+      <y>122</y>
+      <width>14</width>
+      <height>22</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_32</name>
+      <pv_name>$(P):$(R):D_DELAY_RB</pv_name>
+      <x>540</x>
+      <y>122</y>
+      <width>150</width>
+      <height>22</height>
+      <format>3</format>
+      <precision>9</precision>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Status</name>
+    <x>10</x>
+    <y>250</y>
+    <width>715</width>
+    <height>110</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_143</name>
+      <text>Instrument status (IS)</text>
+      <x>10</x>
+      <y>4</y>
+      <width>160</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_144</name>
+      <pv_name>$(P):$(R):STATUS_RB</pv_name>
+      <x>175</x>
+      <y>4</y>
+      <width>60</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_145</name>
+      <text>Error status (ES)</text>
+      <x>10</x>
+      <y>34</y>
+      <width>160</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_146</name>
+      <pv_name>$(P):$(R):ERROR_RB</pv_name>
+      <x>175</x>
+      <y>34</y>
+      <width>60</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_147</name>
+      <text>Communication: alarm borders turn purple when the DG535 does not answer</text>
+      <x>10</x>
+      <y>64</y>
+      <width>560</width>
+      <height>40</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Trigger</name>
+    <x>735</x>
+    <y>50</y>
+    <width>380</width>
+    <height>310</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_33</name>
+      <text>Mode</text>
+      <x>10</x>
+      <y>4</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_34</name>
+      <pv_name>$(P):$(R):TRIG_MODE_SP</pv_name>
+      <x>145</x>
+      <y>4</y>
+      <width>100</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_35</name>
+      <pv_name>$(P):$(R):TRIG_MODE_RB</pv_name>
+      <x>255</x>
+      <y>4</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_36</name>
+      <text>Internal rate (Hz)</text>
+      <x>10</x>
+      <y>34</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_37</name>
+      <pv_name>$(P):$(R):TRIG_RATE_SP</pv_name>
+      <x>145</x>
+      <y>34</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_38</name>
+      <pv_name>$(P):$(R):TRIG_RATE_RB</pv_name>
+      <x>255</x>
+      <y>34</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_39</name>
+      <text>Ext. level (V)</text>
+      <x>10</x>
+      <y>64</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_40</name>
+      <pv_name>$(P):$(R):TRIG_LEVEL_SP</pv_name>
+      <x>145</x>
+      <y>64</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_41</name>
+      <pv_name>$(P):$(R):TRIG_LEVEL_RB</pv_name>
+      <x>255</x>
+      <y>64</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_42</name>
+      <text>Ext. slope</text>
+      <x>10</x>
+      <y>94</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_43</name>
+      <pv_name>$(P):$(R):TRIG_SLOPE_SP</pv_name>
+      <x>145</x>
+      <y>94</y>
+      <width>100</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_44</name>
+      <pv_name>$(P):$(R):TRIG_SLOPE_RB</pv_name>
+      <x>255</x>
+      <y>94</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_45</name>
+      <text>Input load</text>
+      <x>10</x>
+      <y>124</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_46</name>
+      <pv_name>$(P):$(R):TRIG_LOAD_SP</pv_name>
+      <x>145</x>
+      <y>124</y>
+      <width>100</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_47</name>
+      <pv_name>$(P):$(R):TRIG_LOAD_RB</pv_name>
+      <x>255</x>
+      <y>124</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_48</name>
+      <text>Burst rate (Hz)</text>
+      <x>10</x>
+      <y>154</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_49</name>
+      <pv_name>$(P):$(R):BURST_RATE_SP</pv_name>
+      <x>145</x>
+      <y>154</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_50</name>
+      <pv_name>$(P):$(R):BURST_RATE_RB</pv_name>
+      <x>255</x>
+      <y>154</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_51</name>
+      <text>Pulses / burst</text>
+      <x>10</x>
+      <y>184</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_52</name>
+      <pv_name>$(P):$(R):BURST_COUNT_SP</pv_name>
+      <x>145</x>
+      <y>184</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_53</name>
+      <pv_name>$(P):$(R):BURST_COUNT_RB</pv_name>
+      <x>255</x>
+      <y>184</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_54</name>
+      <text>Triggers / period</text>
+      <x>10</x>
+      <y>214</y>
+      <width>130</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_55</name>
+      <pv_name>$(P):$(R):BURST_PERIOD_SP</pv_name>
+      <x>145</x>
+      <y>214</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_56</name>
+      <pv_name>$(P):$(R):BURST_PERIOD_RB</pv_name>
+      <x>255</x>
+      <y>214</y>
+      <width>100</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Button_57</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P):$(R):SINGLE_SHOT_CMD</pv_name>
+          <value>1</value>
+          <description>Single Shot</description>
+        </action>
+      </actions>
+      <text>Single Shot</text>
+      <x>145</x>
+      <y>244</y>
+      <width>100</width>
+      <height>26</height>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Outputs</name>
+    <x>10</x>
+    <y>370</y>
+    <width>1105</width>
+    <height>260</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_58</name>
+      <text>Mode</text>
+      <x>195</x>
+      <y>4</y>
+      <width>170</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_59</name>
+      <text>Polarity</text>
+      <x>377</x>
+      <y>4</y>
+      <width>170</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_60</name>
+      <text>Amplitude (V)</text>
+      <x>559</x>
+      <y>4</y>
+      <width>170</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_61</name>
+      <text>Offset (V)</text>
+      <x>741</x>
+      <y>4</y>
+      <width>170</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_62</name>
+      <text>Load</text>
+      <x>923</x>
+      <y>4</y>
+      <width>170</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_63</name>
+      <text>T0</text>
+      <x>10</x>
+      <y>32</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_64</name>
+      <pv_name>$(P):$(R):T0_LABEL</pv_name>
+      <x>45</x>
+      <y>32</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_65</name>
+      <pv_name>$(P):$(R):T0_MODE_SP</pv_name>
+      <x>195</x>
+      <y>32</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_66</name>
+      <pv_name>$(P):$(R):T0_MODE_RB</pv_name>
+      <x>287</x>
+      <y>32</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_67</name>
+      <pv_name>$(P):$(R):T0_POL_SP</pv_name>
+      <x>377</x>
+      <y>32</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_68</name>
+      <pv_name>$(P):$(R):T0_POL_RB</pv_name>
+      <x>469</x>
+      <y>32</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_69</name>
+      <pv_name>$(P):$(R):T0_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>32</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_70</name>
+      <pv_name>$(P):$(R):T0_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>32</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_71</name>
+      <pv_name>$(P):$(R):T0_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>32</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_72</name>
+      <pv_name>$(P):$(R):T0_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>32</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_73</name>
+      <pv_name>$(P):$(R):T0_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>32</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_74</name>
+      <pv_name>$(P):$(R):T0_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>32</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_75</name>
+      <text>A</text>
+      <x>10</x>
+      <y>62</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_76</name>
+      <pv_name>$(P):$(R):A_LABEL</pv_name>
+      <x>45</x>
+      <y>62</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_77</name>
+      <pv_name>$(P):$(R):A_MODE_SP</pv_name>
+      <x>195</x>
+      <y>62</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_78</name>
+      <pv_name>$(P):$(R):A_MODE_RB</pv_name>
+      <x>287</x>
+      <y>62</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_79</name>
+      <pv_name>$(P):$(R):A_POL_SP</pv_name>
+      <x>377</x>
+      <y>62</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_80</name>
+      <pv_name>$(P):$(R):A_POL_RB</pv_name>
+      <x>469</x>
+      <y>62</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_81</name>
+      <pv_name>$(P):$(R):A_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>62</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_82</name>
+      <pv_name>$(P):$(R):A_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>62</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_83</name>
+      <pv_name>$(P):$(R):A_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>62</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_84</name>
+      <pv_name>$(P):$(R):A_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>62</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_85</name>
+      <pv_name>$(P):$(R):A_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>62</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_86</name>
+      <pv_name>$(P):$(R):A_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>62</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_87</name>
+      <text>B</text>
+      <x>10</x>
+      <y>92</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_88</name>
+      <pv_name>$(P):$(R):B_LABEL</pv_name>
+      <x>45</x>
+      <y>92</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_89</name>
+      <pv_name>$(P):$(R):B_MODE_SP</pv_name>
+      <x>195</x>
+      <y>92</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_90</name>
+      <pv_name>$(P):$(R):B_MODE_RB</pv_name>
+      <x>287</x>
+      <y>92</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_91</name>
+      <pv_name>$(P):$(R):B_POL_SP</pv_name>
+      <x>377</x>
+      <y>92</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_92</name>
+      <pv_name>$(P):$(R):B_POL_RB</pv_name>
+      <x>469</x>
+      <y>92</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_93</name>
+      <pv_name>$(P):$(R):B_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>92</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_94</name>
+      <pv_name>$(P):$(R):B_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>92</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_95</name>
+      <pv_name>$(P):$(R):B_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>92</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_96</name>
+      <pv_name>$(P):$(R):B_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>92</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_97</name>
+      <pv_name>$(P):$(R):B_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>92</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_98</name>
+      <pv_name>$(P):$(R):B_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>92</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_99</name>
+      <text>AB</text>
+      <x>10</x>
+      <y>122</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_100</name>
+      <pv_name>$(P):$(R):AB_LABEL</pv_name>
+      <x>45</x>
+      <y>122</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_101</name>
+      <pv_name>$(P):$(R):AB_MODE_SP</pv_name>
+      <x>195</x>
+      <y>122</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_102</name>
+      <pv_name>$(P):$(R):AB_MODE_RB</pv_name>
+      <x>287</x>
+      <y>122</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_103</name>
+      <pv_name>$(P):$(R):AB_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>122</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_104</name>
+      <pv_name>$(P):$(R):AB_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>122</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_105</name>
+      <pv_name>$(P):$(R):AB_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>122</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_106</name>
+      <pv_name>$(P):$(R):AB_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>122</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_107</name>
+      <pv_name>$(P):$(R):AB_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>122</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_108</name>
+      <pv_name>$(P):$(R):AB_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>122</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_109</name>
+      <text>C</text>
+      <x>10</x>
+      <y>152</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_110</name>
+      <pv_name>$(P):$(R):C_LABEL</pv_name>
+      <x>45</x>
+      <y>152</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_111</name>
+      <pv_name>$(P):$(R):C_MODE_SP</pv_name>
+      <x>195</x>
+      <y>152</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_112</name>
+      <pv_name>$(P):$(R):C_MODE_RB</pv_name>
+      <x>287</x>
+      <y>152</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_113</name>
+      <pv_name>$(P):$(R):C_POL_SP</pv_name>
+      <x>377</x>
+      <y>152</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_114</name>
+      <pv_name>$(P):$(R):C_POL_RB</pv_name>
+      <x>469</x>
+      <y>152</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_115</name>
+      <pv_name>$(P):$(R):C_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>152</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_116</name>
+      <pv_name>$(P):$(R):C_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>152</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_117</name>
+      <pv_name>$(P):$(R):C_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>152</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_118</name>
+      <pv_name>$(P):$(R):C_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>152</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_119</name>
+      <pv_name>$(P):$(R):C_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>152</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_120</name>
+      <pv_name>$(P):$(R):C_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>152</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_121</name>
+      <text>D</text>
+      <x>10</x>
+      <y>182</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_122</name>
+      <pv_name>$(P):$(R):D_LABEL</pv_name>
+      <x>45</x>
+      <y>182</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_123</name>
+      <pv_name>$(P):$(R):D_MODE_SP</pv_name>
+      <x>195</x>
+      <y>182</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_124</name>
+      <pv_name>$(P):$(R):D_MODE_RB</pv_name>
+      <x>287</x>
+      <y>182</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_125</name>
+      <pv_name>$(P):$(R):D_POL_SP</pv_name>
+      <x>377</x>
+      <y>182</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_126</name>
+      <pv_name>$(P):$(R):D_POL_RB</pv_name>
+      <x>469</x>
+      <y>182</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_127</name>
+      <pv_name>$(P):$(R):D_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>182</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_128</name>
+      <pv_name>$(P):$(R):D_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>182</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_129</name>
+      <pv_name>$(P):$(R):D_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>182</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_130</name>
+      <pv_name>$(P):$(R):D_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>182</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_131</name>
+      <pv_name>$(P):$(R):D_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>182</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_132</name>
+      <pv_name>$(P):$(R):D_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>182</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_133</name>
+      <text>CD</text>
+      <x>10</x>
+      <y>212</y>
+      <width>35</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ChannelLabel_134</name>
+      <pv_name>$(P):$(R):CD_LABEL</pv_name>
+      <x>45</x>
+      <y>212</y>
+      <width>145</width>
+      <height>22</height>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <transparent>true</transparent>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_135</name>
+      <pv_name>$(P):$(R):CD_MODE_SP</pv_name>
+      <x>195</x>
+      <y>212</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_136</name>
+      <pv_name>$(P):$(R):CD_MODE_RB</pv_name>
+      <x>287</x>
+      <y>212</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_137</name>
+      <pv_name>$(P):$(R):CD_AMPL_SP</pv_name>
+      <x>559</x>
+      <y>212</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_138</name>
+      <pv_name>$(P):$(R):CD_AMPL_RB</pv_name>
+      <x>651</x>
+      <y>212</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Setpoint_139</name>
+      <pv_name>$(P):$(R):CD_OFFSET_SP</pv_name>
+      <x>741</x>
+      <y>212</y>
+      <width>88</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_140</name>
+      <pv_name>$(P):$(R):CD_OFFSET_RB</pv_name>
+      <x>833</x>
+      <y>212</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_141</name>
+      <pv_name>$(P):$(R):CD_LOAD_SP</pv_name>
+      <x>923</x>
+      <y>212</y>
+      <width>88</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Readback_142</name>
+      <pv_name>$(P):$(R):CD_LOAD_RB</pv_name>
+      <x>1015</x>
+      <y>212</y>
+      <width>78</width>
+      <height>22</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+    </widget>
+  </widget>
+</display>
