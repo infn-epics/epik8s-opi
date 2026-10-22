@@ -29,7 +29,7 @@ devarray = epik8sutil.conf_to_dev(widget, zoneSel, typeSel, funcSel)
 print "**** DEBUG devarray has " + str(len(devarray)) + " devices"
 names=[]
 for i in range(len(devarray)):
-    n=devarray[i]['P']+":"+devarray[i]['R']
+    n=devarray[i]['P']+":"+epik8sutil.loc_safe(devarray[i]['R'])
     names.append(n)
 print "**** DEBUG names=" + repr(names)
 

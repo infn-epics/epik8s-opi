@@ -4,6 +4,26 @@ from org.csstudio.display.builder.model import WidgetFactory
 
 from org.yaml.snakeyaml import Yaml
 import os
+import re
+
+# Phoebus parses a loc:// name with ([A-Za-z][-A-Za-z0-9:_.]*)(.*): the name stops at the
+# first other character, e.g. loc://selection:P:QUAA*001 and loc://selection:P:QUAA*002 are
+# the same PV loc://selection:P:QUAA. Device names used in loc:// names are therefore encoded
+# with loc_safe() (exposed to the .bob files as the RL macro) and decoded with loc_unsafe().
+# '.' is encoded as well, so every ".x<hex>." in an encoded name comes from loc_safe().
+_LOC_UNSAFE_CHAR = re.compile(r"[^-A-Za-z0-9:_]")
+_LOC_ESCAPE = re.compile(r"\.x([0-9A-F]+)\.")
+
+
+def loc_safe(name):
+    """Encode name for use inside a loc:// PV name: QUAA*001 -> QUAA.x2A.001"""
+    return _LOC_UNSAFE_CHAR.sub(lambda m: ".x%X." % ord(m.group(0)), name)
+
+
+def loc_unsafe(name):
+    """Inverse of loc_safe(): QUAA.x2A.001 -> QUAA*001"""
+    return _LOC_ESCAPE.sub(lambda m: unichr(int(m.group(1), 16)), name)
+
 
 pvset = {
     'mag': ["STATE_SP","CURRENT_SP"],
@@ -421,9 +441,9 @@ def dump_selected_tofile(mywidget):
         
         if pv_name.startswith("loc://selection:"):
             if selection_pv.read().getValue() == 1:
-                pv_prefix = pv_name.replace("loc://selection:", "")
+                pv_prefix = loc_unsafe(pv_name.replace("loc://selection:", ""))
                 prefix, identifier = pv_prefix.rsplit(":", 1)
-                
+
                 # Create device entry similar to conf_to_dev format
                 dev = {
                     'NAME': identifier,
@@ -516,6 +536,8 @@ def createInstance(embedded_width,embedded_height,name,bobname,x, y, macros):
     embedded.setPropertyValue("height", embedded_height)
     for macro, value in macros.items():
         embedded.getPropertyValue("macros").add(macro, value)
+    if 'R' in macros and 'RL' not in macros:
+        embedded.getPropertyValue("macros").add("RL", loc_safe(macros['R']))
 
     embedded.setPropertyValue("file", bobname)
     return embedded
