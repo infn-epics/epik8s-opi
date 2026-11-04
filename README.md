@@ -16,6 +16,7 @@ The `epik8s-opi` package contains:
 - `univac-opi/` — Unified vacuum channel OPI and scripts
 - `unimag-opi/` — Unified magnet channel OPI and scripts
 - `unimot-opi/` — Unified motor channel OPI and scripts
+- `keysight/` — Keysight 34465A DMM panel (`keysight34465A.bob`, macros `P`, `R`)
 - `Scripts/` — Jython scripts for dynamic OPI population
 - `resources/` — Shared OPI widgets and templates
 
