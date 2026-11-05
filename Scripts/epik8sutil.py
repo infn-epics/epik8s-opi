@@ -1,3 +1,548 @@
+# from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
+# from java.io import FileReader, BufferedWriter, FileWriter
+# from org.csstudio.display.builder.model import WidgetFactory
+
+# from org.yaml.snakeyaml import Yaml
+# import os
+# import re
+
+# # Phoebus parses a loc:// name with ([A-Za-z][-A-Za-z0-9:_.]*)(.*): the name stops at the
+# # first other character, e.g. loc://selection:P:QUAA*001 and loc://selection:P:QUAA*002 are
+# # the same PV loc://selection:P:QUAA. Device names used in loc:// names are therefore encoded
+# # with loc_safe() (exposed to the .bob files as the RL macro) and decoded with loc_unsafe().
+# # '.' is encoded as well, so every ".x<hex>." in an encoded name comes from loc_safe().
+# _LOC_UNSAFE_CHAR = re.compile(r"[^-A-Za-z0-9:_]")
+# _LOC_ESCAPE = re.compile(r"\.x([0-9A-F]+)\.")
+
+
+# def loc_safe(name):
+#     """Encode name for use inside a loc:// PV name: QUAA*001 -> QUAA.x2A.001"""
+#     return _LOC_UNSAFE_CHAR.sub(lambda m: ".x%X." % ord(m.group(0)), name)
+
+
+# def loc_unsafe(name):
+#     """Inverse of loc_safe(): QUAA.x2A.001 -> QUAA*001"""
+#     return _LOC_ESCAPE.sub(lambda m: unichr(int(m.group(1), 16)), name)
+
+
+# pvset = {
+#     'mag': ["STATE_SP","CURRENT_SP"],
+#     'cool': ["STATE_SP","TEMP_SP"],
+#     'vac': []
+# }
+
+# pvrb = {
+#     'mag': ["CURRENT_RB","STATE_RB"],
+#     'cool': ["TEMP_RB","STATE_RB"],
+#     'vac': ["PRES_RB"]
+# }
+
+# pvsetrb = {
+#     'mag': ["STATE","CURRENT"],
+#     'cool': ["STATE","TEMP"],
+# }
+
+# def _merge_ioc_defaults(ioc_defaults, ioc):
+#     """Merge iocDefaults template values into an IOC entry. IOC-specific values take precedence."""
+#     if not ioc_defaults:
+#         return ioc
+#     tmpl = ioc.get('template') or ioc.get('devtype') or ''
+#     if not tmpl:
+#         return ioc
+#     tmpl_defaults = ioc_defaults.get(tmpl)
+#     if tmpl_defaults is None:
+#         return ioc
+#     merged = dict(tmpl_defaults)
+#     merged.update(dict(ioc))
+#     return merged
+
+
+# def _deep_merge(dst, src):
+#     """Merge map src into map dst like helm does with multiple valueFiles:
+#     maps are merged recursively, anything else (lists included) is replaced."""
+#     for key in src:
+#         sval = src.get(key)
+#         dval = dst.get(key)
+#         if hasattr(sval, "keySet") and hasattr(dval, "keySet"):
+#             _deep_merge(dval, sval)
+#         else:
+#             dst.put(key, sval)
+#     return dst
+
+
+# def load_conf(confpath):
+#     """Load confpath; when it is a values.yaml, also merge the sibling
+#     values-*.yaml files (e.g. values-linac.yaml, values-accumulator.yaml)
+#     that the beamline chart deploys together with it.
+#     When it is one of those values-*.yaml, only its own iocs are used but
+#     iocDefaults still come from the sibling values.yaml."""
+#     yaml = Yaml()
+#     data = yaml.load(FileReader(confpath))
+#     confdir = os.path.dirname(confpath) or "."
+#     fname = os.path.basename(confpath)
+#     if fname.startswith("values-") and fname.endswith(".yaml"):
+#         basepath = os.path.join(confdir, "values.yaml")
+#         if os.path.exists(basepath):
+#             base = yaml.load(FileReader(basepath))
+#             defaults = base.get("iocDefaults") if base is not None else None
+#             if defaults is not None:
+#                 if data.get("iocDefaults") is not None:
+#                     _deep_merge(defaults, data.get("iocDefaults"))
+#                 data.put("iocDefaults", defaults)
+#         return data
+#     if fname != "values.yaml":
+#         return data
+#     for fname in sorted(os.listdir(confdir)):
+#         if fname.startswith("values-") and fname.endswith(".yaml"):
+#             extra = yaml.load(FileReader(os.path.join(confdir, fname)))
+#             if extra is not None and hasattr(extra, "keySet"):
+#                 print("merging configuration \"" + fname + "\"")
+#                 _deep_merge(data, extra)
+#     return data
+
+
+# def conf_to_iocs(confpath, mywidget):
+#     """Load the configuration from the YAML file and return the iocs section
+#     with iocDefaults merged in.
+#     """
+#     iocs=[]
+
+#     if not os.path.exists(confpath):
+#         ScriptUtil.showMessageDialog(mywidget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
+#         return iocs
+#     data = load_conf(confpath)
+#     epics_config = data.get("epicsConfiguration")
+#     if epics_config is None:
+#         ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
+#         return iocs
+
+#     iocs = epics_config.get("iocs")
+#     if iocs is None:
+#         ScriptUtil.showMessageDialog(mywidget, "Cannot find iocs section, please provide a valid values.yaml file")
+#         return iocs
+#     if hasattr(iocs, "values"):
+#         iocs = list(iocs.values())
+
+#     ioc_defaults = data.get("iocDefaults") or {}
+#     if ioc_defaults:
+#         iocs = [_merge_ioc_defaults(ioc_defaults, ioc) for ioc in iocs]
+
+#     return iocs
+
+
+# def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=None):
+#     """Build the filtered device array for mywidget's GROUP/CONFFILE.
+
+#     zoneOverride/typeOverride/funcOverride let a caller force the current
+#     Zone/Type/Func selector values (e.g. read directly from the loc:// PVs)
+#     instead of relying on this widget's own macros/attached PVs, which is
+#     useful for widgets (like the select-all checkbox) that don't sit under
+#     the Selection group and so can't see those macros/PVs directly.
+#     """
+#     devarray = []
+
+#     pvs = ScriptUtil.getPVs(mywidget)
+#     zoneSelector = zoneOverride if zoneOverride is not None else mywidget.getEffectiveMacros().getValue("ZONE")
+#     typeSelector = typeOverride if typeOverride is not None else mywidget.getEffectiveMacros().getValue("TYPE")
+#     typeFunc = funcOverride if funcOverride is not None else mywidget.getEffectiveMacros().getValue("FUNC")
+#     pvzone = None
+#     pvtype = None
+#     pvfunc = None
+#     for pv in pvs:
+#         if "ZONE" in pv.getName():
+#             pvzone = pv
+#         elif "TYPE" in pv.getName():
+#             pvtype = pv
+#         elif "FUNC" in pv.getName():
+#             pvfunc = pv
+
+#     if pvzone and zoneSelector == None:
+#         zoneSelector = PVUtil.getString(pvzone)
+#     elif zoneSelector is None:
+#         zoneSelector = "ALL"
+
+#     if pvtype and typeSelector == None:
+#         typeSelector = PVUtil.getString(pvtype)
+#     elif typeSelector is None:
+#         typeSelector = "ALL"
+
+#     if pvfunc and typeFunc == None:
+#         typeFunc = PVUtil.getString(pvfunc)
+#     elif typeFunc is None:
+#         typeFunc = "ALL"
+
+#     forceopi=mywidget.getEffectiveMacros().getValue("OPI")
+    
+#     group=mywidget.getEffectiveMacros().getValue("GROUP")
+#     conffile = mywidget.getEffectiveMacros().getValue("CONFFILE")
+#     display_model = mywidget.getDisplayModel()
+#     display_path = os.path.dirname(display_model.getUserData(display_model.USER_DATA_INPUT_FILE))
+
+#     if conffile is None:
+#         ScriptUtil.showMessageDialog(mywidget, "## Please set CONFFILE macro to a correct YAML configuration file")
+#         return devarray
+
+#     if group == None:
+#         ScriptUtil.showMessageDialog(mywidget, "## Must Specify group widget (i.e unicool,univac,unimag) (GROUP Macro) please set CONFFILE macro to a correct file")
+#         return devarray
+
+#     confpath = display_path + "/" + conffile
+#     if not os.path.exists(confpath):
+#         ## display embedded a few directories deeper than where CONFFILE is anchored
+#         ## (e.g. pretune/ under unimag-opi/): walk up looking for a matching file.
+#         search_dir = display_path
+#         for _ in range(5):
+#             search_dir = os.path.dirname(search_dir)
+#             if not search_dir:
+#                 break
+#             candidate = search_dir + "/" + conffile
+#             if os.path.exists(candidate):
+#                 confpath = candidate
+#                 break
+
+#     print(mywidget.getName() + "] LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
+
+#     iocs = conf_to_iocs(confpath,mywidget)
+#     print(mywidget.getName() + "] Found "+str(len(iocs))+" IOCs in configuration file")
+
+#     for ioc in iocs:
+#         ioc_name = ioc.get("name", "")
+#         iocprefix = ioc.get("iocprefix", "")
+#         devtype = ioc.get("devtype", "ALL")
+#         devgroup = ioc.get("devgroup", "")
+#         devfunc  = ioc.get("devfunc", "")
+#         opi  = ioc.get("opi", "")
+#         opi_debug = ioc.get("opi_debug", "")
+#         zones = ioc.get("zones", "ALL")
+#         iocroot=ioc.get("iocroot", "")
+
+#         #print("Checking IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype)
+#         if str(ioc.get("disable", False)).lower() == "true":
+#             ## not deployed by the chart (e.g. placeholders)
+#             continue
+#         if iocprefix and devgroup == group:
+#             devices = ioc.get("devices", [])
+#             # print("Found IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype, "devices:", len(devices))
+#             for dev in devices:
+#                 name = dev['name']
+#                 if not name:
+#                     continue
+#                 prefix=iocprefix
+#                 devtype=ioc.get("devtype", "ALL")
+#                 iocroot=ioc.get("iocroot", "")
+#                 pathzone = ioc.get("zones", "ALL")
+#                 zones = [pathzone] if isinstance(pathzone, basestring) else list(pathzone)
+                
+#                 if 'devfunc' in ioc:
+#                     devfunc  = ioc.get("devfunc", "")
+#                 else:
+#                     devfunc = devtype
+#                     if devgroup == "mag":
+#                         if ('HCV' in name) or ('HCOR' in name) or ('VCOR' in name) or ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
+#                             devfunc="COR"
+#                         elif ('QUA' in name) or ('QUAD' in name) or ('QSK' in name):
+#                             devfunc="QUA"
+#                         elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name):
+#                             devfunc="DIP"
+#                         elif ('SOL' in name) :
+#                             devfunc="SOL"
+#                         elif ('SEX' in name) :
+#                             devfunc="SEX"
+#                         elif ('UFS' in name) :
+#                             devfunc="UFS"
+#                     if devgroup == "mot":
+#                         if ('SLT' in name) :
+#                             devfunc="SLT"
+#                         elif ('FLG' in name):
+#                             devfunc="FLG"
+#                         elif ('MIR' in name) or ('MIR' in iocprefix) :
+#                             devfunc="MIR"
+#                         elif ('HMOT' in name) :
+#                             devfunc="HMOT"
+#                         elif ('VMOT' in name) :
+#                             devfunc="VMOT"
+#                         else:
+#                             devfunc="MOT"
+
+                        
+                    
+#                     if(devgroup == "vac" and  'SIP' in name):
+#                         devfunc="ion"
+                    
+
+#                 if 'opi' in dev:
+#                     opi=dev['opi']
+#                 if 'opi_debug' in dev:
+#                     opi_debug=dev['opi_debug']
+#                 if 'devtype' in dev:
+#                     devtype=dev['devtype']
+#                 if 'zones' in dev:
+#                     devzones = dev['zones']
+#                     zones = [devzones] if isinstance(devzones, basestring) else list(devzones)
+#                     if pathzone!="ALL" and isinstance(pathzone, basestring) and pathzone not in zones:
+#                         zones.append(pathzone)
+#                 if 'name' in dev:
+#                     if iocroot=="":
+#                         iocroot=dev['name']
+#                     else:
+#                         iocroot=iocroot+":"+dev['name']
+#                 if 'devfunc' in dev:
+#                     devfunc=dev['devfunc']
+#                 if 'alias' in dev:
+#                     name=dev['alias']
+#                 if 'prefix' in dev:
+#                     prefix=dev['prefix']
+#                 geo=dev.get('geo', None)
+#                 # print(devgroup_widget+"-"+devtype+" filtering object "+str(dev))
+
+#                 if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
+#                     continue
+#                 if typeSelector and typeSelector != "ALL" and typeSelector != devtype:
+#                     continue
+#                 if typeFunc and typeFunc != "ALL" and typeFunc != devfunc:
+#                     continue
+
+#                 if len(zones)==1:
+#                     zone=zones[0]
+#                 else:
+#                     zone=",".join(zones)
+
+#                 if devfunc == "ion":
+#                     devfunc = "0"
+#                 elif devfunc == "pig":
+#                     devfunc = "1"
+#                 elif devfunc == "ccg":
+#                     devfunc = "2"
+#                 obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone}
+#                 if forceopi:
+#                     obj["OPI"] = forceopi
+#                     print("Forcing OPI \""+forceopi+"\" for device "+name)
+#                 elif opi:
+#                     obj["OPI"] = opi
+#                 if opi_debug:
+#                     obj["OPI_DEBUG"] = opi_debug
+#                 # print("Adding zone:"+str(zones)+"  obj:"+ str(obj))
+#                 devarray.append((geo, obj))
+
+#     # Order by the physical position along the beamline (geo) when provided.
+#     # Devices without a geo keep their original relative order, appended after the ordered ones.
+#     devarray.sort(key=lambda item: (item[0] is None, item[0] if item[0] is not None else 0))
+#     return [obj for geo, obj in devarray]
+
+# def dump_pv(mywidget,separator="\n"):
+    
+#     """Dump the PVs to a file."""
+#     devarray = conf_to_dev(mywidget)
+#     group=mywidget.getEffectiveMacros().getValue("GROUP")
+
+#     if not devarray:
+#         ScriptUtil.showMessageDialog(mywidget, "No devices found for group: " + group)
+#         return
+#     pvlist = ""
+#     for dev in devarray:
+#         for pv in pvrb.get(group, []):
+#             pvlist = pvlist + dev['P']+":"+dev['R']+":"+pv+separator
+#     for dev in devarray:
+#         for pv in pvset.get(group, []):
+#             pvlist = pvlist + dev['P']+":"+dev['R']+":"+pv+separator
+
+
+#     return pvlist
+
+# def _dump_devices_to_files(mywidget,devarray, group, name):
+#     """Common function to dump device array to comprehensive files."""
+#     if not devarray:
+#         ScriptUtil.showMessageDialog(mywidget, "No devices found for group: " + group)
+#         return
+
+#     sarfile = {}
+#     sarfiles = ""
+#     fcsvn_valueset_name = name + ".value_set.csv"
+#     fcsvn_valuerb_name = name + ".value_rb.csv"
+    
+#     for prop in pvsetrb.get(group, []):
+#         sarfilen = name + "-" + prop + ".sar.csv"
+#         sarfiles = sarfiles + sarfilen + "\n"
+#         sarfile[prop] = open(sarfilen, 'w')
+#         sarfile[prop].write("PV,READBACK,READ_ONLY\n")
+
+#     # Open CSV files for writing
+#     fcsvn_set = open(fcsvn_valueset_name, 'w')
+#     fcsvn_rb = open(fcsvn_valuerb_name, 'w')
+#     fcsvn_set.write("Name,Prefix,PV,Value\n")
+#     fcsvn_rb.write("Name,Prefix,PV,Value\n")
+    
+#     try:
+#         for dev in devarray:
+#             prefix = dev['P'] + ":" + dev['R']
+            
+#             # Process setpoint PVs
+#             for pv in pvset.get(group, []):
+#                 pvname = prefix + ":" + pv                       
+#                 try:
+#                     remote_pv = PVUtil.createPV(pvname, 100)
+#                     val = str(remote_pv.read().getValue())
+#                     fcsvn_set.write(dev['NAME'] + "," + prefix + "," + pvname + "," + val + "\n")
+#                 except Exception as e:
+#                     print("Error reading setpoint PV " + pvname + ": " + str(e))
+#                     fcsvn_set.write(dev['NAME'] + "," + prefix + "," + pvname + ",ERROR\n")
+            
+#             # Process readback PVs  
+#             for pv in pvrb.get(group, []):
+#                 pvname = prefix + ":" + pv                       
+#                 try:
+#                     remote_pv = PVUtil.createPV(pvname, 100)
+#                     val = str(remote_pv.read().getValue())
+#                     fcsvn_rb.write(dev['NAME'] + "," + prefix + "," + pvname + "," + val + "\n")
+#                 except Exception as e:
+#                     print("Error reading readback PV " + pvname + ": " + str(e))
+#                     fcsvn_rb.write(dev['NAME'] + "," + prefix + "," + pvname + ",ERROR\n")
+            
+#             # Process SAR files
+#             for prop in pvsetrb.get(group, []):
+#                 pv_base = prefix + ":" + prop
+#                 sarfile[prop].write(pv_base + "_SP," + pv_base + "_RB,0\n")
+
+#         # Close all files
+#         for prop in pvsetrb.get(group, []):
+#             sarfile[prop].close()
+        
+#         fcsvn_set.close()
+#         fcsvn_rb.close()
+        
+#         ScriptUtil.showMessageDialog(mywidget, "Generated SAR files: " + sarfiles + 
+#                                    "\nDumped SET values to \"" + fcsvn_valueset_name + 
+#                                    "\"\nDumped RB values to \"" + fcsvn_valuerb_name + 
+#                                    "\"\nProcessed " + str(len(devarray)) + " devices")
+        
+#     except Exception as e:
+#         ScriptUtil.showMessageDialog(mywidget, "Error writing to files: " + str(e))
+
+# def dump_selected_tofile(mywidget):
+#     """Dump the selected PVs to comprehensive files like dump_pv_tofile but using selections."""
+#     from org.phoebus.pv import PVPool
+    
+#     name=mywidget.getPropertyValue("name")
+#     group=mywidget.getEffectiveMacros().getValue("GROUP")
+#     name=ScriptUtil.showSaveAsDialog(mywidget, name)
+
+#     if name is None:
+#         return
+    
+#     print("Dumping selected PVs for group: " + group+ " to file: " + name)
+    
+#     # Get selected devices from PV pool like SetCurrentSelected does
+#     lpvs = PVPool.getPVReferences()
+#     selected_devices = []
+    
+#     for pvr in lpvs:
+#         selection_pv = pvr.getEntry()
+#         pv_name = selection_pv.getName()
+        
+#         if pv_name.startswith("loc://selection:"):
+#             if selection_pv.read().getValue() == 1:
+#                 pv_prefix = loc_unsafe(pv_name.replace("loc://selection:", ""))
+#                 prefix, identifier = pv_prefix.rsplit(":", 1)
+
+#                 # Create device entry similar to conf_to_dev format
+#                 dev = {
+#                     'NAME': identifier,
+#                     'R': identifier, 
+#                     'P': prefix,
+#                     'FUNC': group,  # Use group as function
+#                     'TYPE': group,  # Use group as type
+#                     'ZONE': 'SELECTED',
+#                     'OPI': ''
+#                 }
+#                 selected_devices.append(dev)
+    
+#     if not selected_devices:
+#         ScriptUtil.showMessageDialog(mywidget, "No devices selected for group: " + group)
+#         return
+
+#     # Use common function to dump files
+#     _dump_devices_to_files(mywidget, selected_devices, group, name)
+
+# def dump_pv_tofile(mywidget):
+#     """Dump the PVs to a file."""
+#     name=mywidget.getPropertyValue("name")
+#     group=mywidget.getEffectiveMacros().getValue("GROUP")
+#     name=ScriptUtil.showSaveAsDialog(mywidget, name)
+
+#     if name is None:
+#         return
+
+#     print("Dumping PVs for group: " + group+ " to file: " + name)
+#     devarray = conf_to_dev(mywidget)
+    
+#     # Use common function to dump files
+#     _dump_devices_to_files(mywidget, devarray, group, name)
+
+# def load_pv_fromfile(mywidget,name):
+#     wtemplate = ScriptUtil.findWidgetByName(mywidget, "element_template") ## name of the hidden template
+#     interlinea=5
+#     group = mywidget.getEffectiveMacros().getValue("GROUP")
+#     embedded_width  = wtemplate.getPropertyValue("width")
+#     embedded_height = wtemplate.getPropertyValue("height") +interlinea
+#     offy=0
+#     cnt=0
+#     bobitem=widget.getEffectiveMacros().getValue("BOBITEM")
+#     if bobitem is None:
+#         bobname = "uni"+group+"-opi/"+group + "_channel_load.bob"
+#     if name.endswith(".csv"):
+#         # Load the CSV file
+#         data = csv_to_list(name)
+#         for row in data:
+#             pvname = row['PV']
+#             prefix = row['Prefix']
+
+#             value = row['Value']
+#             local_pv = PVUtil.createPV("loc://apply:"+pvname, 100)
+#             localok_pv = PVUtil.createPV("loc://apply:"+pvname+":ok", 100)
+#             local_pv.write(value)
+#             localok_pv.write(1)
+#             x=0
+#             y= offy+ cnt * (embedded_height)
+#             m={'PVNAME': pvname,"P":prefix,"R":row['Name']}
+#             instance = createInstance(embedded_width,embedded_height,pvname,bobname,x, y, m)
+#             mywidget.runtimeChildren().addChild(instance)
+#             cnt=cnt+1
+
+
+   
+# def csv_to_list(csv_file):
+#     result = []
+
+#     with open(csv_file, 'r') as file:
+#         # Read lines from the file
+#         lines = file.readlines()
+#         # Extract the header
+#         header = [col.strip() for col in lines[0].split(",")]
+#         # Process each row
+#         for line in lines[1:]:
+#             values = [value.strip() for value in line.split(",")]
+#             row_dict = dict(zip(header, values))
+#             result.append(row_dict)
+#     return result
+
+
+# def createInstance(embedded_width,embedded_height,name,bobname,x, y, macros):
+#     embedded = WidgetFactory.getInstance().getWidgetDescriptor("embedded").createWidget()
+#     embedded.setPropertyValue("name", "Instance_" + name)
+
+#     embedded.setPropertyValue("x", x)
+#     embedded.setPropertyValue("y", y)
+#     embedded.setPropertyValue("width", embedded_width)
+#     embedded.setPropertyValue("height", embedded_height)
+#     for macro, value in macros.items():
+#         embedded.getPropertyValue("macros").add(macro, value)
+#     if 'R' in macros and 'RL' not in macros:
+#         embedded.getPropertyValue("macros").add("RL", loc_safe(macros['R']))
+
+#     embedded.setPropertyValue("file", bobname)
+#     return embedded
+
+
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from java.io import FileReader, BufferedWriter, FileWriter
 from org.csstudio.display.builder.model import WidgetFactory
@@ -84,6 +629,14 @@ def load_conf(confpath):
         basepath = os.path.join(confdir, "values.yaml")
         if os.path.exists(basepath):
             base = yaml.load(FileReader(basepath))
+            # Sibling values-*.yaml files inherit the main values.yaml facility
+            # unless they explicitly specify their own facility/facilities.
+            if base is not None and data is not None:
+                if data.get("facility") is None and data.get("facilities") is None:
+                    if base.get("facilities") is not None:
+                        data.put("facilities", base.get("facilities"))
+                    elif base.get("facility") is not None:
+                        data.put("facility", base.get("facility"))
             defaults = base.get("iocDefaults") if base is not None else None
             if defaults is not None:
                 if data.get("iocDefaults") is not None:
@@ -92,16 +645,40 @@ def load_conf(confpath):
         return data
     if fname != "values.yaml":
         return data
+    # Remember the facility associated with each source file *before* the
+    # individual IOC maps are merged. Otherwise a sibling's root "facility"
+    # is lost and all merged IOCs incorrectly inherit the main one.
+    root_facility = data.get("facility")
+    root_facilities = data.get("facilities")
+    default_facility = root_facilities if root_facilities is not None else root_facility
+    def tag_iocs_with_source_facility(source, fallback):
+        cfg = source.get("epicsConfiguration") if source is not None else None
+        iocs = cfg.get("iocs") if cfg is not None else None
+        if iocs is None:
+            return
+        source_facility = source.get("facilities", source.get("facility", fallback))
+        if source_facility is None:
+            return
+        for ioc in iocs.values():
+            if ioc is not None and hasattr(ioc, "keySet"):
+                if ioc.get("facilities") is None and ioc.get("facility") is None:
+                    ioc.put("facility", source_facility)
+    tag_iocs_with_source_facility(data, default_facility)
     for fname in sorted(os.listdir(confdir)):
         if fname.startswith("values-") and fname.endswith(".yaml"):
             extra = yaml.load(FileReader(os.path.join(confdir, fname)))
             if extra is not None and hasattr(extra, "keySet"):
+                tag_iocs_with_source_facility(extra, default_facility)
                 print("merging configuration \"" + fname + "\"")
                 _deep_merge(data, extra)
+    if root_facility is not None:
+        data.put("facility", root_facility)
+    if root_facilities is not None:
+        data.put("facilities", root_facilities)
     return data
 
 
-def conf_to_iocs(confpath, mywidget):
+def conf_to_iocs(confpath, mywidget, data=None):
     """Load the configuration from the YAML file and return the iocs section
     with iocDefaults merged in.
     """
@@ -110,7 +687,8 @@ def conf_to_iocs(confpath, mywidget):
     if not os.path.exists(confpath):
         ScriptUtil.showMessageDialog(mywidget, "## Cannot find file \"" + confpath + "\" please set CONFFILE macro to a correct file")
         return iocs
-    data = load_conf(confpath)
+    if data is None:
+        data = load_conf(confpath)
     epics_config = data.get("epicsConfiguration")
     if epics_config is None:
         ScriptUtil.showMessageDialog(mywidget, "Cannot find 'epicsConfiguration' in \"" + confpath + "\"")
@@ -130,11 +708,11 @@ def conf_to_iocs(confpath, mywidget):
     return iocs
 
 
-def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=None):
+def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=None, facilityOverride=None):
     """Build the filtered device array for mywidget's GROUP/CONFFILE.
 
-    zoneOverride/typeOverride/funcOverride let a caller force the current
-    Zone/Type/Func selector values (e.g. read directly from the loc:// PVs)
+    zoneOverride/typeOverride/funcOverride/facilityOverride let a caller force
+    the current Zone/Type/Func/Facility selector values (e.g. read directly from the loc:// PVs)
     instead of relying on this widget's own macros/attached PVs, which is
     useful for widgets (like the select-all checkbox) that don't sit under
     the Selection group and so can't see those macros/PVs directly.
@@ -145,11 +723,15 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
     zoneSelector = zoneOverride if zoneOverride is not None else mywidget.getEffectiveMacros().getValue("ZONE")
     typeSelector = typeOverride if typeOverride is not None else mywidget.getEffectiveMacros().getValue("TYPE")
     typeFunc = funcOverride if funcOverride is not None else mywidget.getEffectiveMacros().getValue("FUNC")
+    facilitySelector = facilityOverride if facilityOverride is not None else mywidget.getEffectiveMacros().getValue("FACILITY")
     pvzone = None
     pvtype = None
     pvfunc = None
+    pvfacility = None
     for pv in pvs:
-        if "ZONE" in pv.getName():
+        if "FACILITY" in pv.getName().upper():
+            pvfacility = pv
+        elif "ZONE" in pv.getName():
             pvzone = pv
         elif "TYPE" in pv.getName():
             pvtype = pv
@@ -170,6 +752,27 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         typeFunc = PVUtil.getString(pvfunc)
     elif typeFunc is None:
         typeFunc = "ALL"
+
+    # A string-valued local PV can drive the selector from buttons or scripts.
+    # A Combo Box commonly writes an integer index: use FACILITIES macro
+    # e.g. "ALL,BTF,LINAC,REDD" to resolve it to a name.
+    if facilitySelector is None and pvfacility is not None:
+        facilitySelector = PVUtil.getString(pvfacility)
+    if facilitySelector is None or str(facilitySelector).strip() == "":
+        facilitySelector = "ALL"
+    facilitySelector = str(facilitySelector).strip()
+    choices_macro = mywidget.getEffectiveMacros().getValue("FACILITIES")
+    if choices_macro:
+        choices = [item.strip() for item in str(choices_macro).split(",")]
+        try:
+            index = int(facilitySelector)
+            if 0 <= index < len(choices):
+                facilitySelector = choices[index]
+            else:
+                print("Invalid FACILITY selection index: " + facilitySelector)
+                return devarray
+        except ValueError:
+            pass
 
     forceopi=mywidget.getEffectiveMacros().getValue("OPI")
     
@@ -200,10 +803,19 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                 confpath = candidate
                 break
 
-    print(mywidget.getName() + "] LOADING \""+group+"\" zoneSelector: \"" + zoneSelector + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc)+"\" from file \"" + confpath + "\"")
+    print(mywidget.getName() + "] LOADING \""+group+"\" zoneSelector: \"" + str(zoneSelector) + "\" typeSelector: \"" + str(typeSelector)+"\" typeFunc: \"" + str(typeFunc) + "\" facilitySelector: \"" + str(facilitySelector) + "\" from file \"" + confpath + "\"")
 
-    iocs = conf_to_iocs(confpath,mywidget)
+    # The root-level facility in values.yaml is the default for every IOC.
+    # An IOC or device may override it using facility or facilities.
+    config = load_conf(confpath)
+    global_facility = config.get("facilities", config.get("facility", "ALL"))
+    iocs = conf_to_iocs(confpath, mywidget, data=config)
+    print(mywidget.getName() + "] Root facility after merge: " + repr(global_facility))
     print(mywidget.getName() + "] Found "+str(len(iocs))+" IOCs in configuration file")
+    facility_matches = 0
+    zone_matches = 0
+    type_matches = 0
+    func_matches = 0
 
     for ioc in iocs:
         ioc_name = ioc.get("name", "")
@@ -214,6 +826,7 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         opi  = ioc.get("opi", "")
         opi_debug = ioc.get("opi_debug", "")
         zones = ioc.get("zones", "ALL")
+        iocfacilities = ioc.get("facilities", ioc.get("facility", global_facility))
         iocroot=ioc.get("iocroot", "")
 
         #print("Checking IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype)
@@ -232,6 +845,13 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                 iocroot=ioc.get("iocroot", "")
                 pathzone = ioc.get("zones", "ALL")
                 zones = [pathzone] if isinstance(pathzone, basestring) else list(pathzone)
+                devfacilities = dev.get("facilities", dev.get("facility", iocfacilities))
+                if isinstance(devfacilities, basestring):
+                    devfacilities = [devfacilities]
+                elif devfacilities is None:
+                    devfacilities = []
+                else:
+                    devfacilities = list(devfacilities)
                 
                 if 'devfunc' in ioc:
                     devfunc  = ioc.get("devfunc", "")
@@ -242,11 +862,11 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                             devfunc="COR"
                         elif ('QUA' in name) or ('QUAD' in name) or ('QSK' in name):
                             devfunc="QUA"
-                        elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name):
+                        elif ('DIP' in name) or ('DPL' in name) or ('DHS' in name) or ('DHR' in name) or ('DHP' in name) or ('DVR' in name) or ('DHY' in name) or ('SPT' in name):
                             devfunc="DIP"
                         elif ('SOL' in name) :
                             devfunc="SOL"
-                        elif ('SEX' in name) :
+                        elif ('SEX' in name) or ('SXP' in name):
                             devfunc="SEX"
                         elif ('UFS' in name) :
                             devfunc="UFS"
@@ -295,12 +915,27 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                 geo=dev.get('geo', None)
                 # print(devgroup_widget+"-"+devtype+" filtering object "+str(dev))
 
-                if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
+                if facilitySelector != "ALL" and facilitySelector.upper() not in [str(f).strip().upper() for f in devfacilities]:
                     continue
+                facility_matches += 1
+
+                # Filter by one or multiple zones
+                if zoneSelector and zoneSelector != "ALL":
+                    selected_zones = [
+                        z.strip() for z in zoneSelector.split(",")
+                    ]
+                    if not any(z in zones for z in selected_zones):
+                        continue
+                zone_matches += 1
+                # if zoneSelector and zoneSelector != "ALL" and zoneSelector not in zones:
+                #     continue
+                # zone_matches += 1
                 if typeSelector and typeSelector != "ALL" and typeSelector != devtype:
                     continue
+                type_matches += 1
                 if typeFunc and typeFunc != "ALL" and typeFunc != devfunc:
                     continue
+                func_matches += 1
 
                 if len(zones)==1:
                     zone=zones[0]
@@ -313,7 +948,7 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                     devfunc = "1"
                 elif devfunc == "ccg":
                     devfunc = "2"
-                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone}
+                obj={'NAME':name,'R': iocroot, "P": prefix, "FUNC": devfunc,  "TYPE": devtype,"ZONE": zone, "FACILITY": ",".join(devfacilities)}
                 if forceopi:
                     obj["OPI"] = forceopi
                     print("Forcing OPI \""+forceopi+"\" for device "+name)
@@ -327,6 +962,9 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
     # Order by the physical position along the beamline (geo) when provided.
     # Devices without a geo keep their original relative order, appended after the ordered ones.
     devarray.sort(key=lambda item: (item[0] is None, item[0] if item[0] is not None else 0))
+    print(mywidget.getName() + "] Filter counts: facility=" + str(facility_matches) +
+          " zone=" + str(zone_matches) + " type=" + str(type_matches) +
+          " func=" + str(func_matches) + " final=" + str(len(devarray)))
     return [obj for geo, obj in devarray]
 
 def dump_pv(mywidget,separator="\n"):
