@@ -41,7 +41,10 @@
       <action type="open_display">
         <description>Open $(NAME) Moxa NPort details</description>
         <file>moxaNport.bob</file>
-        <macros><P>$(P)</P></macros>
+        <macros>
+          <P>$(P)</P>
+          <NPORTS>$(NPORTS)</NPORTS>
+        </macros>
         <target>window</target>
       </action>
     </actions>

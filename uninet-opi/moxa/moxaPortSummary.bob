@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Moxa port summary row</name>
+  <width>1240</width>
+  <height>26</height>
+  <widget type="label" version="2.0.0">
+    <name>PortNumber</name><text>$(N)</text>
+    <x>16</x><y>2</y><width>40</width><height>22</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Alias</name><pv_name>$(P):P$(N):SER:ALIAS</pv_name>
+    <x>60</x><y>2</y><width>110</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Baud</name><pv_name>$(P):P$(N):SER:BAUD</pv_name>
+    <x>174</x><y>2</y><width>44</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>DataBits</name><pv_name>$(P):P$(N):SER:DATABITS</pv_name>
+    <x>220</x><y>2</y><width>14</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Parity</name><pv_name>$(P):P$(N):SER:PARITY</pv_name>
+    <x>236</x><y>2</y><width>40</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>StopBits</name><pv_name>$(P):P$(N):SER:STOPBITS</pv_name>
+    <x>278</x><y>2</y><width>16</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>OperatingMode</name><pv_name>$(P):P$(N):OP:MODE_RBV</pv_name>
+    <x>298</x><y>2</y><width>130</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>SetMode</name><pv_name>$(P):P$(N):OP:MODE_SP</pv_name>
+    <x>432</x><y>2</y><width>140</width><height>22</height>
+    <items_from_pv>true</items_from_pv>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>PeerIP</name><pv_name>$(P):P$(N):LINE:IP1</pv_name>
+    <x>576</x><y>2</y><width>110</width><height>22</height>
+    <show_units>false</show_units><vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>TxRate</name><pv_name>$(P):P$(N):ASY:TXRATE</pv_name>
+    <x>690</x><y>2</y><width>70</width><height>22</height>
+    <format>1</format><precision>0</precision><show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RxRate</name><pv_name>$(P):P$(N):ASY:RXRATE</pv_name>
+    <x>764</x><y>2</y><width>70</width><height>22</height>
+    <format>1</format><precision>0</precision><show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>DSR</name><pv_name>$(P):P$(N):ASY:DSR</pv_name>
+    <x>1054</x><y>4</y><width>18</width><height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>CTS</name><pv_name>$(P):P$(N):ASY:CTS</pv_name>
+    <x>1092</x><y>4</y><width>18</width><height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>DCD</name><pv_name>$(P):P$(N):ASY:DCD</pv_name>
+    <x>1130</x><y>4</y><width>18</width><height>18</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Details</name>
+    <actions>
+      <action type="open_display">
+        <description>Open serial port $(N) details</description>
+        <file>moxaNportPort.bob</file>
+        <macros><P>$(P)</P><N>$(N)</N></macros>
+        <target>window</target>
+      </action>
+    </actions>
+    <text>Details</text>
+    <x>1160</x><y>2</y><width>70</width><height>22</height>
+  </widget>
+</display>

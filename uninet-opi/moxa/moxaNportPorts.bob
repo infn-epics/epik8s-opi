@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Moxa NPort Ports</name>
+  <width>1240</width>
+  <height>452</height>
+  <scripts>
+    <script file="../Scripts/LoadMoxaPorts.py" check_connections="false"/>
+  </scripts>
+  <widget type="rectangle" version="2.0.0">
+    <name>HeaderBackground</name>
+    <x>8</x><y>0</y><width>1224</width><height>24</height>
+    <line_width>0</line_width>
+    <background_color><color red="210" green="220" blue="232"/></background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>PortHeader</name><text>Port</text>
+    <x>16</x><y>2</y><width>40</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AliasHeader</name><text>Alias</text>
+    <x>60</x><y>2</y><width>110</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>BaudHeader</name><text>Baud</text>
+    <x>174</x><y>2</y><width>120</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ModeHeader</name><text>Operating mode</text>
+    <x>298</x><y>2</y><width>130</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SetModeHeader</name><text>Set mode</text>
+    <x>432</x><y>2</y><width>140</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>PeerHeader</name><text>Peer IP</text>
+    <x>576</x><y>2</y><width>110</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>TxHeader</name><text>TX rate</text>
+    <x>690</x><y>2</y><width>70</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RxHeader</name><text>RX rate</text>
+    <x>764</x><y>2</y><width>70</width><height>20</height>
+    <font><font family="Liberation Sans" style="BOLD" size="11"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>element_template</name>
+    <file>moxaPortSummary.bob</file>
+    <x>0</x><y>24</y><width>1240</width><height>26</height>
+    <visible>false</visible>
+  </widget>
+</display>
