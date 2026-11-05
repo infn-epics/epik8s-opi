@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Moxa NPort row</name>
+  <width>920</width>
+  <height>48</height>
+  <background_color><color red="242" green="246" blue="250"/></background_color>
+  <widget type="label" version="2.0.0">
+    <name>IOCName</name>
+    <text>$(NAME)</text>
+    <x>12</x><y>6</y><width>170</width><height>34</height>
+    <font><font family="Liberation Sans" style="BOLD" size="13"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>ServerAddress</name>
+    <pv_name>$(P):SERVER</pv_name>
+    <x>190</x><y>6</y><width>150</width><height>34</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>ServerStatus</name>
+    <pv_name>$(P):STATUS</pv_name>
+    <x>360</x><y>6</y><width>210</width><height>34</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>Connected</name>
+    <pv_name>$(P):CONNECTED</pv_name>
+    <x>630</x><y>14</y><width>18</width><height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LoggedIn</name>
+    <pv_name>$(P):LOGGED_IN</pv_name>
+    <x>740</x><y>14</y><width>18</width><height>18</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>OpenDetails</name>
+    <actions>
+      <action type="open_display">
+        <description>Open $(NAME) Moxa NPort details</description>
+        <file>moxaNport.bob</file>
+        <macros><P>$(P)</P></macros>
+        <target>window</target>
+      </action>
+    </actions>
+    <text>Open</text>
+    <x>820</x><y>8</y><width>84</width><height>30</height>
+  </widget>
+</display>

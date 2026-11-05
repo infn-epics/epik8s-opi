@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Moxa NPort Array</name>
+  <width>940</width>
+  <height>700</height>
+  <scripts>
+    <script file="Scripts/LoadMoxaArray.py" check_connections="false"/>
+  </scripts>
+  <widget type="rectangle" version="2.0.0">
+    <name>HeaderBackground</name>
+    <x>0</x>
+    <y>0</y>
+    <width>940</width>
+    <height>38</height>
+    <line_width>0</line_width>
+    <background_color><color red="0" green="80" blue="160"/></background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Moxa NPort serial servers</text>
+    <x>12</x>
+    <y>4</y>
+    <width>500</width>
+    <height>30</height>
+    <font><font family="Liberation Sans" style="BOLD" size="18"/></font>
+    <foreground_color><color red="255" green="255" blue="255"/></foreground_color>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColumnName</name>
+    <text>IOC</text>
+    <x>12</x><y>44</y><width>170</width><height>24</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColumnAddress</name>
+    <text>Address</text>
+    <x>190</x><y>44</y><width>150</width><height>24</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColumnStatus</name>
+    <text>Status</text>
+    <x>360</x><y>44</y><width>210</width><height>24</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColumnConnected</name>
+    <text>Connected</text>
+    <x>590</x><y>44</y><width>100</width><height>24</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ColumnLoggedIn</name>
+    <text>Logged in</text>
+    <x>700</x><y>44</y><width>100</width><height>24</height>
+    <font><font family="Liberation Sans" style="BOLD" size="12"/></font>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>element_template</name>
+    <file>moxa/moxa_channel.bob</file>
+    <x>0</x><y>72</y><width>920</width><height>48</height>
+    <visible>false</visible>
+  </widget>
+</display>

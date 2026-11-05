@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Moxa NPort port</name>
+  <width>760</width>
+  <height>690</height>
+  <background_color>
+    <color red="235" green="239" blue="244"/>
+  </background_color>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>0</x>
+    <y>0</y>
+    <width>760</width>
+    <height>44</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="0" green="80" blue="160"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>$(P) — serial port $(N)</text>
+    <x>12</x>
+    <y>7</y>
+    <width>736</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>8</x>
+    <y>54</y>
+    <width>744</width>
+    <height>110</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="210" green="220" blue="232"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Serial Settings</text>
+    <x>16</x>
+    <y>56</y>
+    <width>400</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Alias</text>
+    <x>16</x>
+    <y>80</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:ALIAS</pv_name>
+    <x>150</x>
+    <y>80</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Baud rate</text>
+    <x>16</x>
+    <y>100</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:BAUD</pv_name>
+    <x>150</x>
+    <y>100</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Data bits</text>
+    <x>16</x>
+    <y>120</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:DATABITS</pv_name>
+    <x>150</x>
+    <y>120</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Stop bits</text>
+    <x>16</x>
+    <y>140</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:STOPBITS</pv_name>
+    <x>150</x>
+    <y>140</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Parity</text>
+    <x>380</x>
+    <y>80</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:PARITY</pv_name>
+    <x>514</x>
+    <y>80</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Flow control</text>
+    <x>380</x>
+    <y>100</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:FLOW</pv_name>
+    <x>514</x>
+    <y>100</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>FIFO</text>
+    <x>380</x>
+    <y>120</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:FIFO</pv_name>
+    <x>514</x>
+    <y>120</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Interface</text>
+    <x>380</x>
+    <y>140</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):SER:IFACE</pv_name>
+    <x>514</x>
+    <y>140</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>8</x>
+    <y>172</y>
+    <width>744</width>
+    <height>196</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="210" green="220" blue="232"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Operating Settings</text>
+    <x>16</x>
+    <y>174</y>
+    <width>400</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Operating mode</text>
+    <x>16</x>
+    <y>198</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:MODE</pv_name>
+    <x>150</x>
+    <y>198</y>
+    <width>220</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Set mode</text>
+    <x>380</x>
+    <y>198</y>
+    <width>130</width>
+    <height>22</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>C</name>
+    <pv_name>$(P):P$(N):OP:MODE_SP</pv_name>
+    <x>514</x>
+    <y>197</y>
+    <width>160</width>
+    <height>22</height>
+    <items_from_pv>true</items_from_pv>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Packing length</text>
+    <x>16</x>
+    <y>222</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:PACKLEN</pv_name>
+    <x>150</x>
+    <y>222</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Delimiter 1</text>
+    <x>16</x>
+    <y>242</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:DELIM1</pv_name>
+    <x>150</x>
+    <y>242</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Delimiter 2</text>
+    <x>16</x>
+    <y>262</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:DELIM2</pv_name>
+    <x>150</x>
+    <y>262</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Delimiter process</text>
+    <x>16</x>
+    <y>282</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:DELIMPROC</pv_name>
+    <x>150</x>
+    <y>282</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Force transmit</text>
+    <x>16</x>
+    <y>302</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:FORCETX</pv_name>
+    <x>150</x>
+    <y>302</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>TCP alive check</text>
+    <x>380</x>
+    <y>222</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:ALIVE</pv_name>
+    <x>514</x>
+    <y>222</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Inactivity time</text>
+    <x>380</x>
+    <y>242</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:INACT</pv_name>
+    <x>514</x>
+    <y>242</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Max connection</text>
+    <x>380</x>
+    <y>262</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:MAXCONN</pv_name>
+    <x>514</x>
+    <y>262</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Local TCP port</text>
+    <x>380</x>
+    <y>282</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:LOCALPORT</pv_name>
+    <x>514</x>
+    <y>282</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Command port</text>
+    <x>380</x>
+    <y>302</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:CMDPORT</pv_name>
+    <x>514</x>
+    <y>302</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>All settings</text>
+    <x>16</x>
+    <y>326</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):OP:DETAILS</pv_name>
+    <x>150</x>
+    <y>326</y>
+    <width>586</width>
+    <height>36</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>8</x>
+    <y>376</y>
+    <width>744</width>
+    <height>70</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="210" green="220" blue="232"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Monitor Line</text>
+    <x>16</x>
+    <y>378</y>
+    <width>400</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>OP mode</text>
+    <x>16</x>
+    <y>402</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):LINE:OPMODE</pv_name>
+    <x>150</x>
+    <y>402</y>
+    <width>220</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>IP1</text>
+    <x>16</x>
+    <y>422</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):LINE:IP1</pv_name>
+    <x>52</x>
+    <y>422</y>
+    <width>140</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>IP2</text>
+    <x>196</x>
+    <y>422</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):LINE:IP2</pv_name>
+    <x>232</x>
+    <y>422</y>
+    <width>140</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>IP3</text>
+    <x>376</x>
+    <y>422</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):LINE:IP3</pv_name>
+    <x>412</x>
+    <y>422</y>
+    <width>140</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>IP4</text>
+    <x>556</x>
+    <y>422</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):LINE:IP4</pv_name>
+    <x>592</x>
+    <y>422</y>
+    <width>140</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>8</x>
+    <y>454</y>
+    <width>744</width>
+    <height>110</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="210" green="220" blue="232"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Monitor Async</text>
+    <x>16</x>
+    <y>456</y>
+    <width>400</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>TxCnt</text>
+    <x>16</x>
+    <y>480</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:TXCNT</pv_name>
+    <x>150</x>
+    <y>480</y>
+    <width>180</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>RxCnt</text>
+    <x>16</x>
+    <y>500</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:RXCNT</pv_name>
+    <x>150</x>
+    <y>500</y>
+    <width>180</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>TxTotalCnt</text>
+    <x>16</x>
+    <y>520</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:TXTOT</pv_name>
+    <x>150</x>
+    <y>520</y>
+    <width>180</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>RxTotalCnt</text>
+    <x>16</x>
+    <y>540</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:RXTOT</pv_name>
+    <x>150</x>
+    <y>540</y>
+    <width>180</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Tx rate [B/s]</text>
+    <x>380</x>
+    <y>480</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:TXRATE</pv_name>
+    <x>514</x>
+    <y>480</y>
+    <width>100</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Rx rate [B/s]</text>
+    <x>380</x>
+    <y>500</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASY:RXRATE</pv_name>
+    <x>514</x>
+    <y>500</y>
+    <width>100</width>
+    <height>20</height>
+    <format>1</format>
+    <precision>0</precision>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>DSR</text>
+    <x>380</x>
+    <y>526</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(P):P$(N):ASY:DSR</pv_name>
+    <x>414</x>
+    <y>527</y>
+    <width>18</width>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>CTS</text>
+    <x>450</x>
+    <y>526</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(P):P$(N):ASY:CTS</pv_name>
+    <x>484</x>
+    <y>527</y>
+    <width>18</width>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>DCD</text>
+    <x>520</x>
+    <y>526</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(P):P$(N):ASY:DCD</pv_name>
+    <x>554</x>
+    <y>527</y>
+    <width>18</width>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>DTR</text>
+    <x>590</x>
+    <y>526</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(P):P$(N):ASY:DTR</pv_name>
+    <x>624</x>
+    <y>527</y>
+    <width>18</width>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>RTS</text>
+    <x>660</x>
+    <y>526</y>
+    <width>34</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(P):P$(N):ASY:RTS</pv_name>
+    <x>694</x>
+    <y>527</y>
+    <width>18</width>
+    <height>18</height>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>R</name>
+    <x>8</x>
+    <y>572</y>
+    <width>744</width>
+    <height>110</height>
+    <line_width>0</line_width>
+    <background_color>
+      <color red="210" green="220" blue="232"/>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Monitor Async-Setting</text>
+    <x>16</x>
+    <y>574</y>
+    <width>400</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="13"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Baud rate</text>
+    <x>16</x>
+    <y>598</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:BAUD</pv_name>
+    <x>150</x>
+    <y>598</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Data bits</text>
+    <x>16</x>
+    <y>618</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:DATABITS</pv_name>
+    <x>150</x>
+    <y>618</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Stop bits</text>
+    <x>16</x>
+    <y>638</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:STOPBITS</pv_name>
+    <x>150</x>
+    <y>638</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>Parity</text>
+    <x>16</x>
+    <y>658</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:PARITY</pv_name>
+    <x>150</x>
+    <y>658</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>FIFO</text>
+    <x>380</x>
+    <y>598</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:FIFO</pv_name>
+    <x>514</x>
+    <y>598</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>RTS/CTS</text>
+    <x>380</x>
+    <y>618</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:RTSCTS</pv_name>
+    <x>514</x>
+    <y>618</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>XON/XOFF</text>
+    <x>380</x>
+    <y>638</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:XONXOFF</pv_name>
+    <x>514</x>
+    <y>638</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>L</name>
+    <text>DTR/DSR</text>
+    <x>380</x>
+    <y>658</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>T</name>
+    <pv_name>$(P):P$(N):ASET:DTRDSR</pv_name>
+    <x>514</x>
+    <y>658</y>
+    <width>180</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+</display>
