@@ -38,6 +38,25 @@ else:
         epics_config = data.get("epicsConfiguration") if data is not None else None
         ioc_map = epics_config.get("iocs") if epics_config is not None else None
         iocs = list(ioc_map.values()) if ioc_map is not None else []
+        if os.path.basename(confpath) != "values.yaml":
+            # A serial server can serve more than one area. Shared Moxa IOCs
+            # are defined once in values.yaml; show those used by this file.
+            used_servers = set(str(ioc.get("server")) for ioc in iocs
+                               if ioc.get("server") is not None)
+            defined_servers = set(str(ioc.get("server")) for ioc in iocs
+                                  if str(ioc.get("template") or ioc.get("devtype") or "").lower() == "moxanport")
+            basepath = os.path.join(os.path.dirname(confpath), "values.yaml")
+            if os.path.exists(basepath):
+                base_data = Yaml().load(FileReader(basepath))
+                base_config = base_data.get("epicsConfiguration") if base_data is not None else None
+                base_iocs = base_config.get("iocs") if base_config is not None else None
+                if base_iocs is not None:
+                    for ioc in base_iocs.values():
+                        server = str(ioc.get("server") or "")
+                        template = str(ioc.get("template") or ioc.get("devtype") or "")
+                        if template.lower() == "moxanport" and server in used_servers and server not in defined_servers:
+                            iocs.append(ioc)
+                            defined_servers.add(server)
         moxa_iocs = []
         for ioc in iocs:
             template = str(ioc.get("template") or ioc.get("devtype") or "")
