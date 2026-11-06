@@ -1,5 +1,7 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil
 from org.csstudio.display.builder.model import WidgetFactory
+from org.yaml.snakeyaml import Yaml
+from java.io import FileReader
 
 import epik8sutil
 import os
@@ -30,7 +32,12 @@ else:
     if not os.path.exists(confpath):
         ScriptUtil.showMessageDialog(widget, "Cannot find values file: " + confpath)
     else:
-        iocs = epik8sutil.conf_to_iocs(confpath, widget) or []
+        # values.yaml normally merges every values-*.yaml in conf_to_iocs.
+        # Moxa views represent one area, so read only the selected file.
+        data = Yaml().load(FileReader(confpath))
+        epics_config = data.get("epicsConfiguration") if data is not None else None
+        ioc_map = epics_config.get("iocs") if epics_config is not None else None
+        iocs = list(ioc_map.values()) if ioc_map is not None else []
         moxa_iocs = []
         for ioc in iocs:
             template = str(ioc.get("template") or ioc.get("devtype") or "")
