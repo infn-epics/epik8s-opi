@@ -3,7 +3,6 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 import epik8sutil
 
 import os
-import json
 from java.lang import Exception
 logger = ScriptUtil.getLogger()
 
@@ -20,9 +19,11 @@ wtemplate = ScriptUtil.findWidgetByName(widget, "element_template") ## name of t
 #     exit()
 # confpath = display_path + "/" + conffile
 
-visible_pv = pvs[3] if len(pvs) > 3 and widget.getEffectiveMacros().getValue("GROUP") == "mag" else None
+visible_pv = pvs[3] if len(pvs) > 4 and widget.getEffectiveMacros().getValue("GROUP") == "mag" else None
+visible_filters_pv = pvs[4] if visible_pv is not None else None
 if visible_pv is not None:
     visible_pv.write("")
+    visible_filters_pv.write("")
 devarray = epik8sutil.conf_to_dev(widget)
 
 offset = 5
@@ -47,7 +48,7 @@ for i in range(len(devarray)):
     widget.runtimeChildren().addChild(instance)
 
 if visible_pv is not None:
-    visible_pv.write(json.dumps({"zone": PVUtil.getString(pvs[0]),
-                                 "type": PVUtil.getString(pvs[1]),
-                                 "model": PVUtil.getString(pvs[2]),
-                                 "bases": [d['P'] + ':' + d['R'] for d in devarray]}))
+    visible_pv.write("\n".join(d['P'] + ':' + d['R'] for d in devarray))
+    visible_filters_pv.write("\t".join((PVUtil.getString(pvs[0]),
+                                         PVUtil.getString(pvs[1]),
+                                         PVUtil.getString(pvs[2]))))

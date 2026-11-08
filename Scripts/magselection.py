@@ -1,5 +1,4 @@
 from org.csstudio.display.builder.runtime.script import PVUtil
-import json
 
 
 def visible_bases(widget, did):
@@ -11,20 +10,17 @@ def visible_bases(widget, did):
         kind = PVUtil.getString(PVUtil.createPV('loc://FUNC_' + did, 10))
         model = PVUtil.getString(PVUtil.createPV('loc://TYPE_' + did, 10))
         snapshot = PVUtil.getString(PVUtil.createPV('loc://mag-visible-' + did, 10))
+        signature = PVUtil.getString(PVUtil.createPV('loc://mag-visible-filters-' + did, 10))
     except Exception as error:
         raise ValueError('Cannot read the source magnet filters: ' + str(error))
-    if not zone or not kind or not model or not snapshot:
+    if not zone or not kind or not model or not snapshot or not signature:
         raise ValueError('Source magnet selection is unavailable; wait for the magnet view to finish loading')
-    try:
-        data = json.loads(snapshot)
-        if (data['zone'], data['type'], data['model']) != (zone, kind, model):
-            raise ValueError('Source magnet filters are still updating; retry after the list refreshes')
-        bases = data['bases']
-        if not isinstance(bases, list) or any(':' not in base for base in bases):
-            raise ValueError('Source magnet list is invalid')
-        return set(bases)
-    except (KeyError, TypeError) as error:
-        raise ValueError('Source magnet list is invalid: ' + str(error))
+    if tuple(signature.split('\t')) != (zone, kind, model):
+        raise ValueError('Source magnet filters are still updating; retry after the list refreshes')
+    bases = [base for base in snapshot.split('\n') if base]
+    if any(':' not in base for base in bases):
+        raise ValueError('Source magnet list is invalid')
+    return set(bases)
 
 
 def skipped_message(skipped, label):
