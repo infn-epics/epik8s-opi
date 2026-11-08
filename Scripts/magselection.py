@@ -3,6 +3,9 @@ from org.csstudio.display.builder.runtime.script import PVUtil
 
 def visible_bases(widget, did):
     """Exact PV bases published by the source magnet window after filtering."""
+    # DID belongs to the restore/pretune display. Phoebus generates a new DID
+    # for each display, even when the open action supplies a DID macro.
+    did = widget.getEffectiveMacros().getValue('MAGNET_SOURCE_ID')
     if not did or did == '0' or '$' in did:
         raise ValueError('Cannot identify the source magnet window')
     try:
@@ -13,7 +16,7 @@ def visible_bases(widget, did):
         signature = PVUtil.getString(PVUtil.createPV('loc://mag-visible-filters-' + did, 10))
     except Exception as error:
         raise ValueError('Cannot read the source magnet filters: ' + str(error))
-    if not zone or not kind or not model or not snapshot or not signature:
+    if not zone or not kind or not model or not signature:
         raise ValueError('Source magnet selection is unavailable; wait for the magnet view to finish loading')
     if tuple(signature.split('\t')) != (zone, kind, model):
         raise ValueError('Source magnet filters are still updating; retry after the list refreshes')
