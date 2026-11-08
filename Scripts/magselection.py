@@ -1,11 +1,12 @@
-from org.csstudio.display.builder.runtime.script import PVUtil
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
 
 
 def visible_bases(widget, did):
     """Exact PV bases published by the source magnet window after filtering."""
     # DID belongs to the restore/pretune display. Phoebus generates a new DID
     # for each display, even when the open action supplies a DID macro.
-    did = widget.getEffectiveMacros().getValue('MAGNET_SOURCE_ID')
+    source = ScriptUtil.findWidgetByName(widget, 'MagnetSourceId')
+    did = str(source.getPropertyValue('text')) if source is not None else None
     if not did or did == '0' or '$' in did:
         raise ValueError('Cannot identify the source magnet window')
     try:
