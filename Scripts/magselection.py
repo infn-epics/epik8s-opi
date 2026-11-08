@@ -1,26 +1,30 @@
 from org.csstudio.display.builder.runtime.script import PVUtil
-import epik8sutil
+import json
 
 
 def visible_bases(widget, did):
-    """PV bases in the source mag_dynamic window's current Zone/Type/Model view.
-
-    In mag_dynamic.bob the Type combo writes FUNC_ and the Model combo writes
-    TYPE_. Read the source window's local PVs, not the child dialog's macros.
-    Fail closed if the source selection cannot be read.
-    """
+    """Exact PV bases published by the source magnet window after filtering."""
     if not did or did == '0' or '$' in did:
         raise ValueError('Cannot identify the source magnet window')
     try:
         zone = PVUtil.getString(PVUtil.createPV('loc://ZONE_' + did, 10))
         kind = PVUtil.getString(PVUtil.createPV('loc://FUNC_' + did, 10))
         model = PVUtil.getString(PVUtil.createPV('loc://TYPE_' + did, 10))
+        snapshot = PVUtil.getString(PVUtil.createPV('loc://mag-visible-' + did, 10))
     except Exception as error:
         raise ValueError('Cannot read the source magnet filters: ' + str(error))
-    if not zone or not kind or not model:
-        raise ValueError('Source magnet filters are unavailable')
-    devices = epik8sutil.conf_to_dev(widget, zone, model, kind)
-    return set(d['P'] + ':' + d['R'] for d in devices)
+    if not zone or not kind or not model or not snapshot:
+        raise ValueError('Source magnet selection is unavailable; wait for the magnet view to finish loading')
+    try:
+        data = json.loads(snapshot)
+        if (data['zone'], data['type'], data['model']) != (zone, kind, model):
+            raise ValueError('Source magnet filters are still updating; retry after the list refreshes')
+        bases = data['bases']
+        if not isinstance(bases, list) or any(':' not in base for base in bases):
+            raise ValueError('Source magnet list is invalid')
+        return set(bases)
+    except (KeyError, TypeError) as error:
+        raise ValueError('Source magnet list is invalid: ' + str(error))
 
 
 def skipped_message(skipped, label):

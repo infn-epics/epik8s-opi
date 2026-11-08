@@ -3,6 +3,7 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 import epik8sutil
 
 import os
+import json
 from java.lang import Exception
 logger = ScriptUtil.getLogger()
 
@@ -19,7 +20,9 @@ wtemplate = ScriptUtil.findWidgetByName(widget, "element_template") ## name of t
 #     exit()
 # confpath = display_path + "/" + conffile
 
-devarray = []
+visible_pv = pvs[3] if len(pvs) > 3 and widget.getEffectiveMacros().getValue("GROUP") == "mag" else None
+if visible_pv is not None:
+    visible_pv.write("")
 devarray = epik8sutil.conf_to_dev(widget)
 
 offset = 5
@@ -42,3 +45,9 @@ for i in range(len(devarray)):
     y = i * embedded_height
     instance = epik8sutil.createInstance(embedded_width,embedded_height,devgroup_widget+str(i),bobitem,x, y, devarray[i])
     widget.runtimeChildren().addChild(instance)
+
+if visible_pv is not None:
+    visible_pv.write(json.dumps({"zone": PVUtil.getString(pvs[0]),
+                                 "type": PVUtil.getString(pvs[1]),
+                                 "model": PVUtil.getString(pvs[2]),
+                                 "bases": [d['P'] + ':' + d['R'] for d in devarray]}))
