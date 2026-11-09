@@ -651,24 +651,25 @@ def load_conf(confpath):
     root_facility = data.get("facility")
     root_facilities = data.get("facilities")
     default_facility = root_facilities if root_facilities is not None else root_facility
-    def tag_iocs_with_source_facility(source, fallback):
+    # Each IOC also remembers the file it comes from ("_source"), so a display can
+    # show only some of the merged files (conf_to_dev's SOURCES macro).
+    def tag_iocs_with_source_facility(source, fallback, source_name):
         cfg = source.get("epicsConfiguration") if source is not None else None
         iocs = cfg.get("iocs") if cfg is not None else None
         if iocs is None:
             return
         source_facility = source.get("facilities", source.get("facility", fallback))
-        if source_facility is None:
-            return
         for ioc in iocs.values():
             if ioc is not None and hasattr(ioc, "keySet"):
-                if ioc.get("facilities") is None and ioc.get("facility") is None:
+                ioc.put("_source", source_name)
+                if source_facility is not None and ioc.get("facilities") is None and ioc.get("facility") is None:
                     ioc.put("facility", source_facility)
-    tag_iocs_with_source_facility(data, default_facility)
+    tag_iocs_with_source_facility(data, default_facility, "values.yaml")
     for fname in sorted(os.listdir(confdir)):
         if fname.startswith("values-") and fname.endswith(".yaml"):
             extra = yaml.load(FileReader(os.path.join(confdir, fname)))
             if extra is not None and hasattr(extra, "keySet"):
-                tag_iocs_with_source_facility(extra, default_facility)
+                tag_iocs_with_source_facility(extra, default_facility, fname)
                 print("merging configuration \"" + fname + "\"")
                 _deep_merge(data, extra)
     if root_facility is not None:
@@ -775,6 +776,14 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
             pass
 
     forceopi=mywidget.getEffectiveMacros().getValue("OPI")
+
+    # SOURCES (optional): only the IOCs of these files, when CONFFILE is a values.yaml that
+    # merges its sibling values-*.yaml - e.g. "values.yaml,values-tl.yaml" for the transfer
+    # line without the accumulator. Unset: every merged file, as before.
+    sources_macro = mywidget.getEffectiveMacros().getValue("SOURCES")
+    sources = None
+    if sources_macro and str(sources_macro).strip():
+        sources = [s.strip() for s in str(sources_macro).split(",") if s.strip()]
     
     group=mywidget.getEffectiveMacros().getValue("GROUP")
     conffile = mywidget.getEffectiveMacros().getValue("CONFFILE")
@@ -833,6 +842,8 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
         if str(ioc.get("disable", False)).lower() == "true":
             ## not deployed by the chart (e.g. placeholders)
             continue
+        if sources is not None and ioc.get("_source") not in sources:
+            continue
         if iocprefix and devgroup == group:
             devices = ioc.get("devices", [])
             # print("Found IOC:", ioc_name, "iocprefix:", iocprefix, "devtype:", devtype, "devices:", len(devices))
@@ -843,7 +854,8 @@ def conf_to_dev(mywidget, zoneOverride=None, typeOverride=None, funcOverride=Non
                 prefix=iocprefix
                 devtype=ioc.get("devtype", "ALL")
                 iocroot=ioc.get("iocroot", "")
-                pathzone = ioc.get("zones", "ALL")
+                # A device's own zones (values-tl.yaml sets them per magnet) win over its IOC's.
+                pathzone = dev.get("zones") or ioc.get("zones", "ALL")
                 zones = [pathzone] if isinstance(pathzone, basestring) else list(pathzone)
                 devfacilities = dev.get("facilities", dev.get("facility", iocfacilities))
                 if isinstance(devfacilities, basestring):
