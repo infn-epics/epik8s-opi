@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Thorlabs CCT $(P):$(R)</name>
+  <width>1000</width>
+  <height>760</height>
+  <grid_step_x>5</grid_step_x>
+  <grid_step_y>5</grid_step_y>
+  <widget type="label" version="2.0.0">
+    <name>label_1</name>
+    <text>Thorlabs CCT spectrometer — $(P):$(R)</text>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>40</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0"/>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255"/>
+    </foreground_color>
+    <background_color>
+      <color red="40" green="60" blue="110"/>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>led_2</name>
+    <pv_name>$(P):$(R):Connected</pv_name>
+    <x>10</x>
+    <y>50</y>
+    <width>20</width>
+    <height>20</height>
+    <off_color>
+      <color red="200" green="0" blue="0"/>
+    </off_color>
+    <on_color>
+      <color red="0" green="200" blue="0"/>
+    </on_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>textupdate_3</name>
+    <pv_name>$(P):$(R):Connected</pv_name>
+    <x>35</x>
+    <y>50</y>
+    <width>110</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>label_4</name>
+    <text>Device:</text>
+    <x>160</x>
+    <y>50</y>
+    <width>55</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>textupdate_5</name>
+    <pv_name>$(P):$(R):DeviceId</pv_name>
+    <x>215</x>
+    <y>50</y>
+    <width>200</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>led_6</name>
+    <pv_name>$(P):$(R):Busy</pv_name>
+    <x>430</x>
+    <y>50</y>
+    <width>20</width>
+    <height>20</height>
+    <off_color>
+      <color red="120" green="120" blue="120"/>
+    </off_color>
+    <on_color>
+      <color red="255" green="180" blue="0"/>
+    </on_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>textupdate_7</name>
+    <pv_name>$(P):$(R):Busy</pv_name>
+    <x>455</x>
+    <y>50</y>
+    <width>90</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>label_8</name>
+    <text>Error:</text>
+    <x>560</x>
+    <y>50</y>
+    <width>45</width>
+    <height>20</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+    </font>
+    <horizontal_alignment>0</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>textupdate_9</name>
+    <pv_name>$(P):$(R):LastError</pv_name>
+    <x>605</x>
+    <y>50</y>
+    <width>385</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <tooltip>Full text: LastErrorLong (below)</tooltip>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>textupdate_10</name>
+    <pv_name>$(P):$(R):LastErrorLong</pv_name>
+    <x>10</x>
+    <y>76</y>
+    <width>980</width>
+    <height>20</height>
+    <show_units>false</show_units>
+    <format>6</format>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Acquisition</name>
+    <x>10</x>
+    <y>105</y>
+    <width>480</width>
+    <height>230</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <widget type="label" version="2.0.0">
+      <name>label_11</name>
+      <text>Exposure:</text>
+      <x>10</x>
+      <y>8</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>textentry_12</name>
+      <pv_name>$(P):$(R):Exposure</pv_name>
+      <x>105</x>
+      <y>8</y>
+      <width>130</width>
+      <height>22</height>
+      <show_units>true</show_units>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_13</name>
+      <pv_name>$(P):$(R):Exposure</pv_name>
+      <x>245</x>
+      <y>8</y>
+      <width>110</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_14</name>
+      <text>Average:</text>
+      <x>10</x>
+      <y>38</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>textentry_15</name>
+      <pv_name>$(P):$(R):Average</pv_name>
+      <x>105</x>
+      <y>38</y>
+      <width>130</width>
+      <height>22</height>
+      <show_units>true</show_units>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_16</name>
+      <pv_name>$(P):$(R):Average</pv_name>
+      <x>245</x>
+      <y>38</y>
+      <width>110</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_17</name>
+      <text>Shutter:</text>
+      <x>10</x>
+      <y>68</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>combo_18</name>
+      <pv_name>$(P):$(R):Shutter</pv_name>
+      <x>105</x>
+      <y>68</y>
+      <width>130</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_19</name>
+      <pv_name>$(P):$(R):Shutter</pv_name>
+      <x>245</x>
+      <y>68</y>
+      <width>110</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_20</name>
+      <text>Continuous:</text>
+      <x>10</x>
+      <y>98</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>combo_21</name>
+      <pv_name>$(P):$(R):Continuous</pv_name>
+      <x>105</x>
+      <y>98</y>
+      <width>130</width>
+      <height>22</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_22</name>
+      <pv_name>$(P):$(R):Continuous</pv_name>
+      <x>245</x>
+      <y>98</y>
+      <width>110</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_23</name>
+      <text>Period:</text>
+      <x>10</x>
+      <y>128</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>textentry_24</name>
+      <pv_name>$(P):$(R):Period</pv_name>
+      <x>105</x>
+      <y>128</y>
+      <width>130</width>
+      <height>22</height>
+      <show_units>true</show_units>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_25</name>
+      <pv_name>$(P):$(R):Period</pv_name>
+      <x>245</x>
+      <y>128</y>
+      <width>110</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>action_button_26</name>
+      <actions>
+        <action type="write_pv">
+          <description>Acquire</description>
+          <pv_name>$(P):$(R):Acquire</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):Acquire</pv_name>
+      <text>Acquire</text>
+      <x>10</x>
+      <y>165</y>
+      <width>160</width>
+      <height>28</height>
+      <tooltip>Acquire one spectrum</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>action_button_27</name>
+      <actions>
+        <action type="write_pv">
+          <description>Acquire dark</description>
+          <pv_name>$(P):$(R):AcquireDark</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):AcquireDark</pv_name>
+      <text>Acquire dark</text>
+      <x>195</x>
+      <y>165</y>
+      <width>160</width>
+      <height>28</height>
+      <tooltip>Close the shutter, update the dark spectrum, restore the shutter</tooltip>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Last spectrum</name>
+    <x>510</x>
+    <y>105</y>
+    <width>480</width>
+    <height>230</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <widget type="label" version="2.0.0">
+      <name>label_28</name>
+      <text>Peak wavelength:</text>
+      <x>10</x>
+      <y>8</y>
+      <width>130</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_29</name>
+      <pv_name>$(P):$(R):PeakWavelength</pv_name>
+      <x>145</x>
+      <y>8</y>
+      <width>170</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>3</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_30</name>
+      <text>Peak intensity:</text>
+      <x>10</x>
+      <y>38</y>
+      <width>130</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_31</name>
+      <pv_name>$(P):$(R):PeakIntensity</pv_name>
+      <x>145</x>
+      <y>38</y>
+      <width>170</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_32</name>
+      <text>Pixels:</text>
+      <x>10</x>
+      <y>68</y>
+      <width>130</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_33</name>
+      <pv_name>$(P):$(R):NumPixels</pv_name>
+      <x>145</x>
+      <y>68</y>
+      <width>170</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_34</name>
+      <text>Sequence:</text>
+      <x>10</x>
+      <y>98</y>
+      <width>130</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_35</name>
+      <pv_name>$(P):$(R):Sequence</pv_name>
+      <x>145</x>
+      <y>98</y>
+      <width>170</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_36</name>
+      <text>Timestamp:</text>
+      <x>10</x>
+      <y>128</y>
+      <width>130</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_37</name>
+      <pv_name>$(P):$(R):Timestamp</pv_name>
+      <x>145</x>
+      <y>128</y>
+      <width>170</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>3</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_38</name>
+      <text>Timestamp: Unix time [s] of the last spectrum</text>
+      <x>10</x>
+      <y>165</y>
+      <width>440</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="xyplot" version="3.0.0">
+    <name>spectrum_plot</name>
+    <x>10</x>
+    <y>345</y>
+    <width>980</width>
+    <height>405</height>
+    <show_legend>false</show_legend>
+    <x_axis>
+      <title>Wavelength [nm]</title>
+      <autoscale>true</autoscale>
+      <log_scale>false</log_scale>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <show_grid>true</show_grid>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0"/>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </scale_font>
+      <visible>true</visible>
+    </x_axis>
+    <y_axes>
+      <y_axis>
+        <title>Intensity [counts]</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>true</show_grid>
+        <title_font>
+          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0"/>
+        </title_font>
+        <scale_font>
+          <font name="Default" family="Liberation Sans" style="REGULAR" size="12.0"/>
+        </scale_font>
+        <on_right>false</on_right>
+        <color>
+          <color red="0" green="0" blue="0"/>
+        </color>
+        <visible>true</visible>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Spectrum</name>
+        <x_pv>$(P):$(R):Wavelength</x_pv>
+        <y_pv>$(P):$(R):Spectrum</y_pv>
+        <err_pv/>
+        <axis>0</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="0" green="90" blue="200"/>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>5</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+</display>
