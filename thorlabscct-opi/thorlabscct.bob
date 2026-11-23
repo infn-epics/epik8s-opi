@@ -2,7 +2,7 @@
 <display version="2.0.0">
   <name>Thorlabs CCT $(P):$(R)</name>
   <width>1000</width>
-  <height>760</height>
+  <height>860</height>
   <grid_step_x>5</grid_step_x>
   <grid_step_y>5</grid_step_y>
   <widget type="label" version="2.0.0">
@@ -334,7 +334,7 @@
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
-    <name>Last spectrum</name>
+    <name>Trigger</name>
     <x>510</x>
     <y>105</y>
     <width>480</width>
@@ -344,34 +344,41 @@
     </font>
     <widget type="label" version="2.0.0">
       <name>label_28</name>
-      <text>Peak wavelength:</text>
+      <text>Mode:</text>
       <x>10</x>
+      <y>8</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>combo_29</name>
+      <pv_name>$(P):$(R):TriggerMode</pv_name>
+      <x>105</x>
       <y>8</y>
       <width>130</width>
       <height>22</height>
-      <font>
-        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
-      </font>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
-      <name>textupdate_29</name>
-      <pv_name>$(P):$(R):PeakWavelength</pv_name>
-      <x>145</x>
+      <name>textupdate_30</name>
+      <pv_name>$(P):$(R):TriggerMode</pv_name>
+      <x>245</x>
       <y>8</y>
-      <width>170</width>
+      <width>120</width>
       <height>22</height>
       <show_units>true</show_units>
-      <precision>3</precision>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>label_30</name>
-      <text>Peak intensity:</text>
+      <name>label_31</name>
+      <text>Slope:</text>
       <x>10</x>
       <y>38</y>
-      <width>130</width>
+      <width>90</width>
       <height>22</height>
       <font>
         <font family="Liberation Sans" style="REGULAR" size="12.0"/>
@@ -379,46 +386,30 @@
       <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
-    <widget type="textupdate" version="2.0.0">
-      <name>textupdate_31</name>
-      <pv_name>$(P):$(R):PeakIntensity</pv_name>
-      <x>145</x>
+    <widget type="combo" version="2.0.0">
+      <name>combo_32</name>
+      <pv_name>$(P):$(R):TriggerSlope</pv_name>
+      <x>105</x>
       <y>38</y>
-      <width>170</width>
-      <height>22</height>
-      <show_units>true</show_units>
-      <precision>1</precision>
-      <vertical_alignment>1</vertical_alignment>
-    </widget>
-    <widget type="label" version="2.0.0">
-      <name>label_32</name>
-      <text>Pixels:</text>
-      <x>10</x>
-      <y>68</y>
       <width>130</width>
       <height>22</height>
-      <font>
-        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
-      </font>
-      <horizontal_alignment>0</horizontal_alignment>
-      <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>textupdate_33</name>
-      <pv_name>$(P):$(R):NumPixels</pv_name>
-      <x>145</x>
-      <y>68</y>
-      <width>170</width>
+      <pv_name>$(P):$(R):TriggerSlope</pv_name>
+      <x>245</x>
+      <y>38</y>
+      <width>120</width>
       <height>22</height>
       <show_units>true</show_units>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
       <name>label_34</name>
-      <text>Sequence:</text>
+      <text>Averaging:</text>
       <x>10</x>
-      <y>98</y>
-      <width>130</width>
+      <y>68</y>
+      <width>90</width>
       <height>22</height>
       <font>
         <font family="Liberation Sans" style="REGULAR" size="12.0"/>
@@ -426,22 +417,30 @@
       <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
+    <widget type="combo" version="2.0.0">
+      <name>combo_35</name>
+      <pv_name>$(P):$(R):TriggerAveraging</pv_name>
+      <x>105</x>
+      <y>68</y>
+      <width>130</width>
+      <height>22</height>
+    </widget>
     <widget type="textupdate" version="2.0.0">
-      <name>textupdate_35</name>
-      <pv_name>$(P):$(R):Sequence</pv_name>
-      <x>145</x>
-      <y>98</y>
-      <width>170</width>
+      <name>textupdate_36</name>
+      <pv_name>$(P):$(R):TriggerAveraging</pv_name>
+      <x>245</x>
+      <y>68</y>
+      <width>120</width>
       <height>22</height>
       <show_units>true</show_units>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>label_36</name>
-      <text>Timestamp:</text>
+      <name>label_37</name>
+      <text>Out delay:</text>
       <x>10</x>
-      <y>128</y>
-      <width>130</width>
+      <y>98</y>
+      <width>90</width>
       <height>22</height>
       <font>
         <font family="Liberation Sans" style="REGULAR" size="12.0"/>
@@ -449,24 +448,105 @@
       <horizontal_alignment>0</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
     </widget>
-    <widget type="textupdate" version="2.0.0">
-      <name>textupdate_37</name>
-      <pv_name>$(P):$(R):Timestamp</pv_name>
-      <x>145</x>
-      <y>128</y>
-      <width>170</width>
+    <widget type="textentry" version="3.0.0">
+      <name>textentry_38</name>
+      <pv_name>$(P):$(R):TriggerOutDelay</pv_name>
+      <x>105</x>
+      <y>98</y>
+      <width>130</width>
       <height>22</height>
       <show_units>true</show_units>
-      <precision>3</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_39</name>
+      <pv_name>$(P):$(R):TriggerOutDelay</pv_name>
+      <x>245</x>
+      <y>98</y>
+      <width>120</width>
+      <height>22</height>
+      <show_units>true</show_units>
       <vertical_alignment>1</vertical_alignment>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>label_38</name>
-      <text>Timestamp: Unix time [s] of the last spectrum</text>
+      <name>label_40</name>
+      <text>Timeout:</text>
       <x>10</x>
+      <y>128</y>
+      <width>90</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>textentry_41</name>
+      <pv_name>$(P):$(R):TriggerTimeout</pv_name>
+      <x>105</x>
+      <y>128</y>
+      <width>130</width>
+      <height>22</height>
+      <show_units>true</show_units>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_42</name>
+      <pv_name>$(P):$(R):TriggerTimeout</pv_name>
+      <x>245</x>
+      <y>128</y>
+      <width>120</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>led_43</name>
+      <pv_name>$(P):$(R):TriggerArmed</pv_name>
+      <x>10</x>
+      <y>169</y>
+      <width>20</width>
+      <height>20</height>
+      <off_color>
+        <color red="120" green="120" blue="120"/>
+      </off_color>
+      <on_color>
+        <color red="255" green="180" blue="0"/>
+      </on_color>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_44</name>
+      <pv_name>$(P):$(R):TriggerArmed</pv_name>
+      <x>35</x>
+      <y>168</y>
+      <width>160</width>
+      <height>22</height>
+      <show_units>false</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>action_button_45</name>
+      <actions>
+        <action type="write_pv">
+          <description>Abort</description>
+          <pv_name>$(P):$(R):Abort</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):Abort</pv_name>
+      <text>Abort</text>
+      <x>245</x>
       <y>165</y>
-      <width>440</width>
-      <height>22</height>
+      <width>120</width>
+      <height>28</height>
+      <tooltip>Cancel the pending acquisition (e.g. one waiting for a trigger)</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_46</name>
+      <text>Timeout 0 = wait forever; Out delay &lt; 0 = TTL out before acquisition</text>
+      <x>375</x>
+      <y>8</y>
+      <width>95</width>
+      <height>150</height>
       <font>
         <font family="Liberation Sans" style="REGULAR" size="10.0"/>
       </font>
@@ -474,12 +554,163 @@
       <vertical_alignment>1</vertical_alignment>
     </widget>
   </widget>
-  <widget type="xyplot" version="3.0.0">
-    <name>spectrum_plot</name>
+  <widget type="group" version="3.0.0">
+    <name>Last spectrum</name>
     <x>10</x>
     <y>345</y>
     <width>980</width>
-    <height>405</height>
+    <height>100</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <widget type="label" version="2.0.0">
+      <name>label_47</name>
+      <text>Peak wavelength:</text>
+      <x>10</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_48</name>
+      <pv_name>$(P):$(R):PeakWavelength</pv_name>
+      <x>135</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>3</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_49</name>
+      <text>Peak intensity:</text>
+      <x>335</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_50</name>
+      <pv_name>$(P):$(R):PeakIntensity</pv_name>
+      <x>460</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_51</name>
+      <text>Pixels:</text>
+      <x>660</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_52</name>
+      <pv_name>$(P):$(R):NumPixels</pv_name>
+      <x>785</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_53</name>
+      <text>Sequence:</text>
+      <x>10</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_54</name>
+      <pv_name>$(P):$(R):Sequence</pv_name>
+      <x>135</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_55</name>
+      <text>Triggered:</text>
+      <x>335</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_56</name>
+      <pv_name>$(P):$(R):Triggered</pv_name>
+      <x>460</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>false</show_units>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_57</name>
+      <text>Timestamp [Unix s]:</text>
+      <x>660</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_58</name>
+      <pv_name>$(P):$(R):Timestamp</pv_name>
+      <x>785</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>3</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="xyplot" version="3.0.0">
+    <name>spectrum_plot</name>
+    <x>10</x>
+    <y>455</y>
+    <width>980</width>
+    <height>395</height>
     <show_legend>false</show_legend>
     <x_axis>
       <title>Wavelength [nm]</title>
