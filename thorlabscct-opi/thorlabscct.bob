@@ -2,7 +2,7 @@
 <display version="2.0.0">
   <name>Thorlabs CCT $(P):$(R)</name>
   <width>1000</width>
-  <height>860</height>
+  <height>1000</height>
   <grid_step_x>5</grid_step_x>
   <grid_step_y>5</grid_step_y>
   <widget type="label" version="2.0.0">
@@ -705,10 +705,215 @@
       <vertical_alignment>1</vertical_alignment>
     </widget>
   </widget>
+  <widget type="group" version="3.0.0">
+    <name>Diagnostics</name>
+    <x>10</x>
+    <y>455</y>
+    <width>980</width>
+    <height>130</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="12.0"/>
+    </font>
+    <widget type="label" version="2.0.0">
+      <name>label_59</name>
+      <text>Frame interval:</text>
+      <x>10</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_60</name>
+      <pv_name>$(P):$(R):FrameInterval</pv_name>
+      <x>135</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_61</name>
+      <text>Interval min:</text>
+      <x>335</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_62</name>
+      <pv_name>$(P):$(R):FrameIntervalMin</pv_name>
+      <x>460</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_63</name>
+      <text>Interval max:</text>
+      <x>660</x>
+      <y>8</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_64</name>
+      <pv_name>$(P):$(R):FrameIntervalMax</pv_name>
+      <x>785</x>
+      <y>8</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_65</name>
+      <text>Device clock:</text>
+      <x>10</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_66</name>
+      <pv_name>$(P):$(R):DeviceTime</pv_name>
+      <x>135</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>3</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_67</name>
+      <text>Memory used:</text>
+      <x>335</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_68</name>
+      <pv_name>$(P):$(R):MemoryUsed</pv_name>
+      <x>460</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_69</name>
+      <text>.NET heap:</text>
+      <x>660</x>
+      <y>38</y>
+      <width>120</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>textupdate_70</name>
+      <pv_name>$(P):$(R):ManagedHeap</pv_name>
+      <x>785</x>
+      <y>38</y>
+      <width>180</width>
+      <height>22</height>
+      <show_units>true</show_units>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>label_71</name>
+      <text>Frame interval: time between frames on the spectrometer's clock (hardware mode: the trigger period)</text>
+      <x>10</x>
+      <y>68</y>
+      <width>640</width>
+      <height>22</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="10.0"/>
+      </font>
+      <horizontal_alignment>0</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>action_button_72</name>
+      <actions>
+        <action type="write_pv">
+          <description>Reconnect</description>
+          <pv_name>$(P):$(R):Reconnect</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):Reconnect</pv_name>
+      <text>Reconnect</text>
+      <x>660</x>
+      <y>66</y>
+      <width>145</width>
+      <height>26</height>
+      <tooltip>Close the connection and reconnect, keeping the settings</tooltip>
+      <confirm_dialog>true</confirm_dialog>
+      <confirm_message>Close the connection to the spectrometer and reconnect?</confirm_message>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>action_button_73</name>
+      <actions>
+        <action type="write_pv">
+          <description>Reset device</description>
+          <pv_name>$(P):$(R):ResetDevice</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):ResetDevice</pv_name>
+      <text>Reset device</text>
+      <x>815</x>
+      <y>66</y>
+      <width>145</width>
+      <height>26</height>
+      <tooltip>Software reset of the spectrometer hardware, then reconnect</tooltip>
+      <confirm_dialog>true</confirm_dialog>
+      <confirm_message>Reset the spectrometer hardware? Acquisition stops until it is back (about a minute).</confirm_message>
+    </widget>
+  </widget>
   <widget type="xyplot" version="3.0.0">
     <name>spectrum_plot</name>
     <x>10</x>
-    <y>455</y>
+    <y>595</y>
     <width>980</width>
     <height>395</height>
     <show_legend>false</show_legend>
